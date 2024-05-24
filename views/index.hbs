@@ -79,15 +79,18 @@
         const heroVideo = document.getElementById('heroVideo');
         const playPauseIcon = document.getElementById('playPauseIcon');
         const muteIcon = document.getElementById('muteIcon');
+        let userPaused = false;
 
         // Play/Pause icon event listener
         playPauseIcon.addEventListener('click', function () {
             if (heroVideo.paused) {
                 heroVideo.play();
+                userPaused = false;
                 playPauseIcon.classList.remove('fa-play');
                 playPauseIcon.classList.add('fa-pause');
             } else {
                 heroVideo.pause();
+                userPaused = true;
                 playPauseIcon.classList.remove('fa-pause');
                 playPauseIcon.classList.add('fa-play');
             }
@@ -115,11 +118,11 @@
                 rect.top <= (window.innerHeight - threshold)
             );
 
-            if (isInView) {
+            if (isInView && !userPaused) {
                 heroVideo.play();
                 playPauseIcon.classList.remove('fa-play');
                 playPauseIcon.classList.add('fa-pause');
-            } else {
+            } else if (!isInView) {
                 heroVideo.pause();
                 playPauseIcon.classList.remove('fa-pause');
                 playPauseIcon.classList.add('fa-play');
@@ -133,6 +136,7 @@
         checkVideoInView();
     });
 </script>
+
 
 
 
@@ -742,12 +746,12 @@
 
 
 <section id="agrisection" x-data="{ shrink: false }"
-    x-init="window.addEventListener('scroll', () => { shrink = window.scrollY > $el.offsetTop; })"
-    class="relative flex justify-center items-center p-[59px] min-h-screen transform transition-transform duration-2000 ease-in-out"
+    
+    class="relative flex justify-center items-center p-[59px] min-h-screen transform transition-transform duration-2000"
     style="background: url('/images/agri-bg.png') no-repeat center center; background-size: cover;">
 
     <video :class="shrink ? 'shrink-video' : 'full-video'"
-        class="object-cover z-0 transition-all duration-2000 ease-in-out" autoplay loop muted>
+        class="object-cover z-0" autoplay loop muted>
         <source src="/images/agri-vid.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
@@ -762,7 +766,7 @@
                     class="flex justify-center items-center py-10 px-0 mb-6">
                     <div class="font-bold"
                         style="color: #0032A0; font-size: 32px; font-family: Satoshi; font-weight: 900; word-wrap: break-word">
-                        JAV AgriTech
+                        JAV Agri-Tech
                     </div>
                 </div>
 
@@ -828,7 +832,6 @@
         width: 100%;
         height: 100%;
         transform: translate(-50%, -50%);
-        transition: all 2s ease-in-out;
     }
 
     .shrink-video {
@@ -839,7 +842,6 @@
         height: 696px;
         border-radius: 58px;
         transform: translate(-50%, -50%);
-        transition: all 2s ease-in-out;
     }
 
     .font-satoshi {
@@ -1146,7 +1148,7 @@
                 Community Impact
             </div>
         </div>
-        <div class="flex justify-center items-center my-16 flex-row relative fadeLeft animation-element">
+        <div class="italic flex justify-center items-center my-16 flex-row relative fadeLeft animation-element">
             <div id="quoteText" class="quote community-text">
                 We improve the communities in which we live and work by increasing access to healthcare, essential
                 resources, education, and athletics.
@@ -1276,7 +1278,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const texts = [
-            { text: "We improve the communities in which we live and work by increasing by increasing food security, and access to essential resources, education, and athletics", duration: 5000 },
+            { text: "We improve the communities in which we live and work by increasing food security, and access to essential resources, education, and athletics", duration: 5000 },
             { text: "Our goal is to have a positive impact on the world.", duration: 10000 }
         ];
         const quoteElement = document.getElementById('quoteText');
