@@ -367,124 +367,171 @@
             }"
       x-id="['dropdown-button']">
 
+<style>
+    [x-cloak] {
+        display: none !important;
+    }
+</style>
 
-<header class="font-medium flex justify-between items-center lg:px-12 xl:px-20 fixed z-30 bg-white shadow-2xl w-full"
-    x-data="{ isAtTop: false, lastScroll: 0, isOpen: false, showModal: false }" @scroll.window="handleScroll" x-init="handleScroll = () => {
-            isAtTop = window.scrollY > 0;
-            lastScroll = window.scrollY;
-        }"
-    style="left: 0; padding-left: 0; padding-right: 0; height: 70px; background-color: white; box-shadow: 0 2px 4px rgba(0,0,0,0.4);">
+<div x-data="{ showModal: false }" x-cloak>
+    <header
+        class="font-medium flex justify-between items-center lg:px-12 xl:px-20 fixed z-30 bg-white shadow-2xl w-full"
+        @scroll.window="handleScroll" x-init="handleScroll = () => {
+                isAtTop = window.scrollY > 0;
+                lastScroll = window.scrollY;
+            }"
+        style="left: 0; padding-left: 0; padding-right: 0; height: 70px; background-color: white; box-shadow: 0 2px 4px rgba(0,0,0,0.4);">
+        <a href="/" class="absolute" style="top: 20px; left: 36px;">
+            <img src="/images/jav_logo_color.png" alt="Javolin Logo" style="width: 130px; height: 30.23px;" />
+        </a>
 
-
-    <a href="/" class="absolute" style="top: 20px; left: 36px;">
-        <img src="/images/jav_logo_color.png" alt="Javolin Logo" style="width: 130px; height: 30.23px;" />
-    </a>
-
-    <div class="flex-grow flex justify-center items-center gap-40 whitespace-nowrap">
-        {{> nav }}
-    </div>
-
-    <div class="relative" x-data="{ isOpen: false }">
-        <button @mouseenter="isOpen = true"
-            class="hidden lg:flex cursor-pointer bg-[#0032A0] text-white px-6 py-2 rounded-full text-lg font-bold items-center justify-center"
-            style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); white-space: nowrap;">
-            Client Log-In
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" class="ml-2">
-                <path
-                    d="M13.5326 6.53061L8.53255 11.5306C8.46287 11.6005 8.38008 11.656 8.28892 11.6939C8.19775 11.7317 8.10001 11.7512 8.0013 11.7512C7.90259 11.7512 7.80485 11.7317 7.71369 11.6939C7.62252 11.656 7.53973 11.6005 7.47005 11.5306L2.47005 6.53061C2.32915 6.38972 2.25 6.19862 2.25 5.99936C2.25 5.80011 2.32915 5.60901 2.47005 5.46811C2.61095 5.32722 2.80204 5.24806 3.0013 5.24806C3.20056 5.24806 3.39165 5.32722 3.53255 5.46811L8.00193 9.93749L12.4713 5.46749C12.6122 5.32659 12.8033 5.24744 13.0026 5.24744C13.2018 5.24744 13.3929 5.32659 13.5338 5.46749C13.6747 5.60838 13.7539 5.79948 13.7539 5.99874C13.7539 6.198 13.6747 6.38909 13.5338 6.52999L13.5326 6.53061Z"
-                    fill="white" />
-            </svg>
-        </button>
-        <div x-show="isOpen" @mouseleave="isOpen = false"
-            class="absolute top-10 right-0 mt-2 bg-white rounded-lg shadow-xl"
-            style="width: 179px; height: 115px; border-radius: 12px;">
-            <div @click="isOpen = false; showModal = true" class="px-4 py-2 cursor-pointer hover:bg-gray-200"
-                style="color: black; font-size: 16px; font-family: Satoshi; font-weight: 500; letter-spacing: 0.16px; word-wrap: break-word; border-radius: 12px 12px 0 0;">
-                Payments
-            </div>
-            <div style="width: 151px; height: 0px; border: 0.70px #CBCDD3 solid; margin: 0 auto;"></div>
-            <div @click="isOpen = false; showModal = true" class="px-4 py-2 cursor-pointer hover:bg-gray-200"
-                style="color: black; font-size: 16px; font-family: Satoshi; font-weight: 500; letter-spacing: 0.16px; word-wrap: break-word; border-radius: 0 0 12px 12px;">
-                Commodities
-            </div>
-        </div>
-    </div>
-
-<!-- Modal -->
-<div x-show="showModal"
-    class="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex items-center justify-center">
-    <div class="bg-white rounded-3xl shadow-lg flex-col justify-start items-end inline-flex"
-        style="width: 994px; height: auto;">
-        <!-- Close Button -->
-        <div class="w-10 h-10 relative cursor-pointer" @click="showModal = false">
-            <div class="w-10 h-10 absolute bg-white rounded-full"></div>
-            <div class="w-5 h-5 absolute left-[9.48px] top-[10.84px]"></div>
+        <div class="flex-grow flex justify-center items-center gap-40 whitespace-nowrap">
+            {{> nav }}
         </div>
 
-        <div class="relative bg-lime-50 rounded-3xl shadow" style="width: 994px; height: auto;">
-            <div class="absolute inset-0 bg-stone-200"></div>
-            <div class="absolute left-[428px] top-0" style="width: 565px; height: 621px;">
-                <div class="absolute inset-0">
-                    <div class="absolute inset-0 bg-lime-50"></div>
-                    <img class="absolute inset-0 mix-blend-luminosity" src="/images/commo_pop_bg.png" />
+        <div class="relative" x-data="{ isOpen: false }">
+            <button @mouseenter="isOpen = true"
+                class="hidden lg:flex cursor-pointer bg-[#0032A0] text-white px-6 py-2 rounded-full text-lg font-bold items-center justify-center"
+                style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); white-space: nowrap;">
+                Client Log-In
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"
+                    class="ml-2">
+                    <path
+                        d="M13.5326 6.53061L8.53255 11.5306C8.46287 11.6005 8.38008 11.656 8.28892 11.6939C8.19775 11.7317 8.10001 11.7512 8.0013 11.7512C7.90259 11.7512 7.80485 11.7317 7.71369 11.6939C7.62252 11.656 7.53973 11.6005 7.47005 11.5306L2.47005 6.53061C2.32915 6.38972 2.25 6.19862 2.25 5.99936C2.25 5.80011 2.32915 5.60901 2.47005 5.46811C2.61095 5.32722 2.80204 5.24806 3.0013 5.24806C3.20056 5.24806 3.39165 5.32722 3.53255 5.46811L8.00193 9.93749L12.4713 5.46749C12.6122 5.32659 12.8033 5.24744 13.0026 5.24744C13.2018 5.24744 13.3929 5.32659 13.5338 5.46749C13.6747 5.60838 13.7539 5.79948 13.7539 5.99874C13.7539 6.198 13.6747 6.38909 13.5338 6.52999L13.5326 6.53061Z"
+                        fill="white" />
+                </svg>
+            </button>
+            <div x-show="isOpen" @mouseleave="isOpen = false" @mouseenter="isOpen = true"
+                class="absolute top-8 right-4 bg-white rounded-xl  w-44 h-28">
+                <div @click="isOpen = false; showModal = true"
+                    class="py-4 px-8 cursor-pointer text-black text-base font-medium font-['Satoshi'] tracking-tight">
+                    Payments</div>
+                <div class="border-t-2 mx-4 border-gray-300"></div>
+                <div @click="isOpen = false; showModal = true"
+                    class="py-4 px-8 cursor-pointer text-black text-base font-medium font-['Satoshi'] tracking-tight">
+                    Commodities</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Modal -->
+    <div x-show="showModal" x-transition
+        class="pb-20 fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex items-start justify-center pt-36"
+        x-cloak>
+        <div class=" relative bg-white rounded-3xl shadow-xl flex-col justify-start items-end inline-flex"
+            style="width: 994px; height: 680px;">
+            <!-- Close Button -->
+            <div class="absolute top-[-50px] right-[-20px] cursor-pointer" @click="showModal = false">
+                <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg">
+                    <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
                 </div>
-                <div class="absolute left-[32px] top-[64px] text-slate-950 text-2xl font-black font-['Satoshi']">Javolin
-                    Commodities Platform</div>
-                <div
-                    class="absolute left-[32px] top-[110px] w-96 text-gray-950 text-base font-normal font-['Satoshi'] tracking-tight">
-                    Javolin is a financial services technology company providing services and products through our
-                    digital platform, and mobile and web-based applications for Businesses, Banks, Government Entities,
-                    and Consumers.
+            </div>
+            <div class="relative bg-lime-50 rounded-tl-3xl rounded-bl-3xl shadow" style="width: 994px; height: 680px;">
+                <div class="absolute inset-0 bg-stone-200 rounded-tl-3xl rounded-bl-3xl"></div>
+                <div class="absolute left-0 top-0 rounded-tl-3xl rounded-bl-3xl" style="width: 429px; height: 680px;">
+                    <div class="absolute inset-0 rounded-tl-3xl rounded-bl-3xl">
+                        <div class="absolute inset-0 bg-lime-50 rounded-tl-3xl rounded-bl-3xl" style="height: 680px;"></div>
+                        </div>
+                        <img class="absolute inset-0 mix-blend-luminosity rounded-tl-3xl rounded-bl-3xl"
+                            src="/images/commo_pop_bg.png" style="height: 680px;" />
+                    </div>
                 </div>
-                <div class="absolute left-[32px] top-[220px] flex-col justify-start items-start gap-4 inline-flex">
-                    <div class="text-gray-950 text-xs font-bold font-['Satoshi'] tracking-tight">GET STARTED</div>
-                    <div class="flex-col justify-start items-start gap-6 flex">
-                        <div class="w-96 justify-start items-center gap-3 inline-flex">
-                            {{{rightArrowSVG}}}
-                            <div class="w-96 text-gray-950 text-base font-medium font-['Satoshi'] tracking-tight">
-                                Eu turpis netus felis elementum sed ipsum praesent pellentesque enim. Sit nunc ultrices
-                                nec convallis.
+                <div class="absolute left-[428px] top-0 rounded-tr-3xl rounded-br-2xl"
+                    style="width: 565px; height: 680px;">
+                    <div class="absolute inset-0 rounded-tr-3xl rounded-br-3xl">
+                        <div class="absolute inset-0 bg-lime-50 rounded-tr-3xl rounded-br-3xl"></div>
+                        <div
+                            class="absolute left-[32px] top-[64px] text-slate-950 text-2xl font-black font-['Satoshi']">
+                            Javolin Commodities Platform</div>
+                        <div
+                            class="absolute left-[32px] top-[110px] w-96 text-gray-950 text-base font-normal font-['Satoshi'] tracking-tight">
+                            Javolin is a financial services technology company providing services and products through
+                            our digital platform, and mobile and web-based applications for Businesses, Banks,
+                            Government Entities, and Consumers.
+                        </div>
+                        <div
+                            class="absolute left-[32px] top-[220px] flex-col justify-start items-start gap-4 inline-flex">
+                            <div class="text-gray-950 text-xs font-bold font-['Satoshi'] tracking-tight">GET STARTED
+                            </div>
+                            <div class="flex-col justify-start items-start gap-6 flex">
+                                <div class="w-96 justify-start items-center gap-3 inline-flex">
+                                    <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11V6a1 1 0 10-2 0v1H8a1 1 0 000 2h1v1a1 1 0 102 0V8h1a1 1 0 100-2h-1z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    <div
+                                        class="w-96 text-gray-950 text-base font-medium font-['Satoshi'] tracking-tight">
+                                        Eu turpis netus felis elementum sed ipsum praesent pellentesque enim. Sit nunc
+                                        ultrices nec convallis.
+                                    </div>
+                                </div>
+                                <div class="w-96 justify-start items-center gap-3 inline-flex">
+                                    <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11V6a1 1 0 10-2 0v1H8a1 1 0 000 2h1v1a1 1 0 102 0V8h1a1 1 0 100-2h-1z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    <div
+                                        class="w-96 text-gray-950 text-base font-medium font-['Satoshi'] tracking-tight">
+                                        Posuere nulla gravida vitae consectetur purus aliquam sit elementum quam.
+                                        Integer
+                                        sed semper lacinia id. Libero.
+                                    </div>
+                                </div>
+                                <div class="w-96 justify-start items-center gap-3 inline-flex">
+                                    <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11V6a1 1 0 10-2 0v1H8a1 1 0 000 2h1v1a1 1 0 102 0V8h1a1 1 0 100-2h-1z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    <div
+                                        class="w-96 text-gray-950 text-base font-medium font-['Satoshi'] tracking-tight">
+                                        Placerat adipiscing in dui vitae. Arcu nullam viverra sed lorem cursus
+                                        pellentesque fermentum nisl. Scelerisque.
+                                    </div>
+                                </div>
+                                <div class="w-96 justify-start items-center gap-3 inline-flex">
+                                    <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11V6a1 1 0 10-2 0v1H8a1 1 0 000 2h1v1a1 1 0 102 0V8h1a1 1 0 100-2h-1z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    <div
+                                        class="w-96 text-gray-950 text-base font-medium font-['Satoshi'] tracking-tight">
+                                        Mollis venenatis scelerisque magna tristique tristique tristique. Vitae quam leo
+                                        ut neque nibh accumsan.
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="w-96 justify-start items-center gap-3 inline-flex">
-                            {{{rightArrowSVG}}}
-                            <div class="w-96 text-gray-950 text-base font-medium font-['Satoshi'] tracking-tight">
-                                Posuere nulla gravida vitae consectetur purus aliquam sit elementum quam. Integer sed
-                                semper lacinia id. Libero.
-                            </div>
-                        </div>
-                        <div class="w-96 justify-start items-center gap-3 inline-flex">
-                            {{{rightArrowSVG}}}
-                            <div class="w-96 text-gray-950 text-base font-medium font-['Satoshi'] tracking-tight">
-                                Placerat adipiscing in dui vitae. Arcu nullam viverra sed lorem cursus pellentesque
-                                fermentum nisl. Scelerisque.
-                            </div>
-                        </div>
-                        <div class="w-96 justify-start items-center gap-3 inline-flex">
-                            {{{rightArrowSVG}}}
-                            <div class="w-96 text-gray-950 text-base font-medium font-['Satoshi'] tracking-tight">
-                                Mollis venenatis scelerisque magna tristique tristique tristique. Vitae quam leo ut
-                                neque nibh accumsan.
+                        <div class="w-44 h-10 absolute left-[32px] top-[532px]  mt-16">
+                            <div class="w-44 h-10 absolute bg-blue-800 rounded-full"></div>
+                            <div
+                                class="absolute left-[65.79px] top-[11px] text-center text-white text-base font-medium font-['Circular Std']">
+                                Login
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="w-44 h-10 absolute left-[32px] top-[532px] shadow">
-                    <div class="w-44 h-10 absolute bg-blue-800 rounded-full"></div>
-                    <div
-                        class="absolute left-[65.79px] top-[11px] text-center text-white text-base font-medium font-['Circular Std']">
-                        Login</div>
-                </div>
+                <img class="absolute inset-0 left-0 top-0 rounded-tl-3xl rounded-bl-3xl"
+                    style="width: 429px; height: 680px;" src="/images/commo_pop.png" />
             </div>
-            <img class="absolute inset-0 left-0 top-0 rounded-tl-3xl rounded-bl-3xl"
-                style="width: 429px; height: 621px;" src="/images/commo_pop.png" />
         </div>
     </div>
 </div>
 
 
 
-</header>
+
+
+
+
+
 
 
 

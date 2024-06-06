@@ -1,8 +1,10 @@
-const express = require('express')
+const express = require('express');
 const mustacheExpress = require('mustache-express');
-const {engine} = require('express-handlebars');
+const { engine } = require('express-handlebars');
+const fs = require('fs');
+const path = require('path');
 
-const app = express()
+const app = express();
 const port = process.env.PORT || 5005;
 
 const svgIcons = {
@@ -57,10 +59,7 @@ const svgIcons = {
                             </svg>
                         </template>`;
     }
-
 };
-
-
 
 app.engine("hbs", engine({
     defaultLayout: 'main',
@@ -74,120 +73,132 @@ app.engine("hbs", engine({
 }));
 
 app.set('view engine', 'hbs');
-app.set('views', __dirname + '/views');
+app.set('views', path.join(__dirname, 'views'));
 
-app.use(express.static('public'))
-app.use(express.static('files'))
+app.use(express.static('public'));
+app.use(express.static('files'));
 
 app.get('/', (req, res) => {
     res.render('index', {});
-})
+});
 
-
- /* app.get('/solutions/consumer', (req, res) => {
-    res.render('consumer', {});
-})
-*/
 app.get('/solutions/business', (req, res) => {
     res.render('business', {});
-})
+});
 
 app.get('/solutions/government', (req, res) => {
     res.render('government', {});
-})
+});
 
 app.get('/solutions/bank', (req, res) => {
     res.render('bank', {});
-})
+});
 
 app.get('/about-us', (req, res) => {
     res.render('about-us', {});
-})
+});
 
 app.get('/password/forgot/:token', (req, res) => {
-    res.render('forgot-password',{});
-})
+    res.render('forgot-password', {});
+});
 
-app.get("/password/forgot",(req,res) => {
-    res.render('forgot-password',{
+app.get('/password/forgot', (req, res) => {
+    res.render('forgot-password', {
         layout: false,
         params: JSON.stringify(req.query)
     });
-})
-
-app.get("/blog/javolin-partners-with-ecobank",(req,res) => {
-   res.render("javolin-partners-with-ecobank",{
-
-   })
 });
 
-app.get("/blog/developing-fintech-in-africa-with-carl-powell",(req,res) => {
-    res.render("developing-fintech-in-africa-with-carl-powell",{
-    })
- });
-
- app.get("/solutions/foreign-exchange",(req,res) => {
-    res.render("foreignexchange",{
-    })
- });
-
-  app.get("/solutions/agri-commodities",(req,res) => {
-    res.render("digitalpayments",{
-    })
-  });
- 
-   app.get("/solutions/remittance",(req,res) => {
-    res.render("Digital-infrastructure",{
-    })
-   });
- 
-   app.get("/solutions/collections",(req,res) => {
-    res.render("collections",{
-    })
- });
-
-app.get("/blog/javolin-set-to-launch-on-april-6-2022",(req,res) => {
-    res.render("javolin-set-to-launch-on-april-6-2022",{
-
-    })
+app.get('/blog/javolin-partners-with-ecobank', (req, res) => {
+    res.render('javolin-partners-with-ecobank', {});
 });
 
-app.get("/about/company",(req,res) => {
-    res.render("company",{
-    })
+app.get('/blog/developing-fintech-in-africa-with-carl-powell', (req, res) => {
+    res.render('developing-fintech-in-africa-with-carl-powell', {});
 });
 
-app.get("/about/clients",(req,res) => {
-    res.render("clients",{
-    })
+app.get('/solutions/foreign-exchange', (req, res) => {
+    res.render('foreignexchange', {});
 });
 
-
-app.get("/blog/javolin-opens-new-office-in-dakar-senegal",(req,res) => {
-    res.render("javolin-opens-new-office-in-dakar-senegal",{
-    })
+app.get('/solutions/agri-commodities', (req, res) => {
+    res.render('digitalpayments', {});
 });
 
-app.get("/blog/javolin-secure-card",(req,res) => {
-    res.render("javolin-secure-card",{
-
-    })
+app.get('/solutions/remittance', (req, res) => {
+    res.render('Digital-infrastructure', {});
 });
 
-app.get("/terms",(req,res) => {
-    res.render("terms",{
-    })
+app.get('/solutions/collections', (req, res) => {
+    res.render('collections', {});
 });
 
-app.get("/privacy",(req,res) => {
-    res.render("privacy",{
-    })
+app.get('/blog/javolin-set-to-launch-on-april-6-2022', (req, res) => {
+    res.render('javolin-set-to-launch-on-april-6-2022', {});
+});
+
+app.get('/about/company', (req, res) => {
+    res.render('company', {});
+});
+
+app.get('/about/clients', (req, res) => {
+    res.render('clients', {});
+});
+
+app.get('/blog/javolin-opens-new-office-in-dakar-senegal', (req, res) => {
+    res.render('javolin-opens-new-office-in-dakar-senegal', {});
+});
+
+app.get('/blog/javolin-secure-card', (req, res) => {
+    res.render('javolin-secure-card', {});
+});
+
+app.get('/terms', (req, res) => {
+    res.render('terms', {});
+});
+
+app.get('/privacy', (req, res) => {
+    res.render('privacy', {});
+});
+
+// Route to handle video streaming with range requests
+app.get('/images/JAV_VID.mp4', (req, res) => {
+    const videoPath = path.join(__dirname, 'public', 'images', 'JAV_VID.mp4');
+    const videoStat = fs.statSync(videoPath);
+    const fileSize = videoStat.size;
+    const range = req.headers.range;
+
+    if (range) {
+        const parts = range.replace(/bytes=/, "").split("-");
+        const start = parseInt(parts[0], 10);
+        const end = parts[1] ? parseInt(parts[1], 10) : fileSize - 1;
+
+        if (start >= fileSize) {
+            res.status(416).send('Requested range not satisfiable\n' + start + ' >= ' + fileSize);
+            return;
+        }
+
+        const chunksize = (end - start) + 1;
+        const file = fs.createReadStream(videoPath, { start, end });
+        const head = {
+            'Content-Range': `bytes ${start}-${end}/${fileSize}`,
+            'Accept-Ranges': 'bytes',
+            'Content-Length': chunksize,
+            'Content-Type': 'video/mp4',
+        };
+
+        res.writeHead(206, head);
+        file.pipe(res);
+    } else {
+        const head = {
+            'Content-Length': fileSize,
+            'Content-Type': 'video/mp4',
+        };
+        res.writeHead(200, head);
+        fs.createReadStream(videoPath).pipe(res);
+    }
 });
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-})
-
-
-
-
+    console.log(`Example app listening on port ${port}`);
+});
