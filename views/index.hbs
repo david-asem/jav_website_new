@@ -1017,34 +1017,39 @@
     </div>
 </section>
 
-
-<section id="javfinance" class="p-10 relative  lg:px-24 py-20 mt-6 bg-[#1A1A40] overflow-hidden">
-    <div class="top-0 absolute left-[400px]" id="globe">
+<section id="javfinance" class="relative p-10 lg:px-24 py-20 mt-4 bg-[#1A1A40] overflow-hidden"
+    style="background-image: url('/images/invest_bg1.png'); background-size: cover; mix-blend-mode: overlay">
+    <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        <div class="p-10">
+            <h3 class="text-[#6CC24A] text-[20px] animation-element fadeLeft">JAV INVESTMENTS</h3>
+            <p class="text-[44px] text-white mt-2 font-bold leading-tight animation-element fadeRight">Arcu suspendisse semper nunc risus blandit.
+                Augue.</p>
+            <p class="text-[24px] text-[#FAFAFA] mt-4 max-w-xl opacity-70 animation-element fadeLeft">
+                Mauris mi volutpat urna ultrices augue enim. Elit ornare fermentum lacus blandit. Nulla morbi dis nibh
+                sit libero egestas. Placerat suspendisse praesent laoreet mauris hendrerit sociis dolor purus semper.
+                Diam mauris risus accumsan in. Congue libero eleifend vitae senectus non. Volutpat at consectetur amet
+                curabitur. Etiam fringilla quisque habitant vel et quam. Lorem augue ultricies eleifend aliquet lorem
+                non lobortis nunc.
+            </p>
+        </div>
+        <div class="relative flex justify-end animation-element fadeLeft">
+            <img src="/images/invest_ellipse.png" alt="Ellipse Image"
+                class="transform translate-x-32 translate-y-32 lg:translate-x-[16%] lg:translate-y-[27%] md:scale-100 md:translate-x-32 md:translate-y-32">
+            <img src="/images/invest.png" alt="Investment Image"
+                class="absolute transform  translate-x-40 translate-y-40 lg:translate-x-[18.5%] lg:translate-y-[31%]">
+        </div>
     </div>
-    <div class="flex flex-col lg:flex-col">
-        <div class="grid lg:grid-cols-2 md:grid-cols-2 justify-center items-center">
-
-            <div class="fadeLeft animation-element z-50">
-                <h3 class="text-[#6CC24A] text-[20px] ">JAV FINANCE</h3>
-                <p class="text-[44px] text-white mt-2 font-bold">Amet auctor erat accumsan sed massa. Faucibus a
-                    orci
-                    aliquam molestie ridiculus.</p>
-                <p class="text-[24px] text-[#FAFAFA] mt-4 max-w-xl opacity-70">
-                    Vel ultrices magna sit potenti vel commodo a sapien enim. Et viverra diam nibh at. Adipiscing mauris
-                    massa et dignissim. Eget leo dui risus quam turpis et. At elit vivamus rhoncus at. Sit faucibus ut
-                    fringilla accumsan.
-                    Placerat amet ultricies eu urna pretium pharetra
-                </p>
-            </div>
-            <div>
-
-            </div>
-        </div>
-        <div class="grid lg:grid-cols-5 text-white mt-40 mb-16 ">
-
-
-        </div>
 </section>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1150,23 +1155,18 @@
                 resources, education, and athletics.
             </div>
         </div>
-        <div class="fadeRight animation-element mt-14 relative flex justify-center overflow-hidden"
-            style="width: 1200px;">
-            <div class="carousel flex" style="width: 9999px; gap: 32px; transition: transform 0.5s ease;">
+        <div class="fadeRight animation-element mt-14 relative justify-center">
+            <div class="carousel flex" style="gap: 20px; transition: transform 0.5s ease;">
                 <img class="community-image" style="width: 384px; height: 315px; border-radius: 20px;"
-                    src="/images/commm1.png" alt="community service"> <!-- Duplicate last image -->
+                    src="/images/commm4.png" alt="community service 2">
+                <img class="community-image" style="width: 384px; height: 315px; border-radius: 20px;"
+                    src="/images/commm1.png" alt="community service">
                 <img class="community-image" style="width: 384px; height: 315px; border-radius: 20px;"
                     src="/images/commm2.png" alt="community service">
                 <img class="community-image" style="width: 384px; height: 315px; border-radius: 20px;"
-                    src="/images/comm2.png" alt="community service 2">
-                <img class="community-image" style="width: 384px; height: 315px; border-radius: 20px;"
                     src="/images/commm3.png" alt="community service 3">
                 <img class="community-image" style="width: 384px; height: 315px; border-radius: 20px;"
-                    src="/images/comm4.png" alt="community service 4">
-                <img class="community-image" style="width: 384px; height: 315px; border-radius: 20px;"
-                    src="/images/comm1.png" alt="community service"> <!-- Duplicate first image -->
-                <img class="community-image" style="width: 384px; height: 315px; border-radius: 20px;"
-                    src="/images/comm2.png" alt="community service 2"> <!-- Duplicate second image -->
+                    src="/images/comm2.png" alt="community service 4">
             </div>
         </div>
         <!-- Navigation Dots -->
@@ -1197,33 +1197,37 @@
     </div>
 </section>
 
-
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const slides = document.querySelectorAll('.community-image');
         const dots = document.querySelectorAll('.navigation-dot');
         const carousel = document.querySelector('.carousel');
-        let currentIndex = 1; // Start from the first actual image
-        const totalSlides = slides.length - 4; // Exclude the duplicated slides
+        const totalSlides = slides.length;
+        const visibleSlides = 4;
+        const slideWidth = 384;
+        const gap = 20;
+        const totalWidth = slideWidth + gap;
+
+        let currentIndex = 0;
 
         function setActiveSlide(index) {
-            let offset = -(384 + 32) * (index + 1); // +1 to account for the duplicated slide at the beginning
+            // Ensure the index is within bounds
+            currentIndex = (index + totalSlides) % totalSlides;
 
-            if (index === -1) {
-                offset = -(384 + 32) * totalSlides;
-            } else if (index === totalSlides) {
-                offset = -(384 + 32);
+            // Calculate the offset to always show 4 images
+            let offset = -totalWidth * currentIndex;
+
+            // Adjust the offset for circular wrapping
+            if (currentIndex >= totalSlides - visibleSlides) {
+                offset = -totalWidth * (currentIndex - totalSlides + visibleSlides);
             }
 
-            carousel.style.transform = `translateX(${offset}px)`;
-
-            slides.forEach((slide, i) => {
-                slide.style.boxShadow = (i === index + 1) ? '0 10px 30px rgba(0, 0, 0, 0.8)' : 'none';
-            });
-
+            carousel.style.transform = `translateX(${ offset }px)`;
+        
+            // Update the dots
             dots.forEach((dot, i) => {
                 const circle = dot.querySelector('circle');
-                if (i === index || (index === totalSlides && i === 0)) {
+                if (i === index) {
                     circle.setAttribute('fill', '#6CC24A');
                     circle.setAttribute('r', '8');
                 } else {
@@ -1231,26 +1235,6 @@
                     circle.setAttribute('r', '6');
                 }
             });
-
-            currentIndex = index;
-        }
-
-        function handleTransitionEnd() {
-            if (currentIndex === totalSlides) {
-                carousel.style.transition = 'none';
-                currentIndex = 0;
-                carousel.style.transform = `translateX(-${(384 + 32)}px)`;
-                setTimeout(() => {
-                    carousel.style.transition = 'transform 0.5s ease';
-                }, 0);
-            } else if (currentIndex === -1) {
-                carousel.style.transition = 'none';
-                currentIndex = totalSlides - 1;
-                carousel.style.transform = `translateX(-${(384 + 32) * totalSlides}px)`;
-                setTimeout(() => {
-                    carousel.style.transition = 'transform 0.5s ease';
-                }, 0);
-            }
         }
 
         dots.forEach(dot => {
@@ -1260,12 +1244,15 @@
             });
         });
 
-        carousel.addEventListener('transitionend', handleTransitionEnd);
-
-        // Initialize first slide as active
         setActiveSlide(currentIndex);
     });
 </script>
+
+
+
+
+
+
 
 
 
@@ -1327,38 +1314,35 @@
 </style>
 
 
-
-<section id="news" class="p-10 relative lg:px-24 py-20 " style="background: url('/images/news_bg.png') no-repeat center center; background-size: cover;">
-    
-    <div>
-        <h2 class=" text-[40px] my-8 font-bold text-white">In The News</h2>
-    </div>
+<a href="https://www.youtube.com/watch?v=bujPjJS8jR0" target="_blank">
     <div style="box-shadow: 0px 20.952px 38.095px 0px rgba(239, 234, 234, 0.1);"
         class="rounded-[20px] grid grid-cols-1 lg:grid-cols-2 border-[0.29px] border-[#95989D] h-[350px] hover:scale-105 ease-in-out duration-300 fadeRight animation-element">
-        {{!-- <div class="bg-cover h-[300px] lg:h-auto" style="background-image: url('/images/new-01.png'); rounded-bl-2xl">
-        </div> --}}
         <div>
-            <img class="w-full h-[350px] rounded-bl-2xl rounded-tl-2xl object-cover" src="/images/new-01a.png" />
+            <img class="w-full h-[350px] rounded-bl-2xl rounded-tl-2xl object-cover"
+                src="https://img.youtube.com/vi/bujPjJS8jR0/maxresdefault.jpg" alt="YouTube Video Thumbnail" />
         </div>
         <div class="flex flex-col justify-center p-9 bg-white rounded-br-2xl rounded-tr-2xl">
-            <div class="text-slate-950 text-4xl font-bold font-['Satoshi'] py-4">Javolin Launches Collections Program
-            </div>
+            <div class="text-slate-950 text-4xl font-bold font-['Satoshi'] py-4">Interview with Carl Powell, CEO Javolin
+                Group at Gitex Africa 2024</div>
             <div>
                 <p class="text-[#3A3A3A] text-[16px] lg:text-[18px]">
-                    Embarking on a new journey, Javolin unveils its ground-breaking Collections Program, a strategic
-                    move set to redefine the industry.
+                    Carl Powell was at the Gitex Africa 2024 conference in Morroco. Gitex is the LARGEST Tech & Startup
+                    show in Africa Powering Africa into the Global AI Economy.
                 </p>
             </div>
             <div class="flex flex-row text-[13px] items-center mt-4 font-bold py-4">
                 <div class="py-2 px-4 text-[#6CC24A] bg-[#E9F6E4] rounded-3xl">
-                    BUSINESS
+                    INNOVATION
                 </div>
                 <div class="text-[#5D6066] ml-6">
-                    April 6 • 8mins read
+                    May 31, 2024 • 9mins watch
                 </div>
             </div>
         </div>
     </div>
+</a>
+
+
 
     <div class="grid grid-cols-2 gap-10 mt-6">
         <div
