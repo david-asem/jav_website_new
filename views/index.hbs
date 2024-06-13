@@ -223,12 +223,12 @@
     style="height: 800px; overflow: hidden; background-image: url('/images/new-value-bg.png'); background-attachment: fixed;">
     <!-- Carousel Title -->
     <h2 class="slide fadeRight animation-element"
-        style="margin-top: 50px; ; margin-left: auto; margin-right: auto; text-align: center; color: #000638; font-size: 35px; font-family: 'Satoshi'; font-weight: 700; line-height: 55.20px; word-wrap: break-word;">
+        style="margin-top: 60px; ; margin-left: auto; margin-right: auto; text-align: center; color: #000638; font-size: 33px; font-family: 'Satoshi'; font-weight: 700; line-height: 50px; word-wrap: break-word;">
         At JAVOLIN we focus on combining the digital and physical worlds. We impact industries with our tech by accelerating efficiencies in payments, inventory management, logistics tracking and owned commodities.
     </h2>
     <!-- Carousel container -->
     <div class="flex justify-center items-center h-full slide fadeRight animation-element"
-        style="perspective: 1000px; position: relative; overflow: visible; width: 90%; margin: 0 auto; margin-top: -2rem;">
+        style="perspective: 1000px; position: relative; overflow: visible; width: 90%; margin: 0 auto; margin-top: -5rem;">
 
         <!-- Left navigation arrow with circle -->
         {{{leftArrowSVG}}}
@@ -297,7 +297,7 @@
     </div>
 
     <!-- Navigation Dots -->
-    <div class="absolute bottom-16 left-1/2 transform -translate-x-1/2 flex space-x-2">
+    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex space-x-2">
         <template x-for="(slide, index) in slides" :key="index">
             <div @click="setActiveSlide(index)" class="cursor-pointer">
                 <!-- Active dot with slight raise -->
@@ -467,45 +467,32 @@
                 <div class="opacity-100 transition duration-150 ease-in-out absolute tech-service w-[500px]">
                     <p id="tech-subtitle" class="text-[44px] text-white mt-2 font-bold l">Digital KYC</p>
                     <p id="tech-content" class="text-[24px] text-[#FAFAFA] mt-4 max-w-xl opacity-70">
-                        1 Vel ultrices magna sit potenti vel commodo a sapien enim. Et viverra diam nibh at. Adipiscing
-                        mauris
-                        massa et dignissim. Eget leo dui risus quam turpis et. At elit vivamus rhoncus at. Sit faucibus
-                        ut
-                        fringilla accumsan.
-                        Placerat amet ultricies eu urna pretium pharetra
+                        Jav KYC specializes in providing customized identity and digital Know Your Customer (KYC) solutions tailored
+                        specifically for banks. Our services contribute to enhanced customer trust, compliance, and fraud prevention within the
+                        banking industry.
                     </p>
                 </div>
                 <div class="opacity-0 transition duration-150 ease-in-out absolute tech-service w-[500px]">
                     <p id="tech-subtitle" class="text-[44px] text-white mt-2 font-bold max-w-xl">Country Connect</p>
                     <p id="tech-content" class="text-[24px] text-[#FAFAFA] mt-4 max-w-xl opacity-70">
-                        2 Vel ultrices magna sit potenti vel commodo a sapien enim. Et viverra diam nibh at. Adipiscing
-                        mauris
-                        massa et dignissim. Eget leo dui risus quam turpis et. At elit vivamus rhoncus at. Sit faucibus
-                        ut
-                        fringilla accumsan.
-                        Placerat amet ultricies eu urna pretium pharetra
+                        JAV Country Connect seamlessly integrates banks worldwide via a unified and efficient API network. Customers benefit
+                        from significantly faster transactions at reduced costs. By enabling same-day fund transfers across borders, JAV Country
+                        Connect positions banks as agile, competitive forces in the global financial landscape.
                     </p>
                 </div>
                 <div class="opacity-0 transition duration-150 ease-in-out absolute tech-service w-[500px]">
                     <p id="tech-subtitle" class="text-[44px] text-white mt-2 font-bold max-w-xl">JAV API</p>
                     <p id="tech-content" class="text-[24px] text-[#FAFAFA] mt-4 max-w-xl opacity-70">
-                        3 Vel ultrices magna sit potenti vel commodo a sapien enim. Et viverra diam nibh at. Adipiscing
-                        mauris
-                        massa et dignissim. Eget leo dui risus quam turpis et. At elit vivamus rhoncus at. Sit faucibus
-                        ut
-                        fringilla accumsan.
-                        Placerat amet ultricies eu urna pretium pharetra
+                        JAV API provides application programming interfaces (APIs) that are secure to our customers who want to build on top
+                        of our system. Developers who want to leverage the JAV technology can get proprietary access to our API’s
                     </p>
                 </div>
                 <div class="opacity-0 transition duration-150 ease-in-out absolute tech-service w-[500px]">
                     <p id="tech-subtitle" class="text-[44px] text-white mt-2 font-bold max-w-xl">JAV AI</p>
                     <p id="tech-content" class="text-[24px] text-[#FAFAFA] mt-4 max-w-xl opacity-70">
-                        3 Vel ultrices magna sit potenti vel commodo a sapien enim. Et viverra diam nibh at. Adipiscing
-                        mauris
-                        massa et dignissim. Eget leo dui risus quam turpis et. At elit vivamus rhoncus at. Sit faucibus
-                        ut
-                        fringilla accumsan.
-                        Placerat amet ultricies eu urna pretium pharetra
+                    JAV AI revolutionizes banking customer service by providing banks with advanced, text-based conversational AI. This
+                    enables natural language interactions between customers and banking applications, leveraging precise, data-driven
+                    responses from the bank's own enterprise data.
                     </p>
                 </div>
             </div>
@@ -753,8 +740,8 @@
     </video>
 
     <div class="absolute top-0 left-0 w-full h-full flex justify-center items-center z-10">
-        <div class="relative"
-            style="width: 1118px; height: 740px; background: rgba(0, 6, 56, 0.60); border-radius: 20.52px;  backdrop-filter: blur(34.20px); padding-bottom: 100px;">
+        <div class="relative "
+            style="top:-90px; width: 1118px; height: 800px; background: rgba(0, 6, 56, 0.60); border-radius: 20.52px;  backdrop-filter: blur(34.20px); padding-bottom: 100px;">
             <div class="flex flex-col items-center justify-center h-full">
 
                 <!-- JAV AgriTech Button -->
@@ -847,16 +834,6 @@
         transform: translate(-50%, -50%);
     }
 
-    .shrink-video {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 1247px;
-        height: 696px;
-        border-radius: 58px;
-        transform: translate(-50%, -50%);
-    }
-
     .font-satoshi {
         font-family: 'Satoshi', sans-serif;
     }
@@ -873,15 +850,10 @@
         top: 150px;
         width: 1118px;
         bottom: 127px;
-        height: 419px;
         background: rgba(0, 6, 56, 0.60);
         backdrop-filter: blur(34.20px);
         padding: 34.20px;
         border-radius: 20.52px;
-    }
-
-    .transition-all {
-        transition: all 2s ease-in-out;
     }
 </style>
 
@@ -929,7 +901,7 @@
 
         <div class="slide fadeRight animation-element"
             style="width: 725px; margin: 0 auto; text-align: center; color: #000638; font-size: 44px; font-family: 'Satoshi', sans-serif; font-weight: 700; line-height: 55.2px;">
-            Quisque ut lorem aliquam vestibulum enim vel diam hend.
+            Our customizable solutions empower broader participation across borders for our clients.
         </div>
 
         <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-12 my-12 justify-center relative">
@@ -985,11 +957,9 @@
                         </div>
                         <div
                             style="width: 334px; height: 203px; color: #5D6066; font-size: 16px; font-family: Satoshi; font-weight: 500; word-wrap: break-word">
-                            Risus eu aliquet eu dignissim scelerisque leo adipiscing tincidunt. Integer sed purus tempus
-                            aliquam. Felis
-                            convallis ante faucibus sed ipsum. Platea viverra justo consequat arcu fringilla id. Ac
-                            facilisi porta
-                            varius egestas.
+                            Javolin allows businesses to make digital payments to suppliers and employees across borders from our platforms.
+                            Businesses can track the inflow and outflow of money from their wallet using a simplified dashboard with supportive
+                            analytic components.
                         </div>
                     </div>
                 </div>
@@ -1018,10 +988,8 @@
                             Technology as a service</div>
                         <div
                             style="width: 334px; height: 203px; color: #5D6066; font-size: 16px; font-family: Satoshi; font-weight: 500; word-wrap: break-word">
-                            Risus eu aliquet eu dignissim scelerisque leo adipiscing tincidunt. Integer sed purus tempus
-                            aliquam. Felis convallis
-                            ante faucibus sed ipsum. Platea viverra justo consequat arcu fringilla id. Ac facilisi porta
-                            varius egestas.
+                            Javolin provides Technology as a Service (TaaS) to financial institutions, businesses, and government entities through
+                            proprietary APIs and other cutting-edge technologies.
                         </div>
                     </div>
                 </div>
@@ -1031,28 +999,30 @@
     </div>
 </section>
 
-<section id="javfinance" class="relative p-10 lg:px-24 mt-4 bg-[#1A1A40] overflow-hidden"
-    style="background-image: url('/images/invest_bg1.png'); background-size: cover;">
+<section id="javfinance" class="relative  bg-[#1A1A40] overflow-hidden"
+    style="background-image: url('/images/invest_bg1.png'); background-size: cover; background-color: #000B6B; background-blend-mode: overlay;">
     <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-        <div class="">
+        <div class="p-10 lg:px-24 mt-4">
             <h3 class="text-[#6CC24A] text-[20px] animation-element fadeLeft">JAV INVESTMENTS</h3>
-            <p class="text-[44px] text-white mt-2 font-bold leading-tight animation-element fadeRight">Arcu suspendisse semper nunc risus blandit.
+            <p class="text-[44px] text-white mt-2 font-bold leading-tight animation-element fadeRight">Arcu suspendisse
+                semper nunc risus blandit.
                 Augue.</p>
             <p class="text-[24px] text-[#FAFAFA] mt-4 max-w-xl opacity-70 animation-element fadeLeft">
-                JAVOLIN provides investors and lenders an opportunity to earn a stable and predictable return by participating in its
-                Agri Commodities trading platform. We provide trade financing to traders for a variety of agri-commodities backed by
-                purchase orders from large international buyers. This platform is only open to sophisticated investors and/or lenders.
+                JAVOLIN provides investors and lenders an opportunity to earn a stable and predictable return by
+                participating in its
+                Agri Commodities trading platform. We provide trade financing to traders for a variety of
+                agri-commodities backed by
+                purchase orders from large international buyers. This platform is only open to sophisticated investors
+                and/or lenders.
                 Contact trade@javolin.com for more information.
             </p>
         </div>
-        <div class="relative flex justify-end animation-element fadeRight">
-            <img src="/images/invest_ellipse.png" alt="Ellipse Image"
-                class="transform translate-x-[5%] translate-y-32 lg:translate-x-[20%] lg:translate-y-[31%]  md:translate-x-32 md:translate-y-32">
-            <img src="/images/invest.png" alt="Investment Image"
-                class="absolute transform  translate-x-[20%] translate-y-[10%] lg:translate-x-[22.5%] lg:translate-y-[35%]">
+        <div class="animation-element fadeRight object-cover mt-[6]">
+            <img style="margin-top: 3em;" class="w-full h-full " src="/images/invest.png" alt="Investment Image">
         </div>
     </div>
 </section>
+
 
 
 

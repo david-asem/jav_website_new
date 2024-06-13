@@ -2,10 +2,32 @@ var techServices = document.querySelectorAll('.tech-service');
 var tsIcons = document.querySelectorAll(".ts-icons .ts");
 var techConnectionLines = document.querySelectorAll('.javLineLink path');
 var index = 0;
-
+var nextIndex = 1;
 // Set the duration for the line animation
 var lineAnimationDuration = 2000; // Adjust this to match your line animation duration
 
+
+//handle hover effect
+
+function onMouseOut(element) {
+    element.addEventListener('mouseover', function () {
+        element.classList.remove('unfocus-tech');
+    });
+}
+
+function onMouseOver(element) {
+    element.addEventListener('mouseout', function () {
+        element.classList.add('unfocus-tech');
+    });
+}
+
+
+function handleHover() {
+    tsIcons.forEach((element, index) => {
+        onMouseOut(element)
+        onMouseOver(element)
+    })
+}
 // Function to activate a card
 function activateCard(index) {
     techServices[index].classList.remove('opacity-0');
@@ -26,14 +48,16 @@ function deactivateCard(index) {
 
 // Initial activation
 activateCard(index);
+handleHover()
 
 // Function to handle the transition
 function handleTransition() {
     let currentIndex = index;
-    let nextIndex = (index + 1) % techServices.length;
+    nextIndex = (index + 1) % techServices.length;
 
     // Start the line animation
     techConnectionLines[currentIndex]?.classList.add('animated-line');
+
 
     // Wait for the line animation to complete before changing the card
     setTimeout(function () {
@@ -41,7 +65,7 @@ function handleTransition() {
         deactivateCard(currentIndex);
         // Remove line animation class from the current line
         techConnectionLines[currentIndex]?.classList.remove('animated-line');
-        
+
         // Activate next card
         activateCard(nextIndex);
 
@@ -52,3 +76,4 @@ function handleTransition() {
 
 // Start the transition loop
 setInterval(handleTransition, lineAnimationDuration + 1000); // Ensure the interval accounts for both the line animation and card transition durations
+
