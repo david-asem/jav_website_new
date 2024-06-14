@@ -263,7 +263,7 @@
                                 <!-- Adjust margin to move the title up -->
                                 <span x-text="slide.label" class="w-56 text-center text-white text-2xl font-bold font-['Satoshi'] mb-2"></span>
                                 <div
-                                    style="width: 261px; text-align: center; color: white; font-size: 20px; font-family: Satoshi; font-weight: 400; word-wrap: break-word">
+                                    style="width: 260px; text-align: center; color: white; font-size: 18px; font-family: Satoshi; font-weight: 400; word-wrap: break-word">
                                     <span x-text="slide.content"></span>
                                     
                                     </div>
@@ -729,7 +729,7 @@
 
 
 <section id="agrisection" x-data="{ shrink: false }"
-    class="relative flex justify-center items-center min-h-[130vh] transform transition-transform duration-2000"
+    class="relative flex justify-center items-center min-h-[150vh] transform transition-transform duration-2000"
     style="background: url('/images/agri-bg.png') no-repeat center center; background-size: cover;">
 
     <video :class="shrink ? 'shrink-video' : 'full-video'" class="object-cover z-0" autoplay loop muted>
@@ -739,13 +739,12 @@
 
     <div class="absolute top-0 left-0 w-full h-full flex justify-center items-center z-10">
         <div class="relative"
-            style="top: -10px; width: 1118px; height: 600px; background: rgba(0, 6, 56, 0.60); border-radius: 20.52px; backdrop-filter: blur(34.20px);">
+            style="top: -5px; width: 1118px; height: 700px; background: rgba(0, 6, 56, 0.60); border-radius: 20.52px; backdrop-filter: blur(34.20px);">
             <div class="flex flex-col items-center justify-center h-full">
 
                 <!-- JAV AgriTech Button -->
                 <div style="width: 230px; height: 82px; background: white; border-radius: 100px;"
                     class="flex justify-center items-center py-6 px-0 mb-10 -mt-44">
-                    <!-- Added -mt-16 to move the button up -->
                     <div class="font-bold"
                         style="color: #0032A0; font-size: 29px; font-family: Satoshi; font-weight: 900; word-wrap: break-word">
                         JAV Agri-Tech
@@ -784,12 +783,57 @@
 
                 <!-- Horizontal Line -->
                 <div class="mt-10" style="width: 748px; height: 0px; border: 1px rgba(255, 255, 255, 0.20) solid"></div>
-                <!-- Removed margin-top -->
+
+                <!-- Counter -->
+                <div class="fadeRight animation-element text-center text-white my-6 text-center text-white text-3xl font-black font-['Satoshi']"
+                    style="font-family: 'Satoshi', sans-serif; font-weight: 700;">
+                    <span id="counter">0</span>+
+                    <div style="font-size: 20px; font-family: 'Satoshi', sans-serif; font-weight: 500;">
+                        Commodities
+                    </div>
+                </div>
+
+                <!-- Horizontal Line -->
+                <div class="mt-6" style="width: 748px; height: 0px; border: 1px rgba(255, 255, 255, 0.20) solid"></div>
             </div>
         </div>
     </div>
 
 </section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        function animateCounter(element, start, end, duration) {
+            let startTime = null;
+
+            function animation(currentTime) {
+                if (startTime === null) startTime = currentTime;
+                const progress = currentTime - startTime;
+                const current = Math.min(Math.floor(progress / duration * end), end);
+                element.innerText = current.toLocaleString();
+                if (progress < duration) {
+                    requestAnimationFrame(animation);
+                }
+            }
+            requestAnimationFrame(animation);
+        }
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counterElement = document.getElementById('counter');
+                    counterElement.innerText = '0'; // Reset the counter to 0
+                    animateCounter(counterElement, 0, 35000, 5000);
+                }
+            });
+        }, {
+            threshold: 0.5
+        });
+
+        observer.observe(document.getElementById('counter'));
+    });
+</script>
+
 
 <style>
     .full-video {
@@ -868,7 +912,7 @@
         </div>
 
         <div class="slide fadeRight animation-element"
-            style="width: 100%; margin: 0; text-align: left; color: #000638; font-size: 40px; font-family: 'Satoshi', sans-serif; font-weight: 700; line-height: 55.2px;">
+            style="width: 100%; margin: 0; text-align: center; color: #000638; font-size: 40px; font-family: 'Satoshi', sans-serif; font-weight: 700; line-height: 55.2px;">
             Our customizable solutions empower broader participation across industries and borders.
         </div>
 
