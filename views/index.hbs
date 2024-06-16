@@ -70,14 +70,45 @@
         <i id="muteIcon"
             class="fa-solid fa-volume-mute text-white text-2xl h-12 w-12 flex items-center justify-center bg-black bg-opacity-50 rounded-full cursor-pointer hover:bg-opacity-70"></i>
     </div>
+
+    <!-- Tooltip -->
+    <div id="tooltip"
+        class="absolute bottom-20 right-4 w-72 h-24 bg-[#3DA31F] rounded-lg border border-[#3DA31F] p-4 flex flex-col justify-between z-20">
+        <div class="text-white text-sm font-black font-['Satoshi'] leading-snug">Interact with the video here.</div>
+        <div class="text-neutral-50/80 text-xs font-medium font-['Satoshi'] leading-tight mt-2">You can easily mute,
+            unmute, play, and pause.</div>
+        <div class="flex justify-end mt-2 relative">
+            <div class="w-14 h-6 px-3 py-1.5 rounded-3xl border border-white justify-center items-center gap-2 inline-flex cursor-pointer"
+                id="gotItButton">
+                <div class="text-white text-xs font-medium font-['Satoshi'] tracking-tight">Got it!</div>
+            </div>
+            <div class="tooltip-arrow absolute"></div>
+        </div>
+    </div>
 </section>
 
+<style>
+    .tooltip-arrow {
+        bottom: -20px;
+        /* Adjust the position based on the tooltip's bottom edge */
+        right: 70px;
+        /* Adjust the position to align with the tooltip's button */
+        width: 0;
+        height: 15px;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 10px solid #3DA31F;
+        /* Same as tooltip background color */
+    }
+</style>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const heroVideo = document.getElementById('heroVideo');
         const playPauseIcon = document.getElementById('playPauseIcon');
         const muteIcon = document.getElementById('muteIcon');
+        const tooltip = document.getElementById('tooltip');
+        const gotItButton = document.getElementById('gotItButton');
         let userPaused = false;
 
         heroVideo.addEventListener('error', function(e) {
@@ -137,8 +168,20 @@
 
         // Initial check
         checkVideoInView();
+
+        // Show tooltip on page load
+        tooltip.style.display = 'block';
+
+        // Close tooltip when "Got it!" button is clicked
+        gotItButton.addEventListener('click', function () {
+            tooltip.style.display = 'none';
+        });
     });
 </script>
+
+
+
+
 
 
 
