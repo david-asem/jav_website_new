@@ -373,13 +373,13 @@
     }
 </style>
 
-<div x-data="{ showModal: false }" x-cloak>
+<div x-data="{ showModal: false, showPaymentsModal: false, showCommoditiesModal: false }" x-cloak>
     <header
         class="font-medium flex justify-between items-center lg:px-12 xl:px-20 fixed z-30 bg-white shadow-2xl w-full"
         @scroll.window="handleScroll" x-init="handleScroll = () => {
-                isAtTop = window.scrollY > 0;
-                lastScroll = window.scrollY;
-            }"
+            isAtTop = window.scrollY > 0;
+            lastScroll = window.scrollY;
+        }"
         style="left: 0; padding-left: 0; padding-right: 0; height: 70px; background-color: white; box-shadow: 0 2px 4px rgba(0,0,0,0.4);">
         <a href="/" class="absolute" style="top: 20px; left: 36px;">
             <img src="/images/jav_logo_color.png" alt="Javolin Logo" style="width: 130px; height: 30.23px;" />
@@ -390,7 +390,7 @@
         </div>
 
         <div class="relative" x-data="{ isOpen: false }">
-            <button @click="isOpen = true"
+            <button @click="isOpen = !isOpen"
                 class="hidden lg:flex cursor-pointer bg-[#0032A0] text-white px-6 py-2 rounded-full text-lg font-bold items-center justify-center"
                 style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); white-space: nowrap;">
                 Client Log-In
@@ -401,27 +401,47 @@
                         fill="white" />
                 </svg>
             </button>
-            <div x-show="isOpen" @mouseleave="isOpen = false" @mouseenter="isOpen = true"
-                class="absolute top-8 right-4 bg-white rounded-xl  w-44 h-28">
-                <div @click="isOpen = false; showModal = true"
-                    class="py-4 px-8 cursor-pointer text-black text-base font-medium font-['Satoshi'] tracking-tight">
-                    Payments</div>
-                <div class="border-t-2 mx-4 border-gray-300"></div>
-                <div @click="isOpen = false; showModal = true"
-                    class="py-4 px-8 cursor-pointer text-black text-base font-medium font-['Satoshi'] tracking-tight">
-                    Commodities</div>
+            <div x-show="isOpen" x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 transform scale-95"
+                x-transition:enter-end="opacity-100 transform scale-100"
+                x-transition:leave="transition ease-in duration-200"
+                x-transition:leave-start="opacity-100 transform scale-100"
+                x-transition:leave-end="opacity-0 transform scale-95" @mouseleave="isOpen = false"
+                @mouseenter="isOpen = true" class="absolute top-8 right-6 bg-white rounded-2xl w-80 p-4">
+                <div @click="isOpen = false; showPaymentsModal = true"
+                    class="flex items-center space-x-4 cursor-pointer py-2">
+                    <div class="w-11 h-11 bg-orange-200 rounded-full flex items-center justify-center flex-shrink-0">
+                        <img src="/images/CreditCard.svg" alt="Payments Icon" />
+                    </div>
+                    <div>
+                        <div class="text-black font-semibold">Payments</div>
+                        <div class="text-gray-500 text-sm">Ut enim ad minim veniam, quis tulix nostrud sad ss
+                            exercitation
+                        </div>
+                    </div>
+                </div>
+                <div @click="isOpen = false; showCommoditiesModal = true"
+                    class="flex items-center space-x-4 cursor-pointer py-2 mt-4">
+                    <div class="w-11 h-11 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                        <img src="/images/Plant.svg" alt="Commodities Icon" />
+                    </div>
+                    <div>
+                        <div class="text-black font-semibold">Commodities</div>
+                        <div class="text-gray-500 text-sm">Ut enim ad minim veniam, quis tulix nostrud sad ss
+                            exercitation
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
 
-    <!-- Modal -->
-    <div x-show="showModal" x-transition
-        class="pb-20 fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex items-start justify-center pt-36"
-        x-cloak>
-        <div class=" relative bg-white rounded-3xl shadow-xl flex-col justify-start items-end inline-flex"
-            style="width: 994px; height: 680px;">
+    <!-- Payments Modal -->
+    <div x-show="showPaymentsModal" x-transition
+        class="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex items-center justify-center" x-cloak>
+        <div class="mt-8 relative bg-white rounded-3xl shadow-xl flex flex-col" style="width: 994px; height: 550px;">
             <!-- Close Button -->
-            <div class="absolute top-[-50px] right-[-20px] cursor-pointer" @click="showModal = false">
+            <div class="absolute -top-14 right-4 cursor-pointer z-10" @click="showPaymentsModal = false">
                 <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg">
                     <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
@@ -430,94 +450,189 @@
                     </svg>
                 </div>
             </div>
-            <div class="relative bg-lime-50 rounded-tl-3xl rounded-bl-3xl shadow" style="width: 994px; height: 680px;">
-                <div class="absolute inset-0 bg-stone-200 rounded-tl-3xl rounded-bl-3xl"></div>
-                <div class="absolute left-0 top-0 rounded-tl-3xl rounded-bl-3xl" style="width: 429px; height: 680px;">
-                    <div class="absolute inset-0 rounded-tl-3xl rounded-bl-3xl">
-                        <div class="absolute inset-0 bg-lime-50 rounded-tl-3xl rounded-bl-3xl" style="height: 680px;"></div>
-                        </div>
-                        <img class="absolute inset-0 mix-blend-luminosity rounded-tl-3xl rounded-bl-3xl"
-                            src="/images/comm_pop_bg.png" style="height: 680px;" />
-                    </div>
+            <!-- Grid Layout -->
+            <div class="grid grid-cols-2 h-full">
+                <!-- Left Column (Image) -->
+                <div class="relative h-full">
+                    <img class="object-cover rounded-tl-3xl rounded-bl-3xl" src="/images/payments.png"
+                        alt="Left Column Image" style="width: 429px; height: 550px;">
                 </div>
-                <div class="absolute left-[430px] top-0 rounded-tr-3xl rounded-br-2xl"
-                    style="width: 600px; height: 680px;">
-                    <div class="absolute inset-0 rounded-tr-3xl rounded-br-3xl">
-                        <div class="absolute inset-0 bg-lime-50 rounded-tr-3xl rounded-br-3xl"></div>
-                        <div
-                            class="absolute left-[32px] top-[64px] text-slate-950 text-2xl font-black font-['Satoshi']">
-                            Javolin Commodities Platform</div>
-                        <div
-                            class="absolute left-[32px] top-[110px] w-96 text-gray-950 text-base font-normal font-['Satoshi'] tracking-tight">
-                            Javolin is a financial services technology company providing services and products through
-                            our digital platform, and mobile and web-based applications for Businesses, Banks,
-                            Government Entities, and Consumers.
+                <!-- Right Column (Content) -->
+                <div class="relative pr-8 py-8 bg-cover bg-center h-full"
+                    style="background-image: url(''); height: 550px;">
+                    <div class="absolute inset-0 bg-white rounded-tr-3xl rounded-br-3xl opacity-90"
+                        style="height: 550px;">
+                    </div>
+                    <div class="relative z-10 h-full flex flex-col justify-between" style="margin-left: -2rem;">
+                        <div>
+                            <h2 class="text-2xl font-black font-['Satoshi'] text-slate-950 mt-4">Javolin Payments
+                                Platform
+                            </h2>
+                            <p class="mt-4 text-base font-normal font-['Satoshi'] text-gray-950 tracking-tight">
+                                Javolin is a financial services technology company providing services and products
+                                through
+                                our
+                                digital platform, and mobile and web-based applications for Businesses, Banks,
+                                Government
+                                Entities, and Consumers.
+                            </p>
                         </div>
-                        <div
-                            class="absolute left-[32px] top-[220px] flex-col justify-start items-start gap-4 inline-flex">
-                            <div class="text-gray-950 text-xs font-bold font-['Satoshi'] tracking-tight">GET STARTED
-                            </div>
-                            <div class="flex-col justify-start items-start gap-6 flex">
-                                <div class="w-96 justify-start items-center gap-3 inline-flex">
-                                    <svg class="text-green-500" viewBox="0 0 24 24" width="30" height="30" fill="currentColor">
+                        <div>
+                            <h3 class="text-xs font-bold font-['Satoshi'] text-gray-950 tracking-tight">WHAT TO KNOW
+                            </h3>
+                            <div class="mt-4 space-y-6">
+                                <div class="flex items-start gap-3">
+                                    <svg class="text-green-500" viewBox="0 0 24 24" width="40" height="40"
+                                        fill="currentColor">
                                         <circle cx="12" cy="12" r="10" fill="currentColor"></circle>
-                                        <path d="M12 8l4 4-4 4M8 12h8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        </path>
+                                        <path d="M12 8l4 4-4 4M8 12h8" stroke="white" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"></path>
                                     </svg>
-                                    <div class="w-96 text-gray-950 text-base font-medium font-['Satoshi'] tracking-tight">
-                                        Mollis venenatis scelerisque magna tristique tristique tristique. Vitae quam leo ut neque nibh accumsan.
-                                    </div>
+                                    <p class="text-base font-medium font-['Satoshi'] text-gray-950 tracking-tight">
+                                        Eu turpis netus felis elementum sed ipsum praesent pellentesque enim. Sit nunc
+                                        ultrices nec convallis.
+                                    </p>
                                 </div>
-
-                                <div class="w-96 justify-start items-center gap-3 inline-flex">
-                                    <svg class="text-green-500" viewBox="0 0 24 24" width="30" height="30" fill="currentColor">
+                                <div class="flex items-start gap-3">
+                                    <svg class="text-green-500" viewBox="0 0 24 24" width="40" height="40"
+                                        fill="currentColor">
                                         <circle cx="12" cy="12" r="10" fill="currentColor"></circle>
-                                        <path d="M12 8l4 4-4 4M8 12h8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        </path>
+                                        <path d="M12 8l4 4-4 4M8 12h8" stroke="white" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"></path>
                                     </svg>
-                                    <div class="w-96 text-gray-950 text-base font-medium font-['Satoshi'] tracking-tight">
-                                        Mollis venenatis scelerisque magna tristique tristique tristique. Vitae quam leo ut neque nibh accumsan.
-                                    </div>
+                                    <p class="text-base font-medium font-['Satoshi'] text-gray-950 tracking-tight">
+                                        Posuere nulla gravida vitae consectetur purus aliquam sit elementum quam.
+                                        Integer
+                                        sed semper lacinia id. Libero.
+                                    </p>
                                 </div>
-
-                                <div class="w-96 justify-start items-center gap-3 inline-flex">
-                                    <svg class="text-green-500" viewBox="0 0 24 24" width="30" height="30" fill="currentColor">
+                                <div class="flex items-start gap-3">
+                                    <svg class="text-green-500" viewBox="0 0 24 24" width="40" height="40"
+                                        fill="currentColor">
                                         <circle cx="12" cy="12" r="10" fill="currentColor"></circle>
-                                        <path d="M12 8l4 4-4 4M8 12h8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        </path>
+                                        <path d="M12 8l4 4-4 4M8 12h8" stroke="white" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"></path>
                                     </svg>
-                                    <div class="w-96 text-gray-950 text-base font-medium font-['Satoshi'] tracking-tight">
-                                        Mollis venenatis scelerisque magna tristique tristique tristique. Vitae quam leo ut neque nibh accumsan.
-                                    </div>
+                                    <p class="text-base font-medium font-['Satoshi'] text-gray-950 tracking-tight">
+                                        Placerat adipiscing in dui vitae. Arcu nullam viverra sed lorem cursus
+                                        pellentesque
+                                        fermentum nisl. Scelerisque.
+                                    </p>
                                 </div>
-
-                            <div class="w-96 justify-start items-center gap-3 inline-flex">
-                                <svg class="text-green-500" viewBox="0 0 24 24" width="30" height="30" fill="currentColor">
-                                    <circle cx="12" cy="12" r="10" fill="currentColor"></circle>
-                                    <path d="M12 8l4 4-4 4M8 12h8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    </path>
-                                </svg>
-                                <div class="w-96 text-gray-950 text-base font-medium font-['Satoshi'] tracking-tight">
-                                    Mollis venenatis scelerisque magna tristique tristique tristique. Vitae quam leo ut neque nibh accumsan.
-                                </div>
-                            </div>
-
                             </div>
                         </div>
-                        <div class="w-44 h-10 absolute left-[32px] top-[532px]  mt-16">
-                            <div class="w-44 h-10 absolute bg-blue-800 rounded-full"></div>
-                            <div
-                                class="absolute left-[65.79px] top-[8px] text-center text-white text-base font-medium font-['Circular Std']">
-                                Login
-                            </div>
+                        <div class="flex space-x-4 mt-12">
+                            <button
+                                class="w-44 h-10 bg-blue-800 rounded-full text-center text-white text-base font-medium font-['Circular Std']">Log-in</button>
+                            <button
+                                class="w-44 h-10 bg-white border border-slate-300 rounded-full text-center text-blue-800 text-base font-medium font-['Circular Std']">Register</button>
                         </div>
                     </div>
                 </div>
-                <img class="absolute inset-0 left-0 top-0 rounded-tl-3xl rounded-bl-3xl"
-                    style="width: 429px; height: 680px;" src="/images/commo_pop.png" />
             </div>
         </div>
     </div>
+
+    <!-- Commodities Modal -->
+    <div x-show="showCommoditiesModal" x-transition
+        class="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex items-center justify-center" x-cloak>
+        <div class="mt-8 relative bg-white rounded-3xl shadow-xl flex flex-col" style="width: 994px; height: 550px;">
+            <!-- Close Button -->
+            <div class="absolute -top-14 right-4 cursor-pointer z-10" @click="showCommoditiesModal = false">
+                <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg">
+                    <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </div>
+            </div>
+            <!-- Grid Layout -->
+            <div class="grid grid-cols-2 h-full">
+                <!-- Left Column (Image) -->
+                <div class="relative h-full">
+                    <img class="object-cover rounded-tl-3xl rounded-bl-3xl" src="/images/commodity_modal.png"
+                        alt="Left Column Image" style="width: 429px; height: 550px;">
+                </div>
+                <!-- Right Column (Content) -->
+                <div class="relative pr-8 py-8 bg-cover bg-center h-full"
+                    style="background-image: url(''); height: 550px;">
+                    <div class="absolute inset-0 bg-white rounded-tr-3xl rounded-br-3xl opacity-90"
+                        style="height: 550px;">
+                    </div>
+                    <div class="relative z-10 h-full flex flex-col justify-between" style="margin-left: -2rem;">
+                        <div>
+                            <h2 class="text-2xl font-black font-['Satoshi'] text-slate-950 mt-4">Javolin Commodities
+                                Platform
+                            </h2>
+                            <p class="mt-4 text-base font-normal font-['Satoshi'] text-gray-950 tracking-tight">
+                                Javolin is a financial services technology company providing services and products
+                                through
+                                our
+                                digital platform, and mobile and web-based applications for Businesses, Banks,
+                                Government
+                                Entities, and Consumers.
+                            </p>
+                        </div>
+                        <div>
+                            <h3 class="text-xs font-bold font-['Satoshi'] text-gray-950 tracking-tight">WHAT TO KNOW
+                            </h3>
+                            <div class="mt-4 space-y-6">
+                                <div class="flex items-start gap-3">
+                                    <svg class="text-green-500" viewBox="0 0 24 24" width="40" height="40"
+                                        fill="currentColor">
+                                        <circle cx="12" cy="12" r="10" fill="currentColor"></circle>
+                                        <path d="M12 8l4 4-4 4M8 12h8" stroke="white" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </svg>
+                                    <p class="text-base font-medium font-['Satoshi'] text-gray-950 tracking-tight">
+                                        Eu turpis netus felis elementum sed ipsum praesent pellentesque enim. Sit nunc
+                                        ultrices nec convallis.
+                                    </p>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <svg class="text-green-500" viewBox="0 0 24 24" width="40" height="40"
+                                        fill="currentColor">
+                                        <circle cx="12" cy="12" r="10" fill="currentColor"></circle>
+                                        <path d="M12 8l4 4-4 4M8 12h8" stroke="white" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </svg>
+                                    <p class="text-base font-medium font-['Satoshi'] text-gray-950 tracking-tight">
+                                        Posuere nulla gravida vitae consectetur purus aliquam sit elementum quam.
+                                        Integer
+                                        sed semper lacinia id. Libero.
+                                    </p>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <svg class="text-green-500" viewBox="0 0 24 24" width="40" height="40"
+                                        fill="currentColor">
+                                        <circle cx="12" cy="12" r="10" fill="currentColor"></circle>
+                                        <path d="M12 8l4 4-4 4M8 12h8" stroke="white" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </svg>
+                                    <p class="text-base font-medium font-['Satoshi'] text-gray-950 tracking-tight">
+                                        Placerat adipiscing in dui vitae. Arcu nullam viverra sed lorem cursus
+                                        pellentesque
+                                        fermentum nisl. Scelerisque.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex space-x-4 mt-12">
+                            <button
+                                class="w-44 h-10 bg-blue-800 rounded-full text-center text-white text-base font-medium font-['Circular Std']">Log-in</button>
+                            <button
+                                class="w-44 h-10 bg-white border border-slate-300 rounded-full text-center text-blue-800 text-base font-medium font-['Circular Std']">Register</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 </div>
 
 
