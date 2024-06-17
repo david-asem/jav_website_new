@@ -73,7 +73,8 @@
 
     <!-- Tooltip -->
     <div id="tooltip"
-        class="absolute bottom-20 right-4 w-72 h-24 bg-[#3DA31F] rounded-lg border border-[#3DA31F] p-4 flex flex-col justify-between z-20">
+        class="absolute bottom-20 right-4 w-72 bg-[#3DA31F] rounded-lg border border-[#3DA31F] p-4 flex flex-col justify-between z-20"
+        style="height: 102px;">
         <div class="text-white text-sm font-black font-['Satoshi'] leading-snug">Interact with the video here.</div>
         <div class="text-neutral-50/80 text-xs font-medium font-['Satoshi'] leading-tight mt-2">You can easily mute,
             unmute, play, and pause.</div>
@@ -94,7 +95,7 @@
         right: 70px;
         /* Adjust the position to align with the tooltip's button */
         width: 0;
-        height: 15px;
+        height: 10px;
         border-left: 10px solid transparent;
         border-right: 10px solid transparent;
         border-top: 10px solid #3DA31F;
@@ -179,17 +180,6 @@
     });
 </script>
 
-
-
-
-
-
-
-
-
-
-
-
 <style>
     .carousel-container {
         position: relative;
@@ -212,49 +202,6 @@
 </style>
 
 
-{{!--
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const heroSec = document.getElementById('heroSec');
-        const carousel = document.querySelector('.carousel-container');
-        let lastKnownScrollPosition = 0;
-        let ticking = false;
-
-        function handleScroll(scrollPos) {
-            const heroHeight = heroSec.offsetHeight;
-            const scrollFraction = scrollPos / heroHeight;
-            const translateY = Math.max(-heroHeight, scrollPos - heroHeight);
-            let scale = 0.5 + scrollFraction * 0.5;
-
-            if (scrollPos < heroHeight) {
-                carousel.style.transform = `translateY(${ translateY }px) scale(${ scale })`;
-                carousel.style.visibility = 'visible';
-            } else {
-                carousel.style.transform = 'translateY(0px) scale(1)';
-            }
-        }
-
-        // Ensure carousel is in place before making it visible
-        carousel?.style?.transform = 'translateY(-100vh) scale(0.5)';
-        setTimeout(() => {
-            carousel.style.visibility = 'visible'; // Only reveal after transform
-        }, 50); // Smaller delay to reduce initial flicker
-
-        window.addEventListener('scroll', function () {
-            lastKnownScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-
-            if (!ticking) {
-                window.requestAnimationFrame(() => {
-                    handleScroll(lastKnownScrollPosition);
-                    ticking = false;
-                });
-                ticking = true;
-            }
-        });
-    });
-</script> --}}
-
-
 
 
 
@@ -267,8 +214,7 @@
     <!-- Carousel Title -->
     <h2 class="slide fadeRight animation-element"
         style="margin-top: 60px; ; margin-left: auto; margin-right: auto; text-align: center; color: #000638; font-size: 33px; font-family: 'Satoshi'; font-weight: 500; line-height: 50px; word-wrap: break-word;">
-        At JAVOLIN we focus on combining the digital and physical worlds. We impact industries with our tech by
-        accelerating efficiencies in payments, inventory management, logistics tracking and owned commodities.
+        At JAVOLIN we focus on combining the digital and physical worlds. We impact industries with our tech by accelerating efficiencies in payments, inventory management, logistics tracking and owned commodities.
     </h2>
     <!-- Carousel container -->
     <div class="flex justify-center items-center h-full slide fadeRight animation-element"
@@ -305,13 +251,12 @@
                             style="border-radius: 1rem; position: absolute; width: 100%; height: 100%; color: white; display: flex; align-items: flex-start; justify-content: center; backface-visibility: hidden; transform: rotateY(180deg); padding-top: 1rem;">
                             <div class="flex flex-col items-center text-center space-y-1" style="margin-top: 0.5rem;">
                                 <!-- Adjust margin to move the title up -->
-                                <span x-text="slide.label"
-                                    class="w-56 text-center text-white text-2xl font-bold font-['Satoshi'] mb-2"></span>
+                                <span x-text="slide.label" class="w-56 text-center text-white text-2xl font-bold font-['Satoshi'] mb-2"></span>
                                 <div
                                     style="width: 260px; text-align: center; color: white; font-size: 18px; font-family: Satoshi; font-weight: 400; word-wrap: break-word">
                                     <span x-text="slide.content"></span>
-
-                                </div>
+                                    
+                                    </div>
 
                             </div>
                         </div>
@@ -447,8 +392,8 @@
                 let opacity = index === this.activeSlide ? 1.2 : 1.1;
 
                 return {
-                    style: `transform: scale(${ scale }); z - index: ${ zIndex }; opacity: ${ opacity }; transition: transform 1s cubic - bezier(0.25, 0.1, 0.25, 1), opacity 1s ease -in; position: absolute; left: ${ index * 18.5 }%; `,
-                    class: `${ index === this.activeSlide ? 'w-80 bg-blue-800 ' + textColor : 'w-72 bg-white border border-blue-800 ' + textColor } h - 96 rounded - 2xl overflow - hidden shadow - lg relative`
+                    style: `transform: scale(${scale}); z-index: ${zIndex}; opacity: ${opacity}; transition: transform 1s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 1s ease-in; position: absolute; left: ${index * 18.5}%;`,
+                    class: `${index === this.activeSlide ? 'w-80 bg-blue-800 ' + textColor : 'w-72 bg-white border border-blue-800 ' + textColor} h-96 rounded-2xl overflow-hidden shadow-lg relative`
                 };
             }
         };
@@ -512,40 +457,32 @@
                 <div class="opacity-100 transition duration-150 ease-in-out absolute tech-service w-[500px]">
                     <p id="tech-subtitle" class="text-[44px] text-white mt-2 font-bold l">Digital KYC</p>
                     <p id="tech-content" class="text-[24px] text-[#FAFAFA] mt-4 max-w-xl opacity-70">
-                        JAV KYC specializes in providing customized identity and digital Know Your Customer (KYC)
-                        solutions tailored
-                        specifically for banks. Our services contribute to enhanced customer trust, compliance, and
-                        fraud prevention within the
+                        JAV KYC specializes in providing customized identity and digital Know Your Customer (KYC) solutions tailored
+                        specifically for banks. Our services contribute to enhanced customer trust, compliance, and fraud prevention within the
                         banking industry.
                     </p>
                 </div>
                 <div class="opacity-0 transition duration-150 ease-in-out absolute tech-service w-[500px]">
                     <p id="tech-subtitle" class="text-[44px] text-white mt-2 font-bold max-w-xl">Country Connect</p>
                     <p id="tech-content" class="text-[24px] text-[#FAFAFA] mt-4 max-w-xl opacity-70">
-                        JAV Country Connect seamlessly integrates banks worldwide via a unified and efficient API
-                        network. Customers benefit
-                        from significantly faster transactions at reduced costs. By enabling same-day fund transfers
-                        across borders, JAV Country
+                        JAV Country Connect seamlessly integrates banks worldwide via a unified and efficient API network. Customers benefit
+                        from significantly faster transactions at reduced costs. By enabling same-day fund transfers across borders, JAV Country
                         Connect positions banks as agile, competitive forces in the global financial landscape.
                     </p>
                 </div>
                 <div class="opacity-0 transition duration-150 ease-in-out absolute tech-service w-[500px]">
                     <p id="tech-subtitle" class="text-[44px] text-white mt-2 font-bold max-w-xl">JAV API</p>
                     <p id="tech-content" class="text-[24px] text-[#FAFAFA] mt-4 max-w-xl opacity-70">
-                        JAV API provides application programming interfaces (APIs) that are secure to our customers who
-                        want to build on top
-                        of our system. Developers who want to leverage the JAV technology can get proprietary access to
-                        our API’s
+                        JAV API provides application programming interfaces (APIs) that are secure to our customers who want to build on top
+                        of our system. Developers who want to leverage the JAV technology can get proprietary access to our API’s
                     </p>
                 </div>
                 <div class="opacity-0 transition duration-150 ease-in-out absolute tech-service w-[500px]">
                     <p id="tech-subtitle" class="text-[44px] text-white mt-2 font-bold max-w-xl">JAV AI</p>
                     <p id="tech-content" class="text-[24px] text-[#FAFAFA] mt-4 max-w-xl opacity-70">
-                        JAV AI revolutionizes banking customer service by providing banks with advanced, text-based
-                        conversational AI. This
-                        enables natural language interactions between customers and banking applications, leveraging
-                        precise, data-driven
-                        responses from the bank's own enterprise data.
+                    JAV AI revolutionizes banking customer service by providing banks with advanced, text-based conversational AI. This
+                    enables natural language interactions between customers and banking applications, leveraging precise, data-driven
+                    responses from the bank's own enterprise data.
                     </p>
                 </div>
             </div>
@@ -785,7 +722,8 @@
     class="relative flex justify-center items-center min-h-[150vh] transform transition-transform duration-2000"
     style="background: url('/images/agri-bg.png') no-repeat center center; background-size: cover;">
 
-    <video :class="shrink ? 'shrink-video' : 'full-video'" class="object-cover z-0" autoplay loop muted>
+    <video :class="shrink ? 'shrink-video' : 'full-video'" class="object-cover z-0 full-video" autoplay="" loop=""
+        muted="" jm_neat="106806273">
         <source src="/images/agri-vid.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
@@ -807,7 +745,7 @@
                 <!-- Overview Text -->
                 <div style="width: 983px; text-align: left; color: rgba(250, 250, 250, 0.80); font-size: 20px; font-family: Satoshi; font-weight: 500; word-wrap: break-word"
                     class="mb-6">
-                    <p class="fadeRight animation-element">
+                    <p class="fadeRight animation-element in-view">
                         Our agritech connects growers, traders, domestic and international buyers seamlessly through the
                         integration of
                         our
@@ -820,7 +758,7 @@
                         current purchasing opportunities.
                     </p>
 
-                    <p class="mt-6 fadeLeft animation-element">
+                    <p class="mt-6 fadeLeft animation-element in-view">
                         It was launched in West Africa, focused on the countries of Ghana, Nigeria and Senegal. We
                         imagined a world
                         where a
@@ -840,7 +778,7 @@
                 <!-- Counter -->
                 <div class="fadeRight animation-element text-center text-white my-6 text-center text-white text-4xl font-black font-['Satoshi']"
                     style="font-family: 'Satoshi', sans-serif; font-weight: 700;">
-                    <span id="counter">0</span> +
+                    <span id="counter">350,000</span> +
                     <div style="font-size: 23px; font-family: 'Satoshi', sans-serif; font-weight: 500;">
                         Number of tons sold from January 2024 - May 2024
                     </div>
@@ -850,7 +788,6 @@
     </div>
 
 </section>
-
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         function animateCounter(element, start, end, duration) {
@@ -873,7 +810,7 @@
                 if (entry.isIntersecting) {
                     const counterElement = document.getElementById('counter');
                     counterElement.innerText = '0'; // Reset the counter to 0
-                    animateCounter(counterElement, 0, 350000, 5000);
+                    animateCounter(counterElement, 0, 35000, 3000);
                 }
             });
         }, {
@@ -991,8 +928,7 @@
                             Payments</div>
                         <div
                             style="width: 334px; height: 203px; color: #5D6066; font-size: 16px; font-family: Satoshi; font-weight: 500; word-wrap: break-word">
-                            Through partners we provide foreign exchange services for B2B transactions from the US,
-                            Europe and Canada
+                            Through partners we provide foreign exchange services for B2B transactions from the US, Europe and Canada
                         </div>
                     </div>
                 </div>
@@ -1021,10 +957,8 @@
                         </div>
                         <div
                             style="width: 334px; height: 203px; color: #5D6066; font-size: 16px; font-family: Satoshi; font-weight: 500; word-wrap: break-word">
-                            Javolin allows businesses to make digital payments to suppliers and employees across borders
-                            from our platforms.
-                            Businesses can track the inflow and outflow of money from their wallet using a simplified
-                            dashboard with supportive
+                            Javolin allows businesses to make digital payments to suppliers and employees across borders from our platforms.
+                            Businesses can track the inflow and outflow of money from their wallet using a simplified dashboard with supportive
                             analytic components.
                         </div>
                     </div>
@@ -1054,8 +988,7 @@
                             Commodities Marketplace</div>
                         <div
                             style="width: 334px; height: 203px; color: #5D6066; font-size: 16px; font-family: Satoshi; font-weight: 500; word-wrap: break-word">
-                            Javolin provides Technology as a Service (TaaS) to financial institutions, businesses, and
-                            government entities through
+                            Javolin provides Technology as a Service (TaaS) to financial institutions, businesses, and government entities through
                             proprietary APIs and other cutting-edge technologies.
                         </div>
                     </div>
@@ -1071,8 +1004,7 @@
     <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         <div class="p-10 lg:px-24 mt-4">
             <h3 class="text-[#6CC24A] text-[20px] animation-element fadeLeft">JAV Finance</h3>
-            <p class="text-[44px] text-white mt-2 font-bold leading-tight animation-element fadeRight">Earn a stabilized
-                return by lending alongside us in the commodities sector.</p>
+            <p class="text-[44px] text-white mt-2 font-bold leading-tight animation-element fadeRight">Earn a stabilized return by lending alongside us in the commodities sector.</p>
             <p class="text-[24px] text-[#FAFAFA] mt-4 max-w-xl opacity-70 animation-element fadeLeft">
                 JAVOLIN provides investors and lenders an opportunity to earn a stable and predictable return by
                 participating in its
@@ -1083,7 +1015,7 @@
                 Contact trade@javolin.com for more information.
             </p>
         </div>
-        <div class="animation-element fadeRight object-cover mt-[6] self-end">
+    <div class="animation-element fadeRight object-cover mt-[6] self-end">
             <img style="margin-top: 3em;" class="w-full h-full " src="/images/invest.png" alt="Investment Image">
         </div>
     </div>
@@ -1396,23 +1328,28 @@
 
 <section id="news" class="md:p-10 relative p-10 lg:px-24 py-20"
     style="background: url('/images/news_bg.png') no-repeat center center; background-size: cover;">
+
     <div class="my-8 text-white text-3xl md:text-4xl font-black font-['Satoshi']">News & Announcements</div>
+
     <div style="box-shadow: 0px 20.952px 38.095px 0px rgba(239, 234, 234, 0.1);"
         class="rounded-[20px] grid grid-cols-1 lg:grid-cols-2 border-[0.29px] border-[#95989D] h-auto lg:h-[350px] hover:scale-105 ease-in-out duration-300 fadeRight animation-element mt-12">
         <div>
-            <a href="#" class="video-link" data-video-id="bujPjJS8jR0">
+            <a href="https://www.youtube.com/watch?v=bujPjJS8jR0" target="_blank">
                 <img class="w-full h-full lg:h-[350px] rounded-tl-2xl lg:rounded-bl-2xl lg:rounded-tr-none rounded-tr-2xl object-cover"
                     src="https://img.youtube.com/vi/bujPjJS8jR0/maxresdefault.jpg" alt="YouTube Video Thumbnail" />
             </a>
         </div>
+
         <div
             class="flex flex-col justify-center p-6 md:p-9 bg-white rounded-br-2xl rounded-bl-none rounded-tr-none lg:rounded-tr-2xl">
             <div class="text-slate-950 text-2xl md:text-4xl font-bold font-['Satoshi'] py-4">Interview with Carl Powell,
-                CEO Javolin Group at Gitex Africa 2024</div>
+                CEO Javolin
+                Group at Gitex Africa 2024</div>
             <div>
                 <p class="text-[#3A3A3A] text-[14px] md:text-[16px] lg:text-[18px]">
-                    Carl Powell was at the Gitex Africa 2024 conference in Morocco. Gitex is the LARGEST Tech & Startup
-                    show in Africa Powering Africa into the Global AI Economy.
+                    Carl Powell was at the Gitex Africa 2024 conference in Morroco. Gitex is the LARGEST Tech & Startup
+                    show
+                    in Africa Powering Africa into the Global AI Economy.
                 </p>
             </div>
             <div class="flex flex-row text-[12px] md:text-[13px] items-center mt-4 font-bold py-4">
@@ -1425,30 +1362,32 @@
             </div>
         </div>
     </div>
+
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16 mb-12">
         <div
             class="h-auto bg-white rounded-2xl shadow border-[0.29px] border-neutral-400 flex flex-col hover:scale-105 ease-in-out duration-300 fadeLeft animation-element">
-            <div class="h-56 md:h-60 overflow-hidden rounded-tl-2xl rounded-tr-2xl">
-                <img class="w-full h-full object-cover" src="/images/new2.png" />
+            <div class="relative h-56 md:h-60 overflow-hidden rounded-tl-2xl rounded-tr-2xl">
+                <img class="absolute top-0 left-0 w-full h-full object-cover" src="/images/food_show.jpg" />
             </div>
             <div class="flex flex-col justify-start items-start gap-4 p-4">
                 <div class="flex-col justify-start items-start gap-3 flex">
-                    <div class="text-slate-950 text-lg md:text-2xl font-bold font-['Satoshi']">Redefining Profitability:
-                        Strategies for sustainable growth in the digital age</div>
+                    <div class="text-slate-950 text-lg md:text-2xl font-bold font-['Satoshi']">JAVOLIN attends the 2024 Summer
+                        Fancy Food Show in New York..</div>
                 </div>
                 <div class="flex justify-start items-center gap-4">
                     <div class="px-4 py-1 bg-red-100 rounded-full justify-center items-center gap-2 flex">
-                        <div class="text-center text-amber-700 text-xs md:text-sm font-bold font-['Satoshi']">ANALYTICS
+                        <div class="text-center text-amber-700 text-xs md:text-sm font-bold font-['Satoshi']">INNOVATION
                         </div>
                     </div>
                     <div class="flex justify-start items-center gap-2">
-                        <div class="text-zinc-600 text-xs md:text-sm font-bold font-['Satoshi']">Feb 13</div>
+                        <div class="text-zinc-600 text-xs md:text-sm font-bold font-['Satoshi']">23rd June</div>
                         <div class="w-1 h-1 bg-zinc-500 rounded-full"></div>
                         <div class="text-zinc-600 text-xs md:text-sm font-bold font-['Satoshi']">10 mins read</div>
                     </div>
                 </div>
             </div>
         </div>
+
         <div
             class="h-auto bg-white rounded-2xl shadow border border-neutral-400 flex flex-col hover:scale-105 ease-in-out duration-300 fadeRight animation-element">
             <div class="h-56 md:h-60 overflow-hidden rounded-tl-2xl rounded-tr-2xl">
@@ -1475,74 +1414,3 @@
         </div>
     </div>
 </section>
-
-<!-- Video Overlay -->
-<div id="videoOverlay"
-    class="video-overlay hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-75 flex items-center justify-center">
-    <div class="relative w-11/12 lg:w-3/4">
-        <button id="closeOverlay" class="absolute top-2 right-2 text-white text-2xl">&times;</button>
-        <div class="aspect-w-16 aspect-h-9">
-            <iframe id="videoFrame" width="560" height="315" frameborder="0" allowfullscreen></iframe>
-        </div>
-    </div>
-</div>
-
-<style scoped>
-    #news .hidden {
-        display: none;
-    }
-
-    #news .video-overlay {
-        z-index: 1000;
-    }
-
-    #news .aspect-w-16 {
-        position: relative;
-        width: 100%;
-    }
-
-    #news .aspect-w-16::before {
-        content: "";
-        display: block;
-        padding-top: 56.25%;
-        /* 16:9 aspect ratio */
-    }
-
-    #news .aspect-h-9 iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
-</style>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const videoLinks = document.querySelectorAll('.video-link');
-        const videoOverlay = document.getElementById('videoOverlay');
-        const videoFrame = document.getElementById('videoFrame');
-        const closeOverlay = document.getElementById('closeOverlay');
-
-        videoLinks.forEach(link => {
-            link.addEventListener('click', function (event) {
-                event.preventDefault();
-                const videoId = this.getAttribute('data-video-id');
-                videoFrame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-    videoOverlay.classList.remove('hidden');
-            });
-        });
-
-    closeOverlay.addEventListener('click', function () {
-        videoOverlay.classList.add('hidden');
-        videoFrame.src = '';
-    });
-
-    videoOverlay.addEventListener('click', function (event) {
-        if (event.target === videoOverlay) {
-            videoOverlay.classList.add('hidden');
-            videoFrame.src = '';
-        }
-    });
-    });
-</script>
