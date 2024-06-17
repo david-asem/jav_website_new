@@ -402,22 +402,17 @@
                 </svg>
             </button>
             <div x-show="isOpen" x-transition:enter="transition ease-out duration-300"
-                x-transition:enter-start="opacity-0 transform scale-95"
-                x-transition:enter-end="opacity-100 transform scale-100"
-                x-transition:leave="transition ease-in duration-200"
-                x-transition:leave-start="opacity-100 transform scale-100"
-                x-transition:leave-end="opacity-0 transform scale-95" @mouseleave="isOpen = false"
-                @mouseenter="isOpen = true" class="absolute top-8 right-6 bg-white rounded-2xl w-80 p-4">
-                <div @click="isOpen = false; showPaymentsModal = true"
-                    class="flex items-center space-x-4 cursor-pointer py-2">
+                x-transition:enter-start="opacity-0 transform scale-95" x-transition:enter-end="opacity-100 transform scale-100"
+                x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform scale-100"
+                x-transition:leave-end="opacity-0 transform scale-95" @mouseleave="isOpen = false" @mouseenter="isOpen = true"
+                class="absolute top-8 right-6 bg-white rounded-2xl w-80 p-4 shadow-lg">
+                <div @click="isOpen = false; showPaymentsModal = true" class="flex items-center space-x-4 cursor-pointer py-2">
                     <div class="w-11 h-11 bg-orange-200 rounded-full flex items-center justify-center flex-shrink-0">
                         <img src="/images/CreditCard.svg" alt="Payments Icon" />
                     </div>
                     <div>
                         <div class="text-black font-semibold">Payments</div>
-                        <div class="text-gray-500 text-sm">Ut enim ad minim veniam, quis tulix nostrud sad ss
-                            exercitation
-                        </div>
+                        <div class="text-gray-500 text-sm">Ut enim ad minim veniam, quis tulix nostrud sad ss exercitation</div>
                     </div>
                 </div>
                 <div @click="isOpen = false; showCommoditiesModal = true"
@@ -427,12 +422,11 @@
                     </div>
                     <div>
                         <div class="text-black font-semibold">Commodities</div>
-                        <div class="text-gray-500 text-sm">Ut enim ad minim veniam, quis tulix nostrud sad ss
-                            exercitation
-                        </div>
+                        <div class="text-gray-500 text-sm">Ut enim ad minim veniam, quis tulix nostrud sad ss exercitation</div>
                     </div>
                 </div>
             </div>
+
         </div>
     </header>
 
