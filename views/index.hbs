@@ -1339,7 +1339,7 @@ duration: 5000
 <div style="box-shadow: 0px 20.952px 38.095px 0px rgba(239, 234, 234, 0.1);"
     class="rounded-[20px] grid grid-cols-1 lg:grid-cols-2 border-[0.29px] border-[#95989D] h-auto lg:h-[350px] hover:scale-105 ease-in-out duration-300 fadeRight animation-element mt-12">
     <div class="h-full lg:h-[350px]">
-        <a href="https://www.youtube.com/watch?v=bujPjJS8jR0" target="_blank">
+        <a href="#" class="video-link" data-video-id="bujPjJS8jR0">
             <img class="w-full h-full lg:h-[350px] rounded-tl-2xl lg:rounded-bl-2xl lg:rounded-tr-none rounded-tr-2xl object-cover"
                 src="https://img.youtube.com/vi/bujPjJS8jR0/maxresdefault.jpg" alt="YouTube Video Thumbnail" />
         </a>
@@ -1366,6 +1366,92 @@ duration: 5000
         </div>
     </div>
 </div>
+
+<!-- Video Overlay -->
+<div id="videoOverlay" class="fixed inset-0 flex justify-center items-center hidden">
+    <div class="relative rounded-lg overflow-hidden w-[90%] lg:w-[60%] video-overlay p-4 lg:p-8">
+        <div class="flex justify-end p-2">
+            <button id="closeOverlay" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+        </div>
+        <div class="aspect-w-16 aspect-h-9">
+            <iframe id="videoFrame" class="w-full h-full" src="" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+
+<style scoped>
+    #news .hidden {
+        display: none;
+    }
+
+    #news .video-overlay {
+        z-index: 1000;
+    }
+
+    #news .aspect-w-16 {
+        position: relative;
+        width: 100%;
+    }
+
+    #news .aspect-w-16::before {
+        content: "";
+        display: block;
+        padding-top: 56.25%;
+        /* 16:9 aspect ratio */
+    }
+
+    #news .aspect-h-9 iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        /* Added rounded corners to the iframe */
+    }
+
+    #closeOverlay {
+        background: #fff;
+        /* White background for the close button */
+        border-radius: 50%;
+        /* Circular shape for the close button */
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const videoLinks = document.querySelectorAll('.video-link');
+        const videoOverlay = document.getElementById('videoOverlay');
+        const videoFrame = document.getElementById('videoFrame');
+        const closeOverlay = document.getElementById('closeOverlay');
+        videoLinks.forEach(link => {
+            link.addEventListener('click', function (event) {
+                event.preventDefault();
+                const videoId = this.getAttribute('data-video-id');
+                videoFrame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+    videoOverlay.classList.remove('hidden');
+            });
+        });
+    closeOverlay.addEventListener('click', function () {
+        videoOverlay.classList.add('hidden');
+        videoFrame.src = '';
+    });
+    videoOverlay.addEventListener('click', function (event) {
+        if (event.target === videoOverlay) {
+            videoOverlay.classList.add('hidden');
+            videoFrame.src = '';
+        }
+    });
+    });
+</script>
+
+
 
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16 mb-12">
