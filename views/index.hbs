@@ -265,9 +265,10 @@
                                 <!-- Adjust margin to move the title up -->
                                 <span x-text="slide.label" class="w-56 text-center text-white text-2xl font-bold font-['Satoshi'] mb-2"></span>
                                 <div
-                                    style="width: 260px; text-align: justify; color: white; font-size: 18px; font-family: Satoshi; font-weight: 400; word-wrap: break-word; letter-spacing: 0.1px; margin: 0 auto; padding: 10px;">
+                                    style="width: 280px; text-align: justify; color: white; font-size: 18px; font-family: Satoshi; font-weight: 400; ">
                                     <span x-text="slide.content"></span>
                                 </div>
+
 
 
 
@@ -747,8 +748,8 @@
             <div class="flex flex-col items-center justify-center h-full">
 
                 <!-- JAV AgriTech Button -->
-                <div style="width: 240px; height: 82px; background: white; border-radius: 100px;"
-                    class="flex justify-center items-center py-6 px-0 -mt-64">
+                <div style="width: 280px; height: 82px; background: white; border-radius: 100px;"
+                    class="flex justify-center items-center py-6 px-6 -mt-64 ">
                     <div class="font-bold"
                         style="color: #0032A0; font-size: 29px; font-family: Satoshi; font-weight: 900; word-wrap: break-word">
                         JAV AGRI-TECH
@@ -757,7 +758,7 @@
 
                 <!-- Overview Text -->
                 <div style="width: 983px; text-align: justify; color: rgba(250, 250, 250, 0.80); font-size: 23px; font-family: Satoshi; font-weight: 500; word-wrap: break-word"
-                    class="my-10">
+                    class="mt-20">
                     <p class="fadeRight animation-element in-view">
                         Our agritech connects growers, traders, domestic and international buyers seamlessly through the
                         integration of
@@ -1459,7 +1460,9 @@ duration: 5000
 
     #news .video-overlay {
         z-index: 10000;
-        /* Ensure the overlay is on top */
+        background-color: black;
+        padding-top: 0px;
+        margin-top: 0px;
     }
 
     #news .aspect-w-16 {
