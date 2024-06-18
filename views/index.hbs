@@ -1336,48 +1336,103 @@ duration: 5000
     style="background: url('/images/news_bg.png') no-repeat center center; background-size: cover;">
 
     <div class="my-8 text-white text-3xl md:text-4xl font-black font-['Satoshi']">News & Announcements</div>
-<div style="box-shadow: 0px 20.952px 38.095px 0px rgba(239, 234, 234, 0.1);"
-    class="rounded-[20px] grid grid-cols-1 lg:grid-cols-2 border-[0.29px] border-[#95989D] h-auto lg:h-[350px] hover:scale-105 ease-in-out duration-300 fadeRight animation-element mt-12">
-    <div class="h-full lg:h-[350px]">
-        <a href="#" class="video-link" data-video-id="bujPjJS8jR0">
-            <img class="w-full h-full lg:h-[350px] rounded-tl-2xl lg:rounded-bl-2xl lg:rounded-tr-none rounded-tr-2xl object-cover"
-                src="https://img.youtube.com/vi/bujPjJS8jR0/maxresdefault.jpg" alt="YouTube Video Thumbnail" />
-        </a>
+    <div style="box-shadow: 0px 20.952px 38.095px 0px rgba(239, 234, 234, 0.1);"
+        class="rounded-[20px] grid grid-cols-1 lg:grid-cols-2 border-[0.29px] border-[#95989D] h-auto lg:h-[350px] hover:scale-105 ease-in-out duration-300 fadeRight animation-element mt-12">
+        <div class="h-full lg:h-[350px]">
+            <a href="#" class="video-link" data-video-id="bujPjJS8jR0">
+                <img class="w-full h-full lg:h-[350px] rounded-tl-2xl lg:rounded-bl-2xl lg:rounded-tr-none rounded-tr-2xl object-cover"
+                    src="https://img.youtube.com/vi/bujPjJS8jR0/maxresdefault.jpg" alt="YouTube Video Thumbnail" />
+            </a>
+        </div>
+
+        <div
+            class="flex flex-col justify-center p-6 md:p-9 bg-white rounded-br-2xl rounded-bl-none rounded-tr-none lg:rounded-tr-2xl h-full lg:h-[350px]">
+            <div class="text-slate-950 text-2xl md:text-4xl font-bold font-['Satoshi'] py-4">Interview with Carl Powell,
+                CEO Javolin
+                Group at Gitex Africa 2024</div>
+            <div>
+                <p class="text-[#3A3A3A] text-[14px] md:text-[16px] lg:text-[18px]">
+                    Carl Powell was at the Gitex Africa 2024 conference in Morroco. Gitex is the LARGEST Tech & Startup
+                    show
+                    in Africa Powering Africa into the Global AI Economy.
+                </p>
+            </div>
+            <div class="flex flex-row text-[12px] md:text-[13px] items-center mt-4 font-bold py-4">
+                <div class="py-2 px-4 text-[#6CC24A] bg-[#E9F6E4] rounded-3xl">
+                    INNOVATION
+                </div>
+                <div class="text-[#5D6066] ml-6">
+                    May 31, 2024 • 9mins watch
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div
-        class="flex flex-col justify-center p-6 md:p-9 bg-white rounded-br-2xl rounded-bl-none rounded-tr-none lg:rounded-tr-2xl h-full lg:h-[350px]">
-        <div class="text-slate-950 text-2xl md:text-4xl font-bold font-['Satoshi'] py-4">Interview with Carl Powell,
-            CEO Javolin
-            Group at Gitex Africa 2024</div>
-        <div>
-            <p class="text-[#3A3A3A] text-[14px] md:text-[16px] lg:text-[18px]">
-                Carl Powell was at the Gitex Africa 2024 conference in Morroco. Gitex is the LARGEST Tech & Startup show
-                in Africa Powering Africa into the Global AI Economy.
-            </p>
-        </div>
-        <div class="flex flex-row text-[12px] md:text-[13px] items-center mt-4 font-bold py-4">
-            <div class="py-2 px-4 text-[#6CC24A] bg-[#E9F6E4] rounded-3xl">
-                INNOVATION
+    <!-- Video Overlay -->
+    <div id="videoOverlay" class="fixed inset-0 flex justify-center items-center hidden z-50">
+        <div class="relative rounded-lg overflow-hidden w-[90%] lg:w-[60%] video-overlay p-4 lg:p-8">
+            <div class="flex justify-end p-2">
+                <button id="closeOverlay" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
             </div>
-            <div class="text-[#5D6066] ml-6">
-                May 31, 2024 • 9mins watch
+            <div class="aspect-w-16 aspect-h-9">
+                <iframe id="videoFrame" class="w-full h-full rounded-lg" src="" frameborder="0"
+                    allowfullscreen></iframe>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Video Overlay -->
-<div id="videoOverlay" class="fixed inset-0 flex justify-center items-center hidden">
-    <div class="relative rounded-lg overflow-hidden w-[90%] lg:w-[60%] video-overlay p-4 lg:p-8">
-        <div class="flex justify-end p-2">
-            <button id="closeOverlay" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16 mb-12">
+        <div
+            class="h-auto bg-white rounded-2xl shadow border-[0.29px] border-neutral-400 flex flex-col hover:scale-105 ease-in-out duration-300 fadeLeft animation-element">
+            <div class="relative h-56 md:h-60 overflow-hidden rounded-tl-2xl rounded-tr-2xl">
+                <img class="absolute top-0 left-0 w-full h-full object-cover" src="/images/food_show.jpg" />
+            </div>
+            <div class="flex flex-col justify-start items-start gap-4 p-4">
+                <div class="flex-col justify-start items-start gap-3 flex">
+                    <div class="text-slate-950 text-lg md:text-2xl font-bold font-['Satoshi']">JAVOLIN attends the 2024
+                        Summer
+                        Fancy Food Show in New York..</div>
+                </div>
+                <div class="flex justify-start items-center gap-4">
+                    <div class="px-4 py-1 bg-red-100 rounded-full justify-center items-center gap-2 flex">
+                        <div class="text-center text-amber-700 text-xs md:text-sm font-bold font-['Satoshi']">INNOVATION
+                        </div>
+                    </div>
+                    <div class="flex justify-start items-center gap-2">
+                        <div class="text-zinc-600 text-xs md:text-sm font-bold font-['Satoshi']">23rd June</div>
+                        <div class="w-1 h-1 bg-zinc-500 rounded-full"></div>
+                        <div class="text-zinc-600 text-xs md:text-sm font-bold font-['Satoshi']">10 mins read</div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="aspect-w-16 aspect-h-9">
-            <iframe id="videoFrame" class="w-full h-full" src="" frameborder="0" allowfullscreen></iframe>
+
+        <div
+            class="h-auto bg-white rounded-2xl shadow border border-neutral-400 flex flex-col hover:scale-105 ease-in-out duration-300 fadeRight animation-element">
+            <div class="h-56 md:h-60 overflow-hidden rounded-tl-2xl rounded-tr-2xl">
+                <img class="w-full h-full object-cover" src="/images/new3.png" />
+            </div>
+            <div class="flex flex-col justify-start items-start gap-4 p-4">
+                <div class="flex-col justify-start items-start gap-3 flex">
+                    <div class="text-slate-950 text-lg md:text-2xl font-bold font-['Satoshi']">Innovating for Tomorrow:
+                        How
+                        companies must embrace disruption to stay ahead</div>
+                </div>
+                <div class="flex justify-start items-center gap-4">
+                    <div class="px-4 py-1 bg-slate-200 rounded-full justify-center items-center gap-2 flex">
+                        <div class="text-center text-blue-800 text-xs md:text-sm font-bold font-['Satoshi']">INNOVATION
+                        </div>
+                    </div>
+                    <div class="flex justify-start items-center gap-2">
+                        <div class="text-zinc-600 text-xs md:text-sm font-bold font-['Satoshi']">Mar 03</div>
+                        <div class="w-1 h-1 bg-zinc-500 rounded-full"></div>
+                        <div class="text-zinc-600 text-xs md:text-sm font-bold font-['Satoshi']">6 mins read</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+</section>
 
 <style scoped>
     #news .hidden {
@@ -1385,7 +1440,8 @@ duration: 5000
     }
 
     #news .video-overlay {
-        z-index: 1000;
+        z-index: 10000;
+        /* Ensure the overlay is on top */
     }
 
     #news .aspect-w-16 {
@@ -1450,58 +1506,3 @@ duration: 5000
     });
     });
 </script>
-
-
-
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16 mb-12">
-        <div
-            class="h-auto bg-white rounded-2xl shadow border-[0.29px] border-neutral-400 flex flex-col hover:scale-105 ease-in-out duration-300 fadeLeft animation-element">
-            <div class="relative h-56 md:h-60 overflow-hidden rounded-tl-2xl rounded-tr-2xl">
-                <img class="absolute top-0 left-0 w-full h-full object-cover" src="/images/food_show.jpg" />
-            </div>
-            <div class="flex flex-col justify-start items-start gap-4 p-4">
-                <div class="flex-col justify-start items-start gap-3 flex">
-                    <div class="text-slate-950 text-lg md:text-2xl font-bold font-['Satoshi']">JAVOLIN attends the 2024 Summer
-                        Fancy Food Show in New York..</div>
-                </div>
-                <div class="flex justify-start items-center gap-4">
-                    <div class="px-4 py-1 bg-red-100 rounded-full justify-center items-center gap-2 flex">
-                        <div class="text-center text-amber-700 text-xs md:text-sm font-bold font-['Satoshi']">INNOVATION
-                        </div>
-                    </div>
-                    <div class="flex justify-start items-center gap-2">
-                        <div class="text-zinc-600 text-xs md:text-sm font-bold font-['Satoshi']">23rd June</div>
-                        <div class="w-1 h-1 bg-zinc-500 rounded-full"></div>
-                        <div class="text-zinc-600 text-xs md:text-sm font-bold font-['Satoshi']">10 mins read</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div
-            class="h-auto bg-white rounded-2xl shadow border border-neutral-400 flex flex-col hover:scale-105 ease-in-out duration-300 fadeRight animation-element">
-            <div class="h-56 md:h-60 overflow-hidden rounded-tl-2xl rounded-tr-2xl">
-                <img class="w-full h-full object-cover" src="/images/new3.png" />
-            </div>
-            <div class="flex flex-col justify-start items-start gap-4 p-4">
-                <div class="flex-col justify-start items-start gap-3 flex">
-                    <div class="text-slate-950 text-lg md:text-2xl font-bold font-['Satoshi']">Innovating for Tomorrow:
-                        How
-                        companies must embrace disruption to stay ahead</div>
-                </div>
-                <div class="flex justify-start items-center gap-4">
-                    <div class="px-4 py-1 bg-slate-200 rounded-full justify-center items-center gap-2 flex">
-                        <div class="text-center text-blue-800 text-xs md:text-sm font-bold font-['Satoshi']">INNOVATION
-                        </div>
-                    </div>
-                    <div class="flex justify-start items-center gap-2">
-                        <div class="text-zinc-600 text-xs md:text-sm font-bold font-['Satoshi']">Mar 03</div>
-                        <div class="w-1 h-1 bg-zinc-500 rounded-full"></div>
-                        <div class="text-zinc-600 text-xs md:text-sm font-bold font-['Satoshi']">6 mins read</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
