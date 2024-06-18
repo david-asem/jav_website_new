@@ -253,10 +253,11 @@
                                 <!-- Adjust margin to move the title up -->
                                 <span x-text="slide.label" class="w-56 text-center text-white text-2xl font-bold font-['Satoshi'] mb-2"></span>
                                 <div
-                                    style="width: 260px; text-align: center; color: white; font-size: 18px; font-family: Satoshi; font-weight: 400; word-wrap: break-word">
+                                    style="width: 260px; text-align: justify; color: white; font-size: 18px; font-family: Satoshi; font-weight: 400; word-wrap: break-word; letter-spacing: 0.1px; margin: 0 auto; padding: 10px;">
                                     <span x-text="slide.content"></span>
-                                    
-                                    </div>
+                                </div>
+
+
 
                             </div>
                         </div>
@@ -311,9 +312,9 @@
     function carousel() {
         return {
             slides: [
-                { label: 'JAV Finance', image: '/images/javolin_finance.png', active: false, flipped: false, hovered: false, content:'JAVOLIN provides investors and lenders an opportunity to earn a stable and predictable return by participating in its Agri Commodities trading platform' },
-                { label: 'JAV Tech', image: '/images/javolin_tech.png', active: false, flipped: false, hovered: false, content:'Through our proprietary API’s and other technologies, we offer specific technology as a service (TaaS) to financial institutions, businesses, and government entities'  },
-                { label: 'JAV Infrastructure', image: '/images/infra.png', active: true, flipped: false, hovered: false, content:'Our digital infrastructure connects countries for our financial services partners and provides collections software for business and govt entities across a variety of fees and taxes.'},
+                { label: 'JAV Finance', image: '/images/javolin_finance.png', active: false, flipped: false, hovered: false, content:'JAVOLIN provides investors and lenders an opportunity to earn a stable and predictable return by participating in its Agri Commodities marketplace.' },
+                { label: 'JAV Tech', image: '/images/javolin_tech.png', active: false, flipped: false, hovered: false, content:'We offer specific services (TaaS) to financial institutions, businesses, and government entities.'  },
+                { label: 'JAV Infrastructure', image: '/images/infra.png', active: true, flipped: false, hovered: false, content:'Our digital infrastructure connects multi location enterprises and provides collections software for businesses and government entities across a variety of fees and taxes.'},
                 { label: 'JAV FX & Payments', image: '/images/fx.png', active: false, flipped: false, hovered: false, content:'Via our digital wallet, we are able to facilitate B2B payments domestically and internationally to countries across the globe in multiple currencies.' },
                 { label: 'JAV AgriCommodities', image: '/images/commodities.png', active: false, flipped: false, hovered: false, content:'We own and actively trade cashew and cassava from the continent of Africa to international locations in Asia and America. Via our commodities marketplace, buyers can gain access to the availability of the product to be purchased.' },
             ],
@@ -453,7 +454,7 @@
     <div class="flex flex-col lg:flex-col h-[550px]">
         <div class="grid lg:grid-cols-2 md:grid-cols-2 justify-center items-center relative t-service">
             <div class="fadeLeft animation-element z-30 transition duration-150 ease-in-out absolute top-0">
-                <h3 class="text-[#6CC24A] text-[20px] ">OUR TECHNOLOGY</h3>
+                <h3 class="text-[#6CC24A] text-[30px] ">OUR TECHNOLOGY</h3>
                 <div class="opacity-100 transition duration-150 ease-in-out absolute tech-service w-[500px]">
                     <p id="tech-subtitle" class="text-[44px] text-white mt-2 font-bold l">Digital KYC</p>
                     <p id="tech-content" class="text-[24px] text-[#FAFAFA] mt-4 max-w-xl opacity-70">
@@ -734,17 +735,17 @@
             <div class="flex flex-col items-center justify-center h-full">
 
                 <!-- JAV AgriTech Button -->
-                <div style="width: 230px; height: 82px; background: white; border-radius: 100px;"
-                    class="flex justify-center items-center py-6 px-0 mb-10 -mt-36">
+                <div style="width: 240px; height: 82px; background: white; border-radius: 100px;"
+                    class="flex justify-center items-center py-6 px-0 -mt-64">
                     <div class="font-bold"
                         style="color: #0032A0; font-size: 29px; font-family: Satoshi; font-weight: 900; word-wrap: break-word">
-                        JAV Agri-Tech
+                        JAV AGRI-TECH
                     </div>
                 </div>
 
                 <!-- Overview Text -->
-                <div style="width: 983px; text-align: left; color: rgba(250, 250, 250, 0.80); font-size: 20px; font-family: Satoshi; font-weight: 500; word-wrap: break-word"
-                    class="mb-6">
+                <div style="width: 983px; text-align: justify; color: rgba(250, 250, 250, 0.80); font-size: 23px; font-family: Satoshi; font-weight: 500; word-wrap: break-word"
+                    class="my-10">
                     <p class="fadeRight animation-element in-view">
                         Our agritech connects growers, traders, domestic and international buyers seamlessly through the
                         integration of
@@ -758,8 +759,7 @@
                         current purchasing opportunities.
                     </p>
 
-                    <p class="mt-6 fadeLeft animation-element in-view">
-                        It was launched in West Africa, focused on the countries of Ghana, Nigeria and Senegal. We
+                    <p class="mt-6 fadeLeft animation-element in-view">We
                         imagined a world
                         where a
                         small farmer could produce 10 bags of cassava, make it readily known to domestic or
@@ -776,13 +776,15 @@
                 <div class="mt-20" style="width: 748px; height: 0px; border: 1px rgba(255, 255, 255, 0.20) solid"></div>
 
                 <!-- Counter -->
-                <div class="fadeRight animation-element text-center text-white my-6 text-center text-white text-4xl font-black font-['Satoshi']"
-                    style="font-family: 'Satoshi', sans-serif; font-weight: 700;">
-                    <span id="counter">350,000</span> +
-                    <div style="font-size: 23px; font-family: 'Satoshi', sans-serif; font-weight: 500;">
-                        Number of tons sold from January 2024 - May 2024
-                    </div>
-                </div>
+                <!--
+                                <div class="fadeRight animation-element text-center text-white my-6 text-center text-white text-4xl font-black font-['Satoshi']"
+                                    style="font-family: 'Satoshi', sans-serif; font-weight: 700;">
+                                    <span id="counter">350,000</span> +
+                                    <div style="font-size: 23px; font-family: 'Satoshi', sans-serif; font-weight: 500;">
+                                        Number of tons sold from January 2024 - May 2024
+                                    </div>
+                                </div>
+                -->
             </div>
         </div>
     </div>
@@ -894,7 +896,7 @@
     style="bg-white no-repeat; background-size: cover; background-attachment: fixed;">
     <div class="flex flex-col justify-center items-center">
         <div class="slide fadeLeft animation-element" 
-            style="text-align: center; color: #6CC24A; font-size: 20px; font-family: 'Satoshi', sans-serif; font-weight: 500; letter-spacing: 1.20px; word-wrap: break-word">
+            style="text-align: center; color: #6CC24A; font-size: 29px; font-family: 'Satoshi', sans-serif; font-weight: 500; letter-spacing: 1.20px; word-wrap: break-word">
             OUR SOLUTIONS
         </div>
 
@@ -928,7 +930,9 @@
                             Payments</div>
                         <div
                             style="width: 334px; height: 203px; color: #5D6066; font-size: 16px; font-family: Satoshi; font-weight: 500; word-wrap: break-word">
-                            Through partners we provide foreign exchange services for B2B transactions from the US, Europe and Canada
+                            Javolin allows businesses to make digital payments to suppliers and employees across borders from our platforms.
+                            Businesses can track the inflow and outflow of money from their wallet using a simplified dashboard with supportive
+                            analytic components.
                         </div>
                     </div>
                 </div>
@@ -957,9 +961,10 @@
                         </div>
                         <div
                             style="width: 334px; height: 203px; color: #5D6066; font-size: 16px; font-family: Satoshi; font-weight: 500; word-wrap: break-word">
-                            Javolin allows businesses to make digital payments to suppliers and employees across borders from our platforms.
-                            Businesses can track the inflow and outflow of money from their wallet using a simplified dashboard with supportive
-                            analytic components.
+                            We allow farmers and other businesses to input current inventory levels that can be purchased by domestic &
+                            international buyers, and receive payment directly to their mobile money account, bank card, or bank account. Our added
+                            logistics module allows purchasers to track the product from the seller, through our warehouse network to their local
+                            facilities or vessels for international shipping.
                         </div>
                     </div>
                 </div>
@@ -975,7 +980,7 @@
                     alt="Foreign Exchange" />
                 <div class="card-title"
                     style="width: 337px; position: absolute; left: 32px; top: 281px; color: white; font-size: 40px; font-family: 'Satoshi', sans-serif; font-weight: 700; word-wrap: break-word">
-                    Commodities Marketplace
+                    Agri Commodities Marketplace
                 </div>
                 <div class="card-hover-content"
                     style="width: 398px; height: 362px; position: absolute; bottom: 0; background: white;">
@@ -985,11 +990,12 @@
 
                         <div
                             style="width: 334px; color: #000C26; font-size: 28px; font-family: Satoshi; font-weight: 700; word-wrap: break-word">
-                            Commodities Marketplace</div>
+                            Agri Commodities Marketplace</div>
                         <div
                             style="width: 334px; height: 203px; color: #5D6066; font-size: 16px; font-family: Satoshi; font-weight: 500; word-wrap: break-word">
-                            Javolin provides Technology as a Service (TaaS) to financial institutions, businesses, and government entities through
-                            proprietary APIs and other cutting-edge technologies.
+                            All agri commodities available for sale from our partners are available for our clients in real time. By registering
+                            for our marketplace, domestic & international buyers can better plan their procurement strategies. We currently cover
+                            Ghana, Nigeria & Senegal.
                         </div>
                     </div>
                 </div>
@@ -1003,7 +1009,7 @@
     style="background-image: url('/images/invest_bg1.png'); background-size: cover; background-color: #000B6B; background-blend-mode: overlay;">
     <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         <div class="p-10 lg:px-24 mt-4">
-            <h3 class="text-[#6CC24A] text-[20px] animation-element fadeLeft">JAV FINANCE</h3>
+            <h3 class="text-[#6CC24A] text-[29px] animation-element fadeLeft">JAV FINANCE</h3>
             <p class="text-[44px] text-white mt-2 font-bold leading-tight animation-element fadeRight"
                 style="width: 800px; max-width: 800px;">
                 Earn a stabilized return by lending alongside us in the commodities sector.
@@ -1011,7 +1017,7 @@
 
             <p class="text-[24px] text-[#FAFAFA] mt-4 max-w-xl opacity-70 animation-element fadeLeft">
                 JAVOLIN provides investors and lenders an opportunity to earn a stable and predictable return by
-                participating in its
+                participating in our
                 Agri Commodities trading platform. We provide trade financing to traders for a variety of
                 agri-commodities backed by
                 purchase orders from large international buyers. This platform is only open to sophisticated investors
