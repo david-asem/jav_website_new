@@ -320,7 +320,7 @@
                 { label: 'JAV Finance', image: '/images/javolin_finance.png', active: false, flipped: false, hovered: false, content:'JAVOLIN provides investors and lenders an opportunity to earn a stable and predictable return by participating in its Agri Commodities marketplace.' },
                 { label: 'JAV Tech', image: '/images/javolin_tech.png', active: false, flipped: false, hovered: false, content:'We offer specific services (TaaS) to financial institutions, businesses, and government entities.'  },
                 { label: 'JAV Infrastructure', image: '/images/infra.png', active: true, flipped: false, hovered: false, content:'Our digital infrastructure connects multi location enterprises and provides collections software for businesses and government entities across a variety of fees and taxes.'},
-                { label: 'JAV & Payments', image: '/images/fx.png', active: false, flipped: false, hovered: false, content:'Via our digital wallet, we are able to facilitate B2B payments domestically and internationally to countries across the globe in multiple currencies.' },
+                { label: 'JAV Payments', image: '/images/fx.png', active: false, flipped: false, hovered: false, content:'Via our digital wallet, we are able to facilitate B2B payments domestically and internationally to countries across the globe in multiple currencies.' },
                 { label: 'JAV AgriCommodities', image: '/images/commodities.png', active: false, flipped: false, hovered: false, content:'We own and actively trade cashew and cassava from the continent of Africa to international locations in Asia and America. Via our commodities marketplace, buyers can gain access to the availability of the product to be purchased.' },
             ],
             activeSlide: 2, // Initially active slide
@@ -470,7 +470,7 @@
                 <div class="opacity-0 transition duration-150 ease-in-out absolute tech-service w-[500px]">
                     <p id="tech-subtitle" class="text-[44px] text-white mt-2 font-bold max-w-xl">Country Connect</p>
                     <p id="tech-content" class="text-[24px] text-[#FAFAFA] mt-4 max-w-xl opacity-70">
-                        Country Connect – JAVOLIN connects multi-location enterprises via our unified & efficient API network. Customers
+                        JAVOLIN connects multi-location enterprises via our unified & efficient API network. Customers
                         benefit from significantly faster transactions and enabled same-day settlements.
                     </p>
                 </div>
@@ -1395,19 +1395,17 @@ duration: 5000
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16 mb-12">
         <div
             class="h-auto bg-white rounded-2xl shadow border-[0.29px] border-neutral-400 flex flex-col hover:scale-105 ease-in-out duration-300 fadeLeft animation-element">
-            <div class="relative h-56 md:h-60 overflow-hidden rounded-tl-2xl rounded-tr-2xl">
+            <div class="relative h-56 md:h-60 overflow-hidden rounded-tl-2xl rounded-tr-2xl image-link">
                 <img class="absolute top-0 left-0 w-full h-full object-cover" src="/images/food_show.jpg" />
             </div>
             <div class="flex flex-col justify-start items-start gap-4 p-4">
                 <div class="flex-col justify-start items-start gap-3 flex">
-                    <div class="text-slate-950 text-lg md:text-2xl font-bold font-['Satoshi']">JAVOLIN attends the 2024
-                        Summer
+                    <div class="text-slate-950 text-lg md:text-2xl font-bold font-['Satoshi']">JAVOLIN attends the 2024 Summer
                         Fancy Food Show in New York..</div>
                 </div>
                 <div class="flex justify-start items-center gap-4">
                     <div class="px-4 py-1 bg-red-100 rounded-full justify-center items-center gap-2 flex">
-                        <div class="text-center text-amber-700 text-xs md:text-sm font-bold font-['Satoshi']">INNOVATION
-                        </div>
+                        <div class="text-center text-amber-700 text-xs md:text-sm font-bold font-['Satoshi']">INNOVATION</div>
                     </div>
                     <div class="flex justify-start items-center gap-2">
                         <div class="text-zinc-600 text-xs md:text-sm font-bold font-['Satoshi']">23rd June</div>
@@ -1417,6 +1415,26 @@ duration: 5000
                 </div>
             </div>
         </div>
+        
+<!-- Image Overlay -->
+<div id="imageOverlay" class="fixed inset-0 flex justify-center items-center hidden bg-gray-900 bg-opacity-75 z-50">
+    <div class="relative w-[90%] lg:w-[70%] max-w-5sxl max-h-[80vh] p-4 lg:p-8">
+        <div class="absolute top-0 right-0 z-10">
+            <button id="closeImageOverlay"
+                class="text-gray-500 hover:text-gray-700 text-2xl bg-white rounded-full w-10 h-10 flex items-center justify-center cursor-pointer">
+                &times;
+            </button>
+        </div>
+        <div class="aspect-w-16 aspect-h-9 w-full h-full flex items-center justify-center">
+            <img id="fullSizeImage" class="w-full h-full rounded-lg object-contain" src="" alt="Full Size Image">
+        </div>
+    </div>
+</div>
+
+
+
+
+
 
         <div
             class="h-auto bg-white rounded-2xl shadow border border-neutral-400 flex flex-col hover:scale-105 ease-in-out duration-300 fadeRight animation-element">
@@ -1445,24 +1463,75 @@ duration: 5000
     </div>
 </section>
 
-<style scoped>
-    #news .hidden {
+
+
+
+
+<style>
+ /* Styles for Image Overlay */
+#imageOverlay.hidden {
+    display: none;
+}
+
+#imageOverlay .aspect-w-16 {
+    position: relative;
+    width: 100%;
+}
+
+#imageOverlay .aspect-w-16::before {
+    content: "";
+    display: block;
+    padding-top: 56.25%;
+    /* 16:9 aspect ratio */
+}
+
+#imageOverlay .aspect-h-9 img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+#imageOverlay #closeImageOverlay {
+    position: absolute;
+    top: -20px;
+    right: 200px;
+    background: #fff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 20;
+}
+
+
+
+
+    /* Styles for Video Overlay */
+    #videoOverlay .hidden {
         display: none;
     }
 
-    #news .aspect-w-16 {
+    #videoOverlay .aspect-w-16 {
         position: relative;
         width: 100%;
     }
 
-    #news .aspect-w-16::before {
+    #videoOverlay .aspect-w-16::before {
         content: "";
         display: block;
         padding-top: 56.25%;
         /* 16:9 aspect ratio */
     }
 
-    #news .aspect-h-9 iframe {
+    #videoOverlay .aspect-h-9 iframe {
         position: absolute;
         top: 0;
         left: 0;
@@ -1472,11 +1541,9 @@ duration: 5000
         /* Added rounded corners to the iframe */
     }
 
-    #closeOverlay {
+    #videoOverlay #closeOverlay {
         background: #fff;
-        /* White background for the close button */
         border-radius: 50%;
-        /* Circular shape for the close button */
         width: 40px;
         height: 40px;
         display: flex;
@@ -1488,10 +1555,42 @@ duration: 5000
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
+   // Image Overlay
+    const imageLinks = document.querySelectorAll('.image-link');
+    const imageOverlay = document.getElementById('imageOverlay');
+    const fullSizeImage = document.getElementById('fullSizeImage');
+    const closeImageOverlay = document.getElementById('closeImageOverlay');
+
+    imageLinks.forEach(link => {
+        link.addEventListener('click', function (event) {
+            event.preventDefault();
+            const fullImageSrc = '/images/food_show_full.jpg';
+            fullSizeImage.src = fullImageSrc;
+            imageOverlay.classList.remove('hidden');
+            document.body.classList.add('modal-open');
+        });
+    });
+
+    closeImageOverlay.addEventListener('click', function () {
+        imageOverlay.classList.add('hidden');
+        fullSizeImage.src = '';
+        document.body.classList.remove('modal-open');
+    });
+
+    imageOverlay.addEventListener('click', function (event) {
+        if (event.target === imageOverlay) {
+            imageOverlay.classList.add('hidden');
+            fullSizeImage.src = '';
+            document.body.classList.remove('modal-open');
+        }
+    });
+
+        // Video Overlay
         const videoLinks = document.querySelectorAll('.video-link');
         const videoOverlay = document.getElementById('videoOverlay');
         const videoFrame = document.getElementById('videoFrame');
         const closeOverlay = document.getElementById('closeOverlay');
+
         videoLinks.forEach(link => {
             link.addEventListener('click', function (event) {
                 event.preventDefault();
@@ -1501,11 +1600,13 @@ duration: 5000
     document.body.classList.add('modal-open');
             });
         });
+
     closeOverlay.addEventListener('click', function () {
         videoOverlay.classList.add('hidden');
         videoFrame.src = '';
         document.body.classList.remove('modal-open');
     });
+
     videoOverlay.addEventListener('click', function (event) {
         if (event.target === videoOverlay) {
             videoOverlay.classList.add('hidden');
