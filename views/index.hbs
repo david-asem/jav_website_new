@@ -1430,36 +1430,65 @@ duration: 5000
         </div>
     </div>
 </div>
-
-
-
-
-
-
-        <div
-            class="h-auto bg-white rounded-2xl shadow border border-neutral-400 flex flex-col hover:scale-105 ease-in-out duration-300 fadeRight animation-element">
-            <div class="h-56 md:h-60 overflow-hidden rounded-tl-2xl rounded-tr-2xl">
-                <img class="w-full h-full object-cover" src="/images/new3.png" />
+<div
+    class="h-auto bg-white rounded-2xl shadow border border-neutral-400 flex flex-col hover:scale-105 ease-in-out duration-300 fadeRight animation-element news-link">
+    <div class="h-56 md:h-60 overflow-hidden rounded-tl-2xl rounded-tr-2xl">
+        <img class="w-full h-full object-cover" src="/images/jav_rbi.jpg" />
+    </div>
+    <div class="flex flex-col justify-start items-start gap-4 p-4">
+        <div class="flex-col justify-start items-start gap-3 flex">
+            <div class="text-slate-950 text-lg md:text-2xl font-bold font-['Satoshi']">The JAVOLIN GROUP – Key Holdings/
+                Roxy – Lotus Trade Consortium & Real Blue International confirm a partnership...</div>
+        </div>
+        <div class="flex justify-start items-center gap-4">
+            <div class="px-4 py-1 bg-slate-200 rounded-full justify-center items-center gap-2 flex">
+                <div class="text-center text-blue-800 text-xs md:text-sm font-bold font-['Satoshi']">INNOVATION
+                </div>
             </div>
-            <div class="flex flex-col justify-start items-start gap-4 p-4">
-                <div class="flex-col justify-start items-start gap-3 flex">
-                    <div class="text-slate-950 text-lg md:text-2xl font-bold font-['Satoshi']">Innovating for Tomorrow:
-                        How
-                        companies must embrace disruption to stay ahead</div>
-                </div>
-                <div class="flex justify-start items-center gap-4">
-                    <div class="px-4 py-1 bg-slate-200 rounded-full justify-center items-center gap-2 flex">
-                        <div class="text-center text-blue-800 text-xs md:text-sm font-bold font-['Satoshi']">INNOVATION
-                        </div>
-                    </div>
-                    <div class="flex justify-start items-center gap-2">
-                        <div class="text-zinc-600 text-xs md:text-sm font-bold font-['Satoshi']">Mar 03</div>
-                        <div class="w-1 h-1 bg-zinc-500 rounded-full"></div>
-                        <div class="text-zinc-600 text-xs md:text-sm font-bold font-['Satoshi']">6 mins read</div>
-                    </div>
-                </div>
+            <div class="flex justify-start items-center gap-2">
+                <div class="text-zinc-600 text-xs md:text-sm font-bold font-['Satoshi']">Mar 03</div>
+                <div class="w-1 h-1 bg-zinc-500 rounded-full"></div>
+                <div class="text-zinc-600 text-xs md:text-sm font-bold font-['Satoshi']">6 mins read</div>
             </div>
         </div>
+    </div>
+</div>
+
+
+<!-- News Item Overlay -->
+<div id="newsOverlay" class="fixed inset-0 flex justify-center items-center hidden bg-gray-900 bg-opacity-75 z-50">
+    <div
+        class="relative w-[90%] lg:w-[70%] max-w-3xl max-h-[90vh] p-3 lg:p-3 bg-white rounded-3xl shadow overflow-y-auto">
+        <div class="flex flex-col items-start gap-4 p-4">
+            <img class="w-full rounded-3xl border border-slate-300" src="/images/jav_rbi.jpg" alt="News Image" />
+            <div class="text-slate-950 text-lg md:text-2xl font-bold font-['Satoshi'] mt-4">The JAVOLIN GROUP – Key
+                Holdings/ Roxy – Lotus Trade Consortium & Real Blue International confirm a partnership to increase
+                trading efficiencies in the cashew industry in West Africa</div>
+            <div class="text-zinc-600 text-base md:text-base font-medium font-['Satoshi'] tracking-wide mt-4">
+                A spokesperson for the Consortium, Mr. Emmanuel Goodhead, confirmed that the evolving relationship of
+                the Group with RBI is of strategic importance to. The consortium has very aggressive goals of tons of
+                cashews to be procured and sold over the next five years from the West Africa region.<br /><br />
+                Mr. Carl Powell, CEO & Chairman of Javolin Group, stated the following:<br /><br />
+                “This strategic collaboration brings together strong expertise from Asia, Africa and the United States
+                in the agri-commodities sector to enhance the physical and digital infrastructure, finance and logistics
+                components of Cashew trading and processing from Africa. I’m excited about the impact we can have on the
+                lives of small farmers and traders in the industry.“
+            </div>
+        </div>
+    </div>
+</div>
+<button id="closeNewsOverlay"
+    class="absolute top-[-24px] right-0 translate-x-1/2 text-gray-500 hover:text-gray-700 text-2xl bg-white rounded-full w-10 h-10 flex items-center justify-center shadow-lg">
+    &times;
+</button>
+
+
+
+
+
+
+
+
     </div>
 </section>
 
@@ -1468,6 +1497,10 @@ duration: 5000
 
 
 <style>
+
+
+
+
  /* Styles for Image Overlay */
 #imageOverlay.hidden {
     display: none;
@@ -1555,6 +1588,34 @@ duration: 5000
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
+
+       // News Item Overlay
+    const newsLinks = document.querySelectorAll('.news-link');
+    const newsOverlay = document.getElementById('newsOverlay');
+    const closeNewsOverlay = document.getElementById('closeNewsOverlay');
+
+    newsLinks.forEach(link => {
+        link.addEventListener('click', function (event) {
+            event.preventDefault();
+            newsOverlay.classList.remove('hidden');
+            document.body.classList.add('modal-open');
+        });
+    });
+
+    closeNewsOverlay.addEventListener('click', function () {
+        newsOverlay.classList.add('hidden');
+        document.body.classList.remove('modal-open');
+    });
+
+    newsOverlay.addEventListener('click', function (event) {
+        if (event.target === newsOverlay) {
+            newsOverlay.classList.add('hidden');
+            document.body.classList.remove('modal-open');
+        }
+    });
+
+
+
    // Image Overlay
     const imageLinks = document.querySelectorAll('.image-link');
     const imageOverlay = document.getElementById('imageOverlay');
