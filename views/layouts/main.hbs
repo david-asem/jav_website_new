@@ -375,17 +375,16 @@
 
 <div x-data="{ showModal: false, showPaymentsModal: false, showCommoditiesModal: false }" x-cloak>
     <header
-        class="font-medium flex justify-between items-center lg:px-12 xl:px-20 fixed z-30 bg-white shadow-2xl w-full"
+        class="font-medium flex justify-between items-center px-4 lg:px-12 xl:px-20 fixed z-30 bg-white shadow-2xl w-full"
         @scroll.window="handleScroll" x-init="handleScroll = () => {
             isAtTop = window.scrollY > 0;
             lastScroll = window.scrollY;
-        }"
-        style="left: 0; padding-left: 0; padding-right: 0; height: 70px; background-color: white; box-shadow: 0 2px 4px rgba(0,0,0,0.4);">
-        <a href="/" class="absolute" style="top: 20px; left: 36px;">
-            <img src="/images/jav_logo_color.png" alt="Javolin Logo" style="width: 130px; height: 30.23px;" />
+        }" style="left: 0; height: 70px; background-color: white; box-shadow: 0 2px 4px rgba(0,0,0,0.4);">
+        <a href="/" class="absolute top-5 left-5 lg:top-5 lg:left-10">
+            <img src="/images/jav_logo_color.png" alt="Javolin Logo" class="w-32 lg:w-40" />
         </a>
 
-        <div class="flex-grow flex justify-center items-center gap-40 whitespace-nowrap">
+        <div class="flex-grow hidden lg:flex justify-center items-center gap-40 whitespace-nowrap">
             {{> nav }}
         </div>
 
@@ -402,34 +401,40 @@
                 </svg>
             </button>
             <div x-show="isOpen" x-transition:enter="transition ease-out duration-300"
-                x-transition:enter-start="opacity-0 transform scale-95" x-transition:enter-end="opacity-100 transform scale-100"
-                x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform scale-100"
-                x-transition:leave-end="opacity-0 transform scale-95" @mouseleave="isOpen = false" @mouseenter="isOpen = true"
-                class="absolute top-8 right-6 bg-white rounded-2xl w-80 p-4 shadow-lg">
-                <div @click="isOpen = false; showPaymentsModal = true" class="flex items-center space-x-4 cursor-pointer py-2">
+                x-transition:enter-start="opacity-0 transform scale-95"
+                x-transition:enter-end="opacity-100 transform scale-100"
+                x-transition:leave="transition ease-in duration-200"
+                x-transition:leave-start="opacity-100 transform scale-100"
+                x-transition:leave-end="opacity-0 transform scale-95" @mouseleave="isOpen = false"
+                @mouseenter="isOpen = true" class="absolute top-8 right-2 bg-white rounded-2xl w-64 p-4 shadow-lg">
+                <div @click="isOpen = false; showPaymentsModal = true"
+                    class="flex items-center space-x-4 cursor-pointer py-2">
                     <div class="w-11 h-11 bg-orange-200 rounded-full flex items-center justify-center flex-shrink-0">
                         <img src="/images/CreditCard.svg" alt="Payments Icon" />
                     </div>
                     <div>
                         <div class="text-black font-semibold">Payments</div>
-                        <div class="text-gray-500 text-sm">Ut enim ad minim veniam, quis tulix nostrud sad ss exercitation</div>
+                        <!-- <div class="text-gray-500 text-sm">Ut enim ad minim veniam, quis tulix nostrud sad ss
+                            exercitation</div> -->
                     </div>
                 </div>
                 <div @click="isOpen = false; showCommoditiesModal = true"
                     class="flex items-center space-x-4 cursor-pointer py-2 mt-4">
-                    <div class="w-11 h-11 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
-                        <img src="/images/Plant.svg" alt="Commodities Icon" />
+                    <div class="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                        <img src="/images/jav_agri.jpg" alt="Commodities Icon" />
                     </div>
                     <div>
                         <div class="text-black font-semibold">Commodities</div>
-                        <div class="text-gray-500 text-sm">Ut enim ad minim veniam, quis tulix nostrud sad ss exercitation</div>
+                        <!--
+                        <div class="text-gray-500 text-sm">Ut enim ad minim veniam, quis tulix nostrud sad ss
+                            exercitation</div>
+                            -->
                     </div>
                 </div>
             </div>
 
         </div>
     </header>
-
     <!-- Payments Modal -->
     <div x-show="showPaymentsModal" x-transition
         class="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex items-center justify-center" x-cloak>
@@ -463,54 +468,55 @@
                                 Platform
                             </h2>
                             <p class="mt-4 text-base font-normal font-['Satoshi'] text-gray-950 tracking-tight">
-                                Javolin is a financial services technology company providing services and products
-                                through
-                                our
-                                digital platform, and mobile and web-based applications for Businesses, Banks,
-                                Government
-                                Entities, and Consumers.
+                                Javolin provides B2B payment services for domestic and international transactions for certain businesses.
                             </p>
                         </div>
                         <div>
-                            <h3 class="text-xs font-bold font-['Satoshi'] text-gray-950 tracking-tight">WHAT TO KNOW
+                            <h3 class="text-xs font-bold font-['Satoshi'] text-gray-950 tracking-tight mt-4">WHAT TO KNOW
                             </h3>
-                            <div class="mt-4 space-y-6">
+                            <div class="mt-4 space-y-6 justify-items-center	">
                                 <div class="flex items-start gap-3">
-                                    <svg class="text-green-500" viewBox="0 0 24 24" width="40" height="40"
+                                    <svg class="text-green-500" viewBox="0 0 24 24" width="30" height="30"
                                         fill="currentColor">
                                         <circle cx="12" cy="12" r="10" fill="currentColor"></circle>
                                         <path d="M12 8l4 4-4 4M8 12h8" stroke="white" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round"></path>
                                     </svg>
                                     <p class="text-base font-medium font-['Satoshi'] text-gray-950 tracking-tight">
-                                        Eu turpis netus felis elementum sed ipsum praesent pellentesque enim. Sit nunc
-                                        ultrices nec convallis.
+                                        Businesses must be registered in either the United States or Canada.
                                     </p>
                                 </div>
                                 <div class="flex items-start gap-3">
-                                    <svg class="text-green-500" viewBox="0 0 24 24" width="40" height="40"
+                                    <svg class="text-green-500" viewBox="0 0 24 24" width="60" height="60"
                                         fill="currentColor">
                                         <circle cx="12" cy="12" r="10" fill="currentColor"></circle>
                                         <path d="M12 8l4 4-4 4M8 12h8" stroke="white" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round"></path>
                                     </svg>
                                     <p class="text-base font-medium font-['Satoshi'] text-gray-950 tracking-tight">
-                                        Posuere nulla gravida vitae consectetur purus aliquam sit elementum quam.
-                                        Integer
-                                        sed semper lacinia id. Libero.
+                                        Payments must be related to verified business operations or transactions and will be settled at the foreign exchange
+                                        rate at the time of transaction.
                                     </p>
                                 </div>
                                 <div class="flex items-start gap-3">
-                                    <svg class="text-green-500" viewBox="0 0 24 24" width="40" height="40"
+                                    <svg class="text-green-500" viewBox="0 0 24 24" width="30" height="30"
                                         fill="currentColor">
                                         <circle cx="12" cy="12" r="10" fill="currentColor"></circle>
                                         <path d="M12 8l4 4-4 4M8 12h8" stroke="white" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round"></path>
                                     </svg>
                                     <p class="text-base font-medium font-['Satoshi'] text-gray-950 tracking-tight">
-                                        Placerat adipiscing in dui vitae. Arcu nullam viverra sed lorem cursus
-                                        pellentesque
-                                        fermentum nisl. Scelerisque.
+                                        Businesses must be onboarded with specific KYC and AML information.
+                                    </p>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <svg class="text-green-500" viewBox="0 0 24 24" width="30" height="30" fill="currentColor">
+                                        <circle cx="12" cy="12" r="10" fill="currentColor"></circle>
+                                        <path d="M12 8l4 4-4 4M8 12h8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        </path>
+                                    </svg>
+                                    <p class="text-base font-medium font-['Satoshi'] text-gray-950 tracking-tight">
+                                        Payments can be sent to over 200 countries.
                                     </p>
                                 </div>
                             </div>
@@ -556,16 +562,12 @@
                     </div>
                     <div class="relative z-10 h-full flex flex-col justify-between" style="margin-left: -2rem;">
                         <div>
-                            <h2 class="text-2xl font-black font-['Satoshi'] text-slate-950 mt-4">Javolin Commodities
-                                Platform
+                            <h2 class="text-2xl font-black font-['Satoshi'] text-slate-950 mt-4">Javolin Commodities Marketplace
                             </h2>
                             <p class="mt-4 text-base font-normal font-['Satoshi'] text-gray-950 tracking-tight">
-                                Javolin is a financial services technology company providing services and products
-                                through
-                                our
-                                digital platform, and mobile and web-based applications for Businesses, Banks,
-                                Government
-                                Entities, and Consumers.
+                                The Javolin Marketplace allows farmers and traders of agri-commodities to identify their products on hand to be sold
+                                to domestic and international buyers. It facilitates the procurement of these products by buyers via our payment’s
+                                portal and logistics services.
                             </p>
                         </div>
                         <div>
@@ -580,8 +582,18 @@
                                             stroke-linecap="round" stroke-linejoin="round"></path>
                                     </svg>
                                     <p class="text-base font-medium font-['Satoshi'] text-gray-950 tracking-tight">
-                                        Eu turpis netus felis elementum sed ipsum praesent pellentesque enim. Sit nunc
-                                        ultrices nec convallis.
+                                        We are currently working with farmers and traders in Ghana, Nigeria and Senegal.
+                                    </p>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <svg class="text-green-500" viewBox="0 0 24 24" width="35" height="35"
+                                        fill="currentColor">
+                                        <circle cx="12" cy="12" r="10" fill="currentColor"></circle>
+                                        <path d="M12 8l4 4-4 4M8 12h8" stroke="white" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </svg>
+                                    <p class="text-base font-medium font-['Satoshi'] text-gray-950 tracking-tight">
+                                        We are currently focused on cashews, cassava, and coffee.
                                     </p>
                                 </div>
                                 <div class="flex items-start gap-3">
@@ -592,22 +604,7 @@
                                             stroke-linecap="round" stroke-linejoin="round"></path>
                                     </svg>
                                     <p class="text-base font-medium font-['Satoshi'] text-gray-950 tracking-tight">
-                                        Posuere nulla gravida vitae consectetur purus aliquam sit elementum quam.
-                                        Integer
-                                        sed semper lacinia id. Libero.
-                                    </p>
-                                </div>
-                                <div class="flex items-start gap-3">
-                                    <svg class="text-green-500" viewBox="0 0 24 24" width="40" height="40"
-                                        fill="currentColor">
-                                        <circle cx="12" cy="12" r="10" fill="currentColor"></circle>
-                                        <path d="M12 8l4 4-4 4M8 12h8" stroke="white" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round"></path>
-                                    </svg>
-                                    <p class="text-base font-medium font-['Satoshi'] text-gray-950 tracking-tight">
-                                        Placerat adipiscing in dui vitae. Arcu nullam viverra sed lorem cursus
-                                        pellentesque
-                                        fermentum nisl. Scelerisque.
+                                        Farmers, traders, and buyers must be registered participants on the JAVOLIN system.
                                     </p>
                                 </div>
                             </div>

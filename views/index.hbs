@@ -57,7 +57,7 @@
 
 <section id="heroSec" class="relative pt-20">
     <!-- Video for hero background -->
-    <video id="heroVideo" class="absolute top-0 left-0 w-full h-full object-cover" autoplay muted loop playsinline
+    <video id="heroVideo" class="absolute top-0 left-0 w-full h-full object-contain  md:object-cover lg:object-cover" autoplay muted loop playsinline
         preload="auto">
         <source id="videoSource" src="/images/javolin_vid.mp4" type="video/mp4">
         Your browser does not support the video tag.
@@ -70,23 +70,23 @@
         <i id="muteIcon"
             class="fa-solid fa-volume-mute text-white text-2xl h-12 w-12 flex items-center justify-center bg-black bg-opacity-50 rounded-full cursor-pointer hover:bg-opacity-70"></i>
     </div>
-
-    <!-- Tooltip -->
-    {{!-- <div id="tooltip"
-        class="absolute bottom-20 right-4 w-72 bg-[#3DA31F] rounded-lg border border-[#3DA31F] p-4 flex flex-col justify-between z-20"
-        style="height: 102px;">
-        <div class="text-white text-sm font-black font-['Satoshi'] leading-snug">Interact with the video here.</div>
-        <div class="text-neutral-50/80 text-xs font-medium font-['Satoshi'] leading-tight mt-2">You can easily mute,
-            unmute, play, and pause.</div>
-        <div class="flex justify-end mt-2 relative">
-            <div class="w-14 h-6 px-3 py-1.5 rounded-3xl border border-white justify-center items-center gap-2 inline-flex cursor-pointer"
-                id="gotItButton">
-                <div class="text-white text-xs font-medium font-['Satoshi'] tracking-tight">Got it!</div>
-            </div>
-            <div class="tooltip-arrow absolute"></div>
-        </div>
-    </div> --}}
 </section>
+
+<!-- Tooltip -->
+{{!-- <div id="tooltip"
+    class="absolute bottom-20 right-4 w-72 bg-[#3DA31F] rounded-lg border border-[#3DA31F] p-4 flex flex-col justify-between z-20"
+    style="height: 102px;">
+    <div class="text-white text-sm font-black font-['Satoshi'] leading-snug">Interact with the video here.</div>
+    <div class="text-neutral-50/80 text-xs font-medium font-['Satoshi'] leading-tight mt-2">You can easily mute,
+        unmute, play, and pause.</div>
+    <div class="flex justify-end mt-2 relative">
+        <div class="w-14 h-6 px-3 py-1.5 rounded-3xl border border-white justify-center items-center gap-2 inline-flex cursor-pointer"
+            id="gotItButton">
+            <div class="text-white text-xs font-medium font-['Satoshi'] tracking-tight">Got it!</div>
+        </div>
+        <div class="tooltip-arrow absolute"></div>
+    </div>
+</div> --}}
 
 <style>
     .tooltip-arrow {
@@ -224,10 +224,12 @@
     x-init="init()"
     style="height: 800px; overflow: hidden; background-image: url('/images/new-value-bg.png'); background-attachment: fixed;">
     <!-- Carousel Title -->
-    <h2 class="slide fadeRight animation-element"
-        style="margin-top: 60px; ; margin-left: auto; margin-right: auto; text-align: center; color: #000638; font-size: 33px; font-family: 'Satoshi'; font-weight: 500; line-height: 50px; word-wrap: break-word;">
-        At JAVOLIN we focus on combining the digital and physical worlds. We impact industries with our tech by accelerating efficiencies in payments, inventory management, logistics tracking and owned commodities.
+    <h2
+        class="slide fadeRight animation-element mx-auto mt-14 text-center text-slate-900 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-medium leading-snug md:leading-normal lg:leading-relaxed font-['Satoshi']">
+        At JAVOLIN we focus on combining the digital and physical worlds. We impact industries with our tech by accelerating
+        efficiencies in payments, inventory management, logistics tracking and owned commodities.
     </h2>
+
     <!-- Carousel container -->
     <div class="flex justify-center items-center h-full slide fadeRight animation-element"
         style="perspective: 1000px; position: relative; overflow: visible; width: 90%; margin: 0 auto; margin-top: -5rem;">
@@ -283,16 +285,6 @@
                         style="position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%) rotate(-45deg); transform-origin: center;">
                         <!-- SVG for active card's arrow {{{activeCardArrowSVG}}} -->
 
-
-                        <!-- SVG for non-active card's arrow <template x-if="!slide.active">
-                            <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="19" cy="19" r="19" fill="#E0EAFF" />
-                                <path
-                                    d="M24.6204 19.4001L19.5311 24.4893C19.425 24.5955 19.2811 24.6551 19.131 24.6551C18.981 24.6551 18.8371 24.5955 18.7309 24.4893C18.6248 24.3832 18.5652 24.2393 18.5652 24.0893C18.5652 23.9392 18.6248 23.7953 18.7309 23.6892L22.8554 19.5655H11.7798C11.6299 19.5655 11.486 19.5059 11.38 19.3998C11.2739 19.2938 11.2144 19.15 11.2144 18.9999C11.2144 18.85 11.2739 18.7062 11.38 18.6001C11.486 18.4941 11.6299 18.4345 11.7798 18.4345H22.8554L18.7309 14.3108C18.6248 14.2047 18.5652 14.0608 18.5652 13.9107C18.5652 13.7606 18.6248 13.6167 18.7309 13.5106C18.8371 13.4045 18.981 13.3449 19.131 13.3449C19.2811 13.3449 19.425 13.4045 19.5311 13.5106L24.6204 18.5999C24.673 18.6524 24.7147 18.7148 24.7431 18.7834C24.7716 18.8521 24.7862 18.9257 24.7862 18.9999C24.7862 19.0742 24.7716 19.1478 24.7431 19.2165C24.7147 19.2851 24.673 19.3475 24.6204 19.4001Z"
-                                    fill="#0032A0" />
-                            </svg>
-                        </template> -->
-
                     </div>
                 </div>
             </div>
@@ -328,7 +320,7 @@
                 { label: 'JAV Finance', image: '/images/javolin_finance.png', active: false, flipped: false, hovered: false, content:'JAVOLIN provides investors and lenders an opportunity to earn a stable and predictable return by participating in its Agri Commodities marketplace.' },
                 { label: 'JAV Tech', image: '/images/javolin_tech.png', active: false, flipped: false, hovered: false, content:'We offer specific services (TaaS) to financial institutions, businesses, and government entities.'  },
                 { label: 'JAV Infrastructure', image: '/images/infra.png', active: true, flipped: false, hovered: false, content:'Our digital infrastructure connects multi location enterprises and provides collections software for businesses and government entities across a variety of fees and taxes.'},
-                { label: 'JAV FX & Payments', image: '/images/fx.png', active: false, flipped: false, hovered: false, content:'Via our digital wallet, we are able to facilitate B2B payments domestically and internationally to countries across the globe in multiple currencies.' },
+                { label: 'JAV & Payments', image: '/images/fx.png', active: false, flipped: false, hovered: false, content:'Via our digital wallet, we are able to facilitate B2B payments domestically and internationally to countries across the globe in multiple currencies.' },
                 { label: 'JAV AgriCommodities', image: '/images/commodities.png', active: false, flipped: false, hovered: false, content:'We own and actively trade cashew and cassava from the continent of Africa to international locations in Asia and America. Via our commodities marketplace, buyers can gain access to the availability of the product to be purchased.' },
             ],
             activeSlide: 2, // Initially active slide
@@ -471,24 +463,22 @@
                 <div class="opacity-100 transition duration-150 ease-in-out absolute tech-service w-[500px]">
                     <p id="tech-subtitle" class="text-[44px] text-white mt-2 font-bold l">Digital KYC</p>
                     <p id="tech-content" class="text-[24px] text-[#FAFAFA] mt-4 max-w-xl opacity-70">
-                        JAV KYC specializes in providing customized identity and digital Know Your Customer (KYC) solutions tailored
-                        specifically for banks. Our services contribute to enhanced customer trust, compliance, and fraud prevention within the
-                        banking industry.
+                        JAV KYC specializes in providing customized identity & digital KYC solutions. Our services contribute to an
+                        expedited onboarding procedure, enhanced compliance, and a reduction in unnecessary in-office application procedures.
                     </p>
                 </div>
                 <div class="opacity-0 transition duration-150 ease-in-out absolute tech-service w-[500px]">
                     <p id="tech-subtitle" class="text-[44px] text-white mt-2 font-bold max-w-xl">Country Connect</p>
                     <p id="tech-content" class="text-[24px] text-[#FAFAFA] mt-4 max-w-xl opacity-70">
-                        JAV Country Connect seamlessly integrates banks worldwide via a unified and efficient API network. Customers benefit
-                        from significantly faster transactions at reduced costs. By enabling same-day fund transfers across borders, JAV Country
-                        Connect positions banks as agile, competitive forces in the global financial landscape.
+                        Country Connect – JAVOLIN connects multi-location enterprises via our unified & efficient API network. Customers
+                        benefit from significantly faster transactions and enabled same-day settlements.
                     </p>
                 </div>
                 <div class="opacity-0 transition duration-150 ease-in-out absolute tech-service w-[500px]">
                     <p id="tech-subtitle" class="text-[44px] text-white mt-2 font-bold max-w-xl">JAV API</p>
                     <p id="tech-content" class="text-[24px] text-[#FAFAFA] mt-4 max-w-xl opacity-70">
                         JAV API provides application programming interfaces (APIs) that are secure to our customers who want to build on top
-                        of our system. Developers who want to leverage the JAV technology can get proprietary access to our API’s
+                        of our system. Developers who want to leverage the JAV technology can get proprietary access to our APIs.
                     </p>
                 </div>
                 <div class="opacity-0 transition duration-150 ease-in-out absolute tech-service w-[500px]">
@@ -1363,7 +1353,6 @@ duration: 5000
                     src="https://img.youtube.com/vi/bujPjJS8jR0/maxresdefault.jpg" alt="YouTube Video Thumbnail" />
             </a>
         </div>
-
         <div
             class="flex flex-col justify-center p-6 md:p-9 bg-white rounded-br-2xl rounded-bl-none rounded-tr-none lg:rounded-tr-2xl h-full lg:h-[350px]">
             <div class="text-slate-950 text-2xl md:text-4xl font-bold font-['Satoshi'] py-4">Interview with Carl Powell,
@@ -1386,19 +1375,22 @@ duration: 5000
             </div>
         </div>
     </div>
-
+    
     <!-- Video Overlay -->
-    <div id="videoOverlay" class="fixed inset-0 flex justify-center items-center hidden z-50">
-        <div class="relative rounded-lg overflow-hidden w-[90%] lg:w-[60%] video-overlay p-4 lg:p-8">
+    <div id="videoOverlay" class="fixed inset-0 flex justify-center items-center hidden bg-gray-900 bg-opacity-75 z-50">
+        <div class="relative rounded-lg overflow-hidden w-[90%] lg:w-[60%] p-4 lg:p-8">
             <div class="flex justify-end p-2">
-                <button id="closeOverlay" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+                <button id="closeOverlay"
+                    class="text-gray-500 hover:text-gray-700 text-2xl bg-white rounded-full w-10 h-10 flex items-center justify-center cursor-pointer">
+                    &times;
+                </button>
             </div>
-            <div class="aspect-w-16 aspect-h-9">
-                <iframe id="videoFrame" class="w-full h-full rounded-lg" src="" frameborder="0"
-                    allowfullscreen></iframe>
+            <div class="aspect-w-16 aspect-h-9 w-full h-full">
+                <iframe id="videoFrame" class="w-full h-full rounded-lg" src="" frameborder="0" allowfullscreen></iframe>
             </div>
         </div>
     </div>
+
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16 mb-12">
         <div
@@ -1458,13 +1450,6 @@ duration: 5000
         display: none;
     }
 
-    #news .video-overlay {
-        z-index: 10000;
-        background-color: black;
-        padding-top: 0px;
-        margin-top: 0px;
-    }
-
     #news .aspect-w-16 {
         position: relative;
         width: 100%;
@@ -1513,16 +1498,19 @@ duration: 5000
                 const videoId = this.getAttribute('data-video-id');
                 videoFrame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
     videoOverlay.classList.remove('hidden');
+    document.body.classList.add('modal-open');
             });
         });
     closeOverlay.addEventListener('click', function () {
         videoOverlay.classList.add('hidden');
         videoFrame.src = '';
+        document.body.classList.remove('modal-open');
     });
     videoOverlay.addEventListener('click', function (event) {
         if (event.target === videoOverlay) {
             videoOverlay.classList.add('hidden');
             videoFrame.src = '';
+            document.body.classList.remove('modal-open');
         }
     });
     });
