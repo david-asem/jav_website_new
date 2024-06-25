@@ -86,144 +86,7 @@
     </div>
 </div> --}}
 
-<style>
-    .tooltip-arrow {
-        bottom: -20px;
-        /* Adjust the position based on the tooltip's bottom edge */
-        right: 70px;
-        /* Adjust the position to align with the tooltip's button */
-        width: 0;
-        height: 10px;
-        border-left: 10px solid transparent;
-        border-right: 10px solid transparent;
-        border-top: 10px solid #3DA31F;
-        /* Same as tooltip background color */
-    }
-</style>
 
-<style>
-    @media (max-width: 640px) {
-
-        /* Adjustments for screens smaller than 640px */
-        #controls i {
-            /* Scale down icon size for smaller screens */
-            font-size: 1.25rem;
-            /* Example size, adjust as needed */
-            height: 40px;
-            width: 40px;
-        }
-    }
-</style>
-
-<script>document.addEventListener('DOMContentLoaded', function () {
-    const heroVideo = document.getElementById('heroVideo');
-    const playPauseIcon = document.getElementById('playPauseIcon');
-    const muteIcon = document.getElementById('muteIcon');
-    const tooltip = document.getElementById('tooltip');
-    const gotItButton = document.getElementById('gotItButton');
-    let userPaused = false;
-
-    heroVideo.addEventListener('error', function(e) {
-        console.error('Video error:', e);
-    });
-
-    // Play/Pause icon event listener
-    playPauseIcon.addEventListener('click', function () {
-        if (heroVideo.paused) {
-            heroVideo.play();
-            userPaused = false;
-            playPauseIcon.classList.remove('fa-play');
-            playPauseIcon.classList.add('fa-pause');
-        } else {
-            heroVideo.pause();
-            userPaused = true;
-            playPauseIcon.classList.remove('fa-pause');
-            playPauseIcon.classList.add('fa-play');
-        }
-    });
-
-    // Mute/Unmute icon event listener
-    muteIcon.addEventListener('click', function () {
-        heroVideo.muted = !heroVideo.muted;
-        if (heroVideo.muted) {
-            muteIcon.classList.remove('fa-volume-up');
-            muteIcon.classList.add('fa-volume-mute');
-        } else {
-            muteIcon.classList.remove('fa-volume-mute');
-            muteIcon.classList.add('fa-volume-up');
-        }
-    });
-
-    // Function to check if the video is 2/3 in the viewport
-    function checkVideoInView() {
-        const rect = heroVideo.getBoundingClientRect();
-        const videoHeight = rect.height;
-        const threshold = videoHeight * (2 / 3);
-        const isInView = (
-            rect.bottom >= threshold &&
-            rect.top <= (window.innerHeight - threshold)
-        );
-
-        if (isInView && !userPaused) {
-            heroVideo.play();
-            playPauseIcon.classList.remove('fa-play');
-            playPauseIcon.classList.add('fa-pause');
-        } else if (!isInView) {
-            heroVideo.pause();
-            playPauseIcon.classList.remove('fa-pause');
-            playPauseIcon.classList.add('fa-play');
-        }
-    }
-
-    // Function to check if the tooltip should be hidden
-    function checkTooltipInView() {
-        const heroSec = document.getElementById('heroSec');
-        const rect = heroSec.getBoundingClientRect();
-        if (rect.bottom < 0) {
-            tooltip.style.display = 'none';
-        }
-    }
-
-    // Listen for scroll events
-    window.addEventListener('scroll', function() {
-        checkVideoInView();
-        checkTooltipInView();
-    });
-
-    // Initial check
-    checkVideoInView();
-
-    // Show tooltip on page load
-    tooltip.style.display = 'block';
-
-    // Close tooltip when "Got it!" button is clicked
-    gotItButton.addEventListener('click', function () {
-        tooltip.style.display = 'none';
-    });
-});
-
-</script>
-
-<style>
-    .carousel-container {
-        position: relative;
-        transform: translateY(-100vh) scale(0.5);
-        /* Start scaled down and moved up */
-        transition: transform 0.5s ease-out;
-        /* Smooth transition for both moving and scaling */
-        z-index: 1;
-        visibility: hidden;
-        /* Initially hidden */
-        width: 100%;
-        /* Full width */
-        height: 800px;
-        /* Fixed height */
-    }
-
-    html {
-        scroll-behavior: smooth;
-    }
-</style>
 
 
 
@@ -245,29 +108,31 @@
     <!-- Carousel container -->
     <div class="flex justify-center items-center h-full slide fadeRight animation-element"
         style="perspective: 1000px; position: relative; overflow: visible; width: 90%; margin: 0 auto; margin-top: -5rem;">
-    
+
         <!-- Left navigation arrow with circle -->
         {{{leftArrowSVG}}}
-    
+
         <!-- Right navigation arrow with circle -->
         {{{ rightArrowSVG }}}
-    
+
         <!-- Carousel slides -->
         <template x-for="(slide, index) in slides" :key="index">
             <div @click="setActiveSlide(index)" @mouseenter="mouseEnter(index)" @mouseleave="mouseLeave(index)"
                 class="absolute transition-transform duration-300 ease-in-out cursor-pointer"
                 :class="{ 'active': slide.active, 'inactive': !slide.active }" :style="slideStyles(index).style">
-    
+
                 <!-- Card -->
                 <div :class="slideStyles(index).class"
                     style="position: relative; padding: 1rem; border-radius: 1rem; margin-top: -6rem; perspective: 1000px;">
-                    <div :class="{ 'flip-card-inner': true, 'flipped': slide.flipped }" style="transition: transform 0.8s;">
+                    <div :class="{ 'flip-card-inner': true, 'flipped': slide.flipped }"
+                        style="transition: transform 0.8s;">
                         <div class="flip-card-front"
                             style="position: absolute; width: 100%; height: 100%; backface-visibility: hidden;">
                             <img :src="slide.image" class="object-contain"
                                 :style="'height: calc(2/3 * ' + slideHeight + 'px); width: 100%;'" />
                             <!-- Text Label -->
-                            <div class="absolute bottom-15 left-0 w-full text-center" style="padding: 1rem; bottom: 3rem;">
+                            <div class="absolute bottom-15 left-0 w-full text-center"
+                                style="padding: 1rem; bottom: 3rem;">
                                 <span x-text="slide.label" class="text-xl font-bold font-['Satoshi']"></span>
                             </div>
                         </div>
@@ -275,27 +140,32 @@
                             style="border-radius: 1rem; position: absolute; width: 100%; height: 100%; color: white; display: flex; align-items: flex-start; justify-content: center; backface-visibility: hidden; transform: rotateY(180deg); padding-top: 1rem;">
                             <div class="flex flex-col items-center text-center space-y-1" style="margin-top: 0.5rem;">
                                 <!-- Adjust margin to move the title up -->
-                                <span x-text="slide.label"
-                                    class="w-56 text-center text-white text-2xl font-bold font-['Satoshi'] mb-10 my"></span>
-                                <div style="width: 280px; text-align: center; color: white; font-size: 18px; font-family: Satoshi; font-weight: 400; "
-                                    class="mt-10">
+                                <span x-text="slide.label" class="w-56 text-center text-white text-2xl font-bold font-['Satoshi'] mb-10 my"></span>
+                                <div
+                                    style="width: 280px; text-align: center; color: white; font-size: 18px; font-family: Satoshi; font-weight: 400; " class="mt-10">
                                     <span x-text="slide.content"></span>
                                 </div>
+
+
+
+
                             </div>
                         </div>
+
+
                     </div>
+
                     <!-- Arrow -->
                     <div class="arrow-container"
                         style="position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%) rotate(-45deg); transform-origin: center;">
                         <!-- SVG for active card's arrow {{{activeCardArrowSVG}}} -->
+
                     </div>
                 </div>
             </div>
         </template>
-    
+
     </div>
-
-
 
     <!-- Navigation Dots -->
     <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex space-x-2">
@@ -318,172 +188,6 @@
     </div>
 </section>
 
-<script>
-    function carousel() {
-        return {
-            slides: [
-                { label: 'JAV Finance', image: '/images/javolin_finance.png', active: false, flipped: false, hovered: false, content:'JAVOLIN provides investors and lenders an opportunity to earn a stable and predictable return by participating in its Agri Commodities trading platform.' },
-                { label: 'JAV Tech', image: '/images/javolin_tech.png', active: false, flipped: false, hovered: false, content:'We offer specific services such as digital Know Your Customer (KYC), access to proprietary APIs, and digital collections to financial institutions, businesses, and government entities.'  },
-                { label: 'JAV Infrastructure', image: '/images/infra.png', active: true, flipped: false, hovered: false, content:'Our digital infrastructure connects multi location enterprises and provides collections software for businesses and government entities across a variety of fees and taxes.'},
-                { label: 'JAV Payments', image: '/images/fx.png', active: false, flipped: false, hovered: false, content:'Via our digital wallet, we are able to facilitate B2B payments domestically and internationally to countries across the globe in multiple currencies.' },
-                { label: 'JAV AgriCommodities', image: '/images/commodities.png', active: false, flipped: false, hovered: false, content:'We own and actively trade cashew and cassava from the continent of Africa to international locations in Asia and America. Via our commodities marketplace, buyers can gain access to the availability of the product to be purchased.' },
-            ],
-            activeSlide: 2, // Initially active slide
-            observer: null,
-            
-
-            init() {
-                this.arrangeSlides();
-                this.observeSection();
-            },
-            setActiveSlide(index) {
-                this.activeSlide = index;
-                this.arrangeSlides();
-                if (this.slides[index].hovered) {
-                    this.flipCard(index); // Flip the card if the mouse is already on it
-                }
-            },
-            nextSlide() {
-                this.setActiveSlide((this.activeSlide + 1) % this.slides.length);
-            },
-            previousSlide() {
-                this.setActiveSlide((this.activeSlide - 1 + this.slides.length) % this.slides.length);
-            },
-            arrangeSlides() {
-                this.slides.forEach((slide, index) => {
-                    slide.active = index === this.activeSlide;
-                    if (!slide.active) {
-                        slide.flipped = false; // Reset flipped state when arranging slides
-                    }
-                });
-            },
-            flipCard(index) {
-                if (this.slides[index].active) {
-                    this.slides[index].flipped = true;
-                }
-            },
-            mouseEnter(index) {
-                this.slides[index].hovered = true;
-                if (this.slides[index].active) {
-                    this.flipCard(index);
-                }
-            },
-            mouseLeave(index) {
-                this.slides[index].hovered = false;
-                if (this.slides[index].active) {
-                    this.slides[index].flipped = false;
-                }
-            },
-            observeSection() {
-                const section = document.getElementById('products');
-                this.observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            // When the section is visible, flip the active card
-                            const activeIndex = this.activeSlide;
-                            if (this.slides[activeIndex].hovered) {
-                                this.flipCard(activeIndex);
-                            }
-                        }
-                    });
-                }, { threshold: 0.1 });
-
-                this.observer.observe(section);
-            },
-            slideStyles(index) {
-    const numSlides = this.slides.length;
-    const distance = Math.abs(index - this.activeSlide);
-    let zIndex = numSlides - distance;
-    let scale = 1.099 - 0.095 * distance;
-    let textColor = index === this.activeSlide ? 'text-white' : 'text-gray-800';
-
-    if (index === this.activeSlide) {
-        scale = 1.1;
-    }
-
-    let opacity = index === this.activeSlide ? 1.2 : 1.1;
-
-    // Default styles for larger screens
-    let transform = `scale(${scale})`;
-    let left = `${index * 18.5}%`;
-
-    // Mobile-specific styles
-    let mobileTransform = transform;
-    let mobileLeft = left;
-
-    if (index === this.activeSlide) {
-        mobileTransform += ' translateX(-50%)';
-        mobileLeft = '50%';
-    } else {
-        const offset = (index - this.activeSlide) * 100;
-        mobileLeft = `calc(50% + ${offset}%)`;
-    }
-
-    return {
-        style: `
-            transform: ${transform}; 
-            z-index: ${zIndex}; 
-            opacity: ${opacity}; 
-            transition: transform 1s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 1s ease-in, left 1s ease-in; 
-            position: absolute; 
-            left: ${left};
-            @media (max-width: 768px) {
-                transform: ${mobileTransform};
-                left: ${mobileLeft};
-            }
-        `,
-        class: `${index === this.activeSlide ? 'w-80 bg-blue-800 ' + textColor : 'w-72 bg-white border border-blue-800 ' + textColor} h-96 rounded-2xl overflow-hidden shadow-lg relative`
-    };
-}
-        };
-    }
-</script>
-
-<style>
-    .flip-card-inner {
-        width: 100%;
-        height: 100%;
-        position: relative;
-        transform-style: preserve-3d;
-    }
-
-    .flip-card-inner.flipped {
-        transform: rotateY(180deg);
-    }
-
-    .flip-card-front,
-    .flip-card-back {
-        backface-visibility: hidden;
-    }
-</style>
-
-
-
-
-
-
-
-<style>
-    /* Add this to your <style> tag or CSS file */
-    .card-hover-content {
-        transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
-        transform: translateY(100%);
-        opacity: 0;
-    }
-
-    .card:hover .card-hover-content {
-        transform: translateY(0%);
-        opacity: 1;
-    }
-
-    .card-title {
-        transition: opacity 0.5s ease-in-out;
-    }
-
-    .card:hover .card-title {
-        opacity: 0;
-    }
-</style>
 
 
 <section id="platform"
@@ -826,105 +530,6 @@
     </div>
 
 </section>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        function animateCounter(element, start, end, duration) {
-            let startTime = null;
-
-            function animation(currentTime) {
-                if (startTime === null) startTime = currentTime;
-                const progress = currentTime - startTime;
-                const current = Math.min(Math.floor(progress / duration * end), end);
-                element.innerText = current.toLocaleString();
-                if (progress < duration) {
-                    requestAnimationFrame(animation);
-                }
-            }
-            requestAnimationFrame(animation);
-        }
-
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const counterElement = document.getElementById('counter');
-                    counterElement.innerText = '0'; // Reset the counter to 0
-                    animateCounter(counterElement, 0, 35000, 3000);
-                }
-            });
-        }, {
-            threshold: 0.5
-        });
-
-        observer.observe(document.getElementById('counter'));
-    });
-</script>
-
-
-<style>
-    .full-video {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 100%;
-        height: 100%;
-        transform: translate(-50%, -50%);
-    }
-
-    .font-satoshi {
-        font-family: 'Satoshi', sans-serif;
-    }
-
-    .border-custom {
-        border: 2.57px solid;
-        border-color: rgba(29, 78, 216, 0.8);
-    }
-
-    .card-normal,
-    .card-shrink {
-        position: absolute;
-        left: 64px;
-        top: 150px;
-        width: 1118px;
-        bottom: 127px;
-        background: rgba(0, 6, 56, 0.60);
-        backdrop-filter: blur(34.20px);
-        padding: 34.20px;
-        border-radius: 20.52px;
-    }
-</style>
-
-
-
-
-
-<style>
-    .card-hover-content {
-        transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
-        transform: translateY(100%);
-        opacity: 0;
-    }
-
-    .card:hover .card-hover-content {
-        transform: translateY(0%);
-        opacity: 1;
-    }
-
-    .card-title {
-        transition: opacity 0.5s ease-in-out;
-    }
-
-    .card:hover .card-title {
-        opacity: 0;
-    }
-
-    .card img {
-        transition: transform 0.5s ease-in-out;
-    }
-
-    .card:hover img {
-        transform: translateY(-100px);
-    }
-</style>
 
 
 
@@ -1069,105 +674,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-<style>
-    .rounded-58 {
-        border-radius: 58.65px;
-    }
-
-    .rounded-20 {
-        border-radius: 20.52px;
-    }
-
-    .blur-34 {
-        backdrop-filter: blur(34.20px);
-    }
-
-    .blur-85 {
-        filter: blur(85.50px);
-    }
-</style>
-
-
-
-
-<style>
-    .quote {
-        width: 100%;
-        text-align: center;
-        color: #000638;
-        font-size: 40px;
-        font-family: 'Satoshi', sans-serif;
-        font-weight: 500;
-        position: relative;
-        line-height: 1.3;
-        overflow: hidden;
-        opacity: 0;
-        padding: 0 60px;
-    }
-
-    .quote::before,
-    .quote::after {
-        font-size: 100px;
-        color: #6CC24A;
-        position: absolute;
-        top: -5px;
-    }
-
-    .quote::before {
-        content: '“';
-        left: 0;
-    }
-
-    .quote::after {
-        content: '”';
-        right: 0;
-    }
-
-    @keyframes slideInFromBottom {
-        0% {
-            opacity: 0;
-            transform: translateY(100%);
-        }
-
-        100% {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    @keyframes slideOutToTop {
-        0% {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        100% {
-            opacity: 0;
-            transform: translateY(-100%);
-        }
-    }
-
-    .slide-in {
-        animation: slideInFromBottom 1s ease-out forwards;
-    }
-
-    .slide-out {
-        animation: slideOutToTop 1s ease-out forwards;
-    }
-</style>
-
 <section class="" style="background: url('/images/agri-bg.png') no-repeat center center; background-size: cover;">
     <div>
         <div class="py-10 flex justify-center items-center mb-4 fadeRight animation-element">
@@ -1234,145 +740,7 @@
 </section>
 
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const texts = [
-            {
-                text: '<div style="display: inline;"><span style="font-size: 100px; color: #6CC24A; line-height: 0.3; vertical-align: middle;">“</span><span style="line-height: 0.3; margin: 0 10px; display: inline; vertical-align: middle; margin-right: -20px;">We improve the communities in which we live and work by increasing food security, and access to essential resources, education, and athletics.</span><span style="font-size: 100px; color: #6CC24A; line-height: 0.3; position: relative; top: 40px;">”</span></div>',
-duration: 5000
 
-
-            },
-            {
-                text: '<div style="display: inline;"><span style="font-size: 100px; color: #6CC24A; line-height: 1; vertical-align: middle;">“</span><span style="line-height: 1.3; margin: 0 10px; display: inline; vertical-align: middle; margin-right: -20px;">Our goal is to have a positive impact on the world.</span><span style="font-size: 100px; color: #6CC24A; line-height: 1; vertical-align: middle; position: relative; top: 10px;">”</span></div>',
-                duration: 10000
-            }
-        ];
-
-        const quoteElement = document.getElementById('quoteText');
-        let index = 0;
-
-        function applyStyles() {
-            quoteElement.style.width = '100%';
-            quoteElement.style.textAlign = 'center';
-            quoteElement.style.color = '#000638';
-            quoteElement.style.fontSize = '40px';
-            quoteElement.style.fontFamily = "'Satoshi', sans-serif";
-            quoteElement.style.fontWeight = '500';
-            quoteElement.style.position = 'relative';
-            quoteElement.style.overflow = 'hidden';
-            quoteElement.style.opacity = '0';
-            quoteElement.style.display = 'flex';
-            quoteElement.style.justifyContent = 'center';
-            quoteElement.style.alignItems = 'center';
-        }
-
-        function displayNextText() {
-            quoteElement.classList.remove('slide-in');
-            quoteElement.classList.add('slide-out');
-
-            setTimeout(() => {
-                index = (index + 1) % texts.length;
-                quoteElement.innerHTML = texts[index].text;
-                quoteElement.classList.remove('slide-out');
-                quoteElement.classList.add('slide-in');
-            }, 1000); // Duration of slide-out animation
-
-            setTimeout(displayNextText, texts[index].duration + 1000); // Adding 1s for the transition
-        }
-
-        // Initial display for the first text duration without animation
-        setTimeout(() => {
-            applyStyles();
-            quoteElement.innerHTML = texts[0].text;
-            quoteElement.classList.add('slide-in');
-            setTimeout(displayNextText, texts[0].duration);
-        }, 0); // Start the initial text display immediately
-
-        // Carousel functionality
-        const carousel = document.querySelector('.carousel');
-        const dots = document.querySelectorAll('.navigation-dot');
-        const images = Array.from(document.querySelectorAll('.community-image'));
-        const imageCount = images.length;
-        const imageWidth = images[0].offsetWidth + 20; // width + gap
-        const visibleImages = 4;
-        let currentIndex = 0;
-
-        // Clone images to achieve circular effect
-        function cloneImages() {
-            images.forEach(image => {
-                const cloneFirst = image.cloneNode(true);
-                const cloneLast = image.cloneNode(true);
-                carousel.appendChild(cloneFirst);
-                carousel.insertBefore(cloneLast, carousel.firstChild);
-            });
-        }
-
-        function updateCarousel(newIndex) {
-            currentIndex = newIndex;
-            const offset = -((currentIndex + imageCount) % imageCount) * imageWidth;
-            carousel.style.transition = 'transform 0.5s ease';
-            carousel.style.transform = `translateX(${ offset }px)`;
-            dots.forEach((dot, dotIndex) => {
-                dot.querySelector('circle').setAttribute('fill', dotIndex === currentIndex % imageCount ? '#6CC24A' : '#CAD9C5');
-            });
-        }
-
-        // Move to the clicked dot's index
-        dots.forEach(dot => {
-            dot.addEventListener('click', function () {
-                const newIndex = parseInt(dot.getAttribute('data-index'));
-                updateCarousel(newIndex);
-            });
-        });
-
-        // Handle the transition end to wrap around seamlessly
-        carousel.addEventListener('transitionend', () => {
-            if (currentIndex < 0) {
-                currentIndex += imageCount;
-                carousel.style.transition = 'none';
-                carousel.style.transform = `translateX(${- ((currentIndex + imageCount) % imageCount) * imageWidth}px)`;
-            } else if (currentIndex >= imageCount) {
-                currentIndex -= imageCount;
-                carousel.style.transition = 'none';
-                carousel.style.transform = `translateX(${- ((currentIndex + imageCount) % imageCount) * imageWidth}px)`;
-            }
-        });
-
-        // Initial setup
-        cloneImages();
-        updateCarousel(0);
-    });
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-<style>
-    .quote {
-        transition: transform 1s ease-out, opacity 1s ease-out;
-        opacity: 0;
-        transform: translateY(100%);
-    }
-
-    .slide-in {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    .slide-out {
-        opacity: 0;
-        transform: translateY(-100%);
-    }
-</style>
 
 <section id="news" class="md:p-10 relative p-10 lg:px-24 py-20"
     style="background: url('/images/news_bg.png') no-repeat center center; background-size: cover;">
@@ -1520,197 +888,8 @@ duration: 5000
 </button>
 
 
-
-
-
-
-
-
     </div>
 </section>
 
 
 
-
-
-<style>
-
-
-
-
- /* Styles for Image Overlay */
-#imageOverlay.hidden {
-    display: none;
-}
-
-#imageOverlay .aspect-w-16 {
-    position: relative;
-    width: 100%;
-}
-
-#imageOverlay .aspect-w-16::before {
-    content: "";
-    display: block;
-    padding-top: 56.25%;
-    /* 16:9 aspect ratio */
-}
-
-#imageOverlay .aspect-h-9 img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    object-fit: contain;
-    border-radius: 10px;
-}
-
-#imageOverlay #closeImageOverlay {
-    position: absolute;
-    top: -20px;
-    right: 200px;
-    background: #fff;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 20;
-}
-
-
-
-
-    /* Styles for Video Overlay */
-    #videoOverlay .hidden {
-        display: none;
-    }
-
-    #videoOverlay .aspect-w-16 {
-        position: relative;
-        width: 100%;
-    }
-
-    #videoOverlay .aspect-w-16::before {
-        content: "";
-        display: block;
-        padding-top: 56.25%;
-        /* 16:9 aspect ratio */
-    }
-
-    #videoOverlay .aspect-h-9 iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border-radius: 10px;
-        /* Added rounded corners to the iframe */
-    }
-
-    #videoOverlay #closeOverlay {
-        background: #fff;
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-    }
-</style>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-
-       // News Item Overlay
-    const newsLinks = document.querySelectorAll('.news-link');
-    const newsOverlay = document.getElementById('newsOverlay');
-    const closeNewsOverlay = document.getElementById('closeNewsOverlay');
-
-    newsLinks.forEach(link => {
-        link.addEventListener('click', function (event) {
-            event.preventDefault();
-            newsOverlay.classList.remove('hidden');
-            document.body.classList.add('modal-open');
-        });
-    });
-
-    closeNewsOverlay.addEventListener('click', function () {
-        newsOverlay.classList.add('hidden');
-        document.body.classList.remove('modal-open');
-    });
-
-    newsOverlay.addEventListener('click', function (event) {
-        if (event.target === newsOverlay) {
-            newsOverlay.classList.add('hidden');
-            document.body.classList.remove('modal-open');
-        }
-    });
-
-
-
-   // Image Overlay
-    const imageLinks = document.querySelectorAll('.image-link');
-    const imageOverlay = document.getElementById('imageOverlay');
-    const fullSizeImage = document.getElementById('fullSizeImage');
-    const closeImageOverlay = document.getElementById('closeImageOverlay');
-
-    imageLinks.forEach(link => {
-        link.addEventListener('click', function (event) {
-            event.preventDefault();
-            const fullImageSrc = '/images/food_show_full.jpg';
-            fullSizeImage.src = fullImageSrc;
-            imageOverlay.classList.remove('hidden');
-            document.body.classList.add('modal-open');
-        });
-    });
-
-    closeImageOverlay.addEventListener('click', function () {
-        imageOverlay.classList.add('hidden');
-        fullSizeImage.src = '';
-        document.body.classList.remove('modal-open');
-    });
-
-    imageOverlay.addEventListener('click', function (event) {
-        if (event.target === imageOverlay) {
-            imageOverlay.classList.add('hidden');
-            fullSizeImage.src = '';
-            document.body.classList.remove('modal-open');
-        }
-    });
-
-        // Video Overlay
-        const videoLinks = document.querySelectorAll('.video-link');
-        const videoOverlay = document.getElementById('videoOverlay');
-        const videoFrame = document.getElementById('videoFrame');
-        const closeOverlay = document.getElementById('closeOverlay');
-
-        videoLinks.forEach(link => {
-            link.addEventListener('click', function (event) {
-                event.preventDefault();
-                const videoId = this.getAttribute('data-video-id');
-                videoFrame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-    videoOverlay.classList.remove('hidden');
-    document.body.classList.add('modal-open');
-            });
-        });
-
-    closeOverlay.addEventListener('click', function () {
-        videoOverlay.classList.add('hidden');
-        videoFrame.src = '';
-        document.body.classList.remove('modal-open');
-    });
-
-    videoOverlay.addEventListener('click', function (event) {
-        if (event.target === videoOverlay) {
-            videoOverlay.classList.add('hidden');
-            videoFrame.src = '';
-            document.body.classList.remove('modal-open');
-        }
-    });
-    });
-</script>

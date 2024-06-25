@@ -271,7 +271,324 @@
             /* Animation properties with cubic-bezier timing function */
         }
 
-        /*}*/
+ /* Styles for Image Overlay */
+#imageOverlay.hidden {
+    display: none;
+}
+
+#imageOverlay .aspect-w-16 {
+    position: relative;
+    width: 100%;
+}
+
+#imageOverlay .aspect-w-16::before {
+    content: "";
+    display: block;
+    padding-top: 56.25%;
+    /* 16:9 aspect ratio */
+}
+
+#imageOverlay .aspect-h-9 img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+#imageOverlay #closeImageOverlay {
+    position: absolute;
+    top: -20px;
+    right: 200px;
+    background: #fff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 20;
+}
+
+
+
+
+    /* Styles for Video Overlay */
+    #videoOverlay .hidden {
+        display: none;
+    }
+
+    #videoOverlay .aspect-w-16 {
+        position: relative;
+        width: 100%;
+    }
+
+    #videoOverlay .aspect-w-16::before {
+        content: "";
+        display: block;
+        padding-top: 56.25%;
+        /* 16:9 aspect ratio */
+    }
+
+    #videoOverlay .aspect-h-9 iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        /* Added rounded corners to the iframe */
+    }
+
+    #videoOverlay #closeOverlay {
+        background: #fff;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+    .quote {
+        transition: transform 1s ease-out, opacity 1s ease-out;
+        opacity: 0;
+        transform: translateY(100%);
+    }
+
+    .slide-in {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .slide-out {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+
+
+    .quote {
+        width: 100%;
+        text-align: center;
+        color: #000638;
+        font-size: 40px;
+        font-family: 'Satoshi', sans-serif;
+        font-weight: 500;
+        position: relative;
+        line-height: 1.3;
+        overflow: hidden;
+        opacity: 0;
+        padding: 0 60px;
+    }
+
+    .quote::before,
+    .quote::after {
+        font-size: 100px;
+        color: #6CC24A;
+        position: absolute;
+        top: -5px;
+    }
+
+    .quote::before {
+        content: '“';
+        left: 0;
+    }
+
+    .quote::after {
+        content: '”';
+        right: 0;
+    }
+
+    @keyframes slideInFromBottom {
+        0% {
+            opacity: 0;
+            transform: translateY(100%);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes slideOutToTop {
+        0% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        100% {
+            opacity: 0;
+            transform: translateY(-100%);
+        }
+    }
+
+    .slide-in {
+        animation: slideInFromBottom 1s ease-out forwards;
+    }
+
+    .slide-out {
+      
+        animation: slideOutToTop 1s ease-out forwards;
+    }
+
+    .rounded-58 {
+        border-radius: 58.65px;
+    }
+
+    .rounded-20 {
+        border-radius: 20.52px;
+    }
+
+    .blur-34 {
+        backdrop-filter: blur(34.20px);
+    }
+
+    .blur-85 {
+        filter: blur(85.50px);
+    }
+
+    .card-hover-content {
+        transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+        transform: translateY(100%);
+        opacity: 0;
+    }
+
+    .card:hover .card-hover-content {
+        transform: translateY(0%);
+        opacity: 1;
+    }
+
+    .card-title {
+        transition: opacity 0.5s ease-in-out;
+    }
+
+    .card:hover .card-title {
+        opacity: 0;
+    }
+
+    .card img {
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .card:hover img {
+        transform: translateY(-100px);
+    }
+    .full-video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        height: 100%;
+        transform: translate(-50%, -50%);
+    }
+
+    .font-satoshi {
+        font-family: 'Satoshi', sans-serif;
+    }
+
+    .border-custom {
+        border: 2.57px solid;
+        border-color: rgba(29, 78, 216, 0.8);
+    }
+
+    .card-normal,
+    .card-shrink {
+        position: absolute;
+        left: 64px;
+        top: 150px;
+        width: 1118px;
+        bottom: 127px;
+        background: rgba(0, 6, 56, 0.60);
+        backdrop-filter: blur(34.20px);
+        padding: 34.20px;
+        border-radius: 20.52px;
+    }
+
+    .flip-card-inner {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transform-style: preserve-3d;
+    }
+
+    .flip-card-inner.flipped {
+        transform: rotateY(180deg);
+    }
+
+    .flip-card-front,
+    .flip-card-back {
+        backface-visibility: hidden;
+    }
+
+    .card-hover-content {
+        transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+        transform: translateY(100%);
+        opacity: 0;
+    }
+
+    .card:hover .card-hover-content {
+        transform: translateY(0%);
+        opacity: 1;
+    }
+
+    .card-title {
+        transition: opacity 0.5s ease-in-out;
+    }
+
+    .card:hover .card-title {
+        opacity: 0;
+    }
+
+    .tooltip-arrow {
+        bottom: -20px;
+        /* Adjust the position based on the tooltip's bottom edge */
+        right: 70px;
+        /* Adjust the position to align with the tooltip's button */
+        width: 0;
+        height: 10px;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 10px solid #3DA31F;
+        /* Same as tooltip background color */
+    }
+
+
+    @media (max-width: 640px) {
+
+        /* Adjustments for screens smaller than 640px */
+        #controls i {
+            /* Scale down icon size for smaller screens */
+            font-size: 1.25rem;
+            /* Example size, adjust as needed */
+            height: 40px;
+            width: 40px;
+        }
+    }
+
+    .carousel-container {
+        position: relative;
+        transform: translateY(-100vh) scale(0.5);
+        /* Start scaled down and moved up */
+        transition: transform 0.5s ease-out;
+        /* Smooth transition for both moving and scaling */
+        z-index: 1;
+        visibility: hidden;
+        /* Initially hidden */
+        width: 100%;
+        /* Full width */
+        height: 800px;
+        /* Fixed height */
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
     </style>
 </head>
 
@@ -687,6 +1004,11 @@
     <script type="text/javascript" src="/js/globe/third-party/three.min.js"></script>
     <script type="text/javascript" src="/js/globe/globe.js"></script>
     <script type="text/javascript" src="/js/techsection.js"></script>
+    <script type="text/javascript" src="/js/valueproposition.js"></script>
+    <script type="text/javascript" src="/js/herosection.js"></script>
+    <script type="text/javascript" src="/js/agrisection.js"></script>
+    <script type="text/javascript" src="/js/communityimpact.js"></script>
+    <script type="text/javascript" src="/js/news.js"></script>
 
 
 
