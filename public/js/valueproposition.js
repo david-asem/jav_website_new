@@ -68,23 +68,39 @@ function carousel() {
 
                 this.observer.observe(section);
             },
-            slideStyles(index) {
-                const numSlides = this.slides.length;
-                const distance = Math.abs(index - this.activeSlide);
-                let zIndex = numSlides - distance;
-                let scale = 1.099 - 0.095 * distance; // Each non-active card is slightly smaller than the one before it
-                let textColor = index === this.activeSlide ? 'text-white' : 'text-gray-800';
+           slideStyles(index) {
+    const numSlides = this.slides.length;
+    const distance = Math.abs(index - this.activeSlide);
+    let zIndex = numSlides - distance;
+    let scale = 1.099 - 0.095 * distance; // Each non-active card is slightly smaller than the one before it
+    let textColor = index === this.activeSlide ? 'text-white' : 'text-gray-800';
 
-                if (index === this.activeSlide) {
-                    scale = 1.1;
-                }
+    if (index === this.activeSlide) {
+        scale = 1.1;
+    }
 
-                let opacity = index === this.activeSlide ? 1.2 : 1.1;
+    let opacity = index === this.activeSlide ? 1.2 : 1.1;
 
-                return {
-                    style: `transform: scale(${scale}); z-index: ${zIndex}; opacity: ${opacity}; transition: transform 1s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 1s ease-in; position: absolute; left: ${index * 18.5}%;`,
-                    class: `${index === this.activeSlide ? 'w-80 bg-blue-800 ' + textColor : 'w-72 bg-white border border-blue-800 ' + textColor} h-96 rounded-2xl overflow-hidden shadow-lg relative`
-                };
-            }
+    // Calculate left positioning based on screen size
+    let left;
+    if (window.innerWidth <= 640) { // Mobile devices
+        if (index === this.activeSlide) {
+            left = '55%'; // Slightly shift to the right
+        } else if (index < this.activeSlide) {
+            left = `calc(55% - ${18.5 * distance}% + 8px)`; // Adjust for better visibility
+        } else {
+            left = `calc(55% + ${18.5 * distance}% - 8px)`; // Adjust for better visibility
+        }
+    } else { // Desktop and larger screens
+        left = `${index * 18.5 + 10}%`; // Shift from left a bit for better centering
+    }
+
+    return {
+        style: `transform: scale(${scale}) translateX(-50%); z-index: ${zIndex}; opacity: ${opacity}; transition: transform 1s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 1s ease-in; position: absolute; left: ${left};`,
+        class: `${index === this.activeSlide ? 'w-80 bg-blue-800 ' + textColor : 'w-72 bg-white border border-blue-800 ' + textColor} h-96 rounded-2xl overflow-hidden shadow-lg relative`
+    };
+}
+
+
         };
     }
