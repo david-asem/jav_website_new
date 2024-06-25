@@ -54,21 +54,19 @@
     });
 </script> --}}
 
-
 <section id="heroSec" class="relative pt-20">
     <!-- Video for hero background -->
-    <video id="heroVideo" class="absolute top-0 left-0 w-full h-full object-contain  md:object-cover lg:object-cover" autoplay muted loop playsinline
-        preload="auto">
+    <video id="heroVideo" class="absolute top-0 left-0 w-full h-full object-cover sm:object-cover" autoplay muted loop
+        playsinline preload="auto">
         <source id="videoSource" src="/images/javolin_vid.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
-
     <!-- Control icons -->
     <div id="controls" class="absolute bottom-4 right-4 flex space-x-4 z-10">
         <i id="playPauseIcon"
-            class="fa-solid fa-pause text-white text-2xl h-12 w-12 flex items-center justify-center rounded-full cursor-pointer hover:bg-opacity-70"></i>
+            class="fa-solid fa-pause text-white text-xl sm:text-2xl h-10 w-10 sm:h-12 sm:w-12 flex items-center justify-center rounded-full cursor-pointer hover:bg-opacity-70"></i>
         <i id="muteIcon"
-            class="fa-solid fa-volume-mute text-white text-2xl h-12 w-12 flex items-center justify-center bg-black bg-opacity-50 rounded-full cursor-pointer hover:bg-opacity-70"></i>
+            class="fa-solid fa-volume-mute text-white text-xl sm:text-2xl h-10 w-10 sm:h-12 sm:w-12 flex items-center justify-center bg-black bg-opacity-50 rounded-full cursor-pointer hover:bg-opacity-70"></i>
     </div>
 </section>
 
@@ -100,6 +98,20 @@
         border-right: 10px solid transparent;
         border-top: 10px solid #3DA31F;
         /* Same as tooltip background color */
+    }
+</style>
+
+<style>
+    @media (max-width: 640px) {
+
+        /* Adjustments for screens smaller than 640px */
+        #controls i {
+            /* Scale down icon size for smaller screens */
+            font-size: 1.25rem;
+            /* Example size, adjust as needed */
+            height: 40px;
+            width: 40px;
+        }
     }
 </style>
 
@@ -233,31 +245,29 @@
     <!-- Carousel container -->
     <div class="flex justify-center items-center h-full slide fadeRight animation-element"
         style="perspective: 1000px; position: relative; overflow: visible; width: 90%; margin: 0 auto; margin-top: -5rem;">
-
+    
         <!-- Left navigation arrow with circle -->
         {{{leftArrowSVG}}}
-
+    
         <!-- Right navigation arrow with circle -->
         {{{ rightArrowSVG }}}
-
+    
         <!-- Carousel slides -->
         <template x-for="(slide, index) in slides" :key="index">
             <div @click="setActiveSlide(index)" @mouseenter="mouseEnter(index)" @mouseleave="mouseLeave(index)"
                 class="absolute transition-transform duration-300 ease-in-out cursor-pointer"
                 :class="{ 'active': slide.active, 'inactive': !slide.active }" :style="slideStyles(index).style">
-
+    
                 <!-- Card -->
                 <div :class="slideStyles(index).class"
                     style="position: relative; padding: 1rem; border-radius: 1rem; margin-top: -6rem; perspective: 1000px;">
-                    <div :class="{ 'flip-card-inner': true, 'flipped': slide.flipped }"
-                        style="transition: transform 0.8s;">
+                    <div :class="{ 'flip-card-inner': true, 'flipped': slide.flipped }" style="transition: transform 0.8s;">
                         <div class="flip-card-front"
                             style="position: absolute; width: 100%; height: 100%; backface-visibility: hidden;">
                             <img :src="slide.image" class="object-contain"
                                 :style="'height: calc(2/3 * ' + slideHeight + 'px); width: 100%;'" />
                             <!-- Text Label -->
-                            <div class="absolute bottom-15 left-0 w-full text-center"
-                                style="padding: 1rem; bottom: 3rem;">
+                            <div class="absolute bottom-15 left-0 w-full text-center" style="padding: 1rem; bottom: 3rem;">
                                 <span x-text="slide.label" class="text-xl font-bold font-['Satoshi']"></span>
                             </div>
                         </div>
@@ -265,32 +275,27 @@
                             style="border-radius: 1rem; position: absolute; width: 100%; height: 100%; color: white; display: flex; align-items: flex-start; justify-content: center; backface-visibility: hidden; transform: rotateY(180deg); padding-top: 1rem;">
                             <div class="flex flex-col items-center text-center space-y-1" style="margin-top: 0.5rem;">
                                 <!-- Adjust margin to move the title up -->
-                                <span x-text="slide.label" class="w-56 text-center text-white text-2xl font-bold font-['Satoshi'] mb-10 my"></span>
-                                <div
-                                    style="width: 280px; text-align: center; color: white; font-size: 18px; font-family: Satoshi; font-weight: 400; " class="mt-10">
+                                <span x-text="slide.label"
+                                    class="w-56 text-center text-white text-2xl font-bold font-['Satoshi'] mb-10 my"></span>
+                                <div style="width: 280px; text-align: center; color: white; font-size: 18px; font-family: Satoshi; font-weight: 400; "
+                                    class="mt-10">
                                     <span x-text="slide.content"></span>
                                 </div>
-
-
-
-
                             </div>
                         </div>
-
-
                     </div>
-
                     <!-- Arrow -->
                     <div class="arrow-container"
                         style="position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%) rotate(-45deg); transform-origin: center;">
                         <!-- SVG for active card's arrow {{{activeCardArrowSVG}}} -->
-
                     </div>
                 </div>
             </div>
         </template>
-
+    
     </div>
+
+
 
     <!-- Navigation Dots -->
     <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex space-x-2">
@@ -325,6 +330,7 @@
             ],
             activeSlide: 2, // Initially active slide
             observer: null,
+            
 
             init() {
                 this.arrangeSlides();
@@ -385,23 +391,50 @@
                 this.observer.observe(section);
             },
             slideStyles(index) {
-                const numSlides = this.slides.length;
-                const distance = Math.abs(index - this.activeSlide);
-                let zIndex = numSlides - distance;
-                let scale = 1.099 - 0.095 * distance; // Each non-active card is slightly smaller than the one before it
-                let textColor = index === this.activeSlide ? 'text-white' : 'text-gray-800';
+    const numSlides = this.slides.length;
+    const distance = Math.abs(index - this.activeSlide);
+    let zIndex = numSlides - distance;
+    let scale = 1.099 - 0.095 * distance;
+    let textColor = index === this.activeSlide ? 'text-white' : 'text-gray-800';
 
-                if (index === this.activeSlide) {
-                    scale = 1.1;
-                }
+    if (index === this.activeSlide) {
+        scale = 1.1;
+    }
 
-                let opacity = index === this.activeSlide ? 1.2 : 1.1;
+    let opacity = index === this.activeSlide ? 1.2 : 1.1;
 
-                return {
-                    style: `transform: scale(${scale}); z-index: ${zIndex}; opacity: ${opacity}; transition: transform 1s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 1s ease-in; position: absolute; left: ${index * 18.5}%;`,
-                    class: `${index === this.activeSlide ? 'w-80 bg-blue-800 ' + textColor : 'w-72 bg-white border border-blue-800 ' + textColor} h-96 rounded-2xl overflow-hidden shadow-lg relative`
-                };
+    // Default styles for larger screens
+    let transform = `scale(${scale})`;
+    let left = `${index * 18.5}%`;
+
+    // Mobile-specific styles
+    let mobileTransform = transform;
+    let mobileLeft = left;
+
+    if (index === this.activeSlide) {
+        mobileTransform += ' translateX(-50%)';
+        mobileLeft = '50%';
+    } else {
+        const offset = (index - this.activeSlide) * 100;
+        mobileLeft = `calc(50% + ${offset}%)`;
+    }
+
+    return {
+        style: `
+            transform: ${transform}; 
+            z-index: ${zIndex}; 
+            opacity: ${opacity}; 
+            transition: transform 1s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 1s ease-in, left 1s ease-in; 
+            position: absolute; 
+            left: ${left};
+            @media (max-width: 768px) {
+                transform: ${mobileTransform};
+                left: ${mobileLeft};
             }
+        `,
+        class: `${index === this.activeSlide ? 'w-80 bg-blue-800 ' + textColor : 'w-72 bg-white border border-blue-800 ' + textColor} h-96 rounded-2xl overflow-hidden shadow-lg relative`
+    };
+}
         };
     }
 </script>
