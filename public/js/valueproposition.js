@@ -1,21 +1,22 @@
 function carousel() {
     return {
         slides: [
-            { label: 'JAV Finance', image: '/images/javolin_finance.png', active: false, flipped: false, hovered: false, content:'JAVOLIN provides investors and lenders an opportunity to earn a stable and predictable return by participating in its Agri Commodities trading platform.' },
-            { label: 'JAV Tech', image: '/images/javolin_tech.png', active: false, flipped: false, hovered: false, content:'We offer specific services such as digital Know Your Customer (KYC), access to proprietary APIs, and digital collections to financial institutions, businesses, and government entities.'  },
-            { label: 'JAV Infrastructure', image: '/images/infra.png', active: true, flipped: false, hovered: false, content:'Our digital infrastructure connects multi location enterprises and provides collections software for businesses and government entities across a variety of fees and taxes.'},
-            { label: 'JAV Payments', image: '/images/fx.png', active: false, flipped: false, hovered: false, content:'Via our digital wallet, we are able to facilitate B2B payments domestically and internationally to countries across the globe in multiple currencies.' },
-            { label: 'JAV AgriCommodities', image: '/images/commodities.png', active: false, flipped: false, hovered: false, content:'We own and actively trade cashew and cassava from the continent of Africa to international locations in Asia and America. Via our commodities marketplace, buyers can gain access to the availability of the product to be purchased.' },
+            { label: 'JAV Finance', image: '/images/javolin_finance.png', active: false, flipped: false, hovered: false, content: 'JAVOLIN provides investors and lenders an opportunity to earn a stable and predictable return by participating in its Agri Commodities trading platform.' },
+            { label: 'JAV Tech', image: '/images/javolin_tech.png', active: false, flipped: false, hovered: false, content: 'We offer specific services such as digital Know Your Customer (KYC), access to proprietary APIs, and digital collections to financial institutions, businesses, and government entities.' },
+            { label: 'JAV Infrastructure', image: '/images/infra.png', active: true, flipped: false, hovered: false, content: 'Our digital infrastructure connects multi location enterprises and provides collections software for businesses and government entities across a variety of fees and taxes.' },
+            { label: 'JAV Payments', image: '/images/fx.png', active: false, flipped: false, hovered: false, content: 'Via our digital wallet, we are able to facilitate B2B payments domestically and internationally to countries across the globe in multiple currencies.' },
+            { label: 'JAV AgriCommodities', image: '/images/commodities.png', active: false, flipped: false, hovered: false, content: 'We own and actively trade cashew and cassava from the continent of Africa to international locations in Asia and America. Via our commodities marketplace, buyers can gain access to the availability of the product to be purchased.' },
         ],
         activeSlide: 2, // Initially active slide
         observer: null,
         touchStartX: 0,
-        touchEndX: 0,
 
         init() {
             this.arrangeSlides();
             this.observeSection();
-            this.addTouchEvents();
+            if (this.isMobile()) {
+                this.addTouchEvents();
+            }
         },
         setActiveSlide(index) {
             this.activeSlide = index;
@@ -71,23 +72,22 @@ function carousel() {
 
             this.observer.observe(section);
         },
+        isMobile() {
+            return window.innerWidth <= 640;
+        },
         addTouchEvents() {
             const section = document.getElementById('products');
             section.addEventListener('touchstart', this.handleTouchStart.bind(this), false);
-            section.addEventListener('touchmove', this.handleTouchMove.bind(this), false);
             section.addEventListener('touchend', this.handleTouchEnd.bind(this), false);
         },
         handleTouchStart(event) {
             this.touchStartX = event.changedTouches[0].screenX;
         },
-        handleTouchMove(event) {
-            this.touchEndX = event.changedTouches[0].screenX;
-        },
-        handleTouchEnd() {
-            if (this.touchStartX - this.touchEndX > 50) {
+        handleTouchEnd(event) {
+            const touchEndX = event.changedTouches[0].screenX;
+            if (this.touchStartX > touchEndX) {
                 this.nextSlide(); // Swipe left
-            }
-            if (this.touchStartX - this.touchEndX < -50) {
+            } else {
                 this.previousSlide(); // Swipe right
             }
         },
