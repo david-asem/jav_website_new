@@ -478,7 +478,7 @@
 
 
 <section id="agrisection" x-data="{ shrink: false }"
-    class="relative flex justify-center items-center min-h-[150vh] transform transition-transform duration-2000"
+    class="relative flex justify-center items-center min-h-[120vh] transform transition-transform duration-2000"
     style="background: url('/images/agri-bg.png') no-repeat center center; background-size: cover;">
 
     <video :class="shrink ? 'shrink-video' : 'full-video'" class="object-cover z-0 full-video" autoplay="" loop=""
@@ -489,7 +489,7 @@
 
     <div class="absolute top-0 left-0 w-full h-full flex justify-center items-center z-10">
         <div
-            class="relative w-[385px] h-[550px] md:w-[617px] md:h-[800px] lg:w-[1118px] lg:h-[700px] bg-[#000638] bg-opacity-60 rounded-xl p-6 lg:p-10 backdrop-blur-lg">
+            class="relative sm:w-96 sm:h-96 md:w-96 md:h-96 lg:w-[1118px] lg:h-[506px] bg-[#000638] bg-opacity-60 rounded-xl p-6 lg:p-10 backdrop-blur-lg">
             <div class="flex flex-col items-center justify-start pt-[42px]">
 
                 <!-- JAV AgriTech Button -->
@@ -502,7 +502,7 @@
 
                 <!-- Overview Text -->
                 <div
-                    class="text-justify text-white text-opacity-80 text-sm lg:text-[23px] font-satoshi leading-relaxed max-w-full lg:max-w-[983px]">
+                    class="text-justify text-white text-opacity-80 sm:text-xl md:text-2xl lg:text-[23px] font-satoshi leading-relaxed max-w-full lg:max-w-[983px]">
                     <p class="fadeRight animation-element in-view mt-4 md:mt-6 lg:mt-8">
                         Our AGRI-TECH connects growers, traders, domestic and international buyers seamlessly through
                         the integration of our inventory management, logistics, and payments modules. It facilitates
@@ -643,17 +643,26 @@
     </div>
 </section>
 
-<section id="javfinance" class="relative  bg-[#1A1A40] overflow-hidden"
+<section id="javfinance" class="relative bg-[#1A1A40] overflow-hidden"
     style="background-image: url('/images/invest_bg1.png'); background-size: cover; background-color: #000B6B; background-blend-mode: overlay;">
     <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         <div class="p-10 lg:px-24 mt-4">
-            <h3 class="text-[#6CC24A] text-[29px] animation-element fadeLeft">JAV FINANCE</h3>
-            <p class="text-[44px] text-white mt-2 font-bold leading-tight animation-element fadeRight"
+            <h3 class="text-[#6CC24A] font-size: 20px lg:text-[29px] md:font-size: 18px; animation-element fadeLeft">JAV FINANCE</h3>
+            <p class="hidden lg:block text-[44px] text-white mt-2 font-bold leading-tight animation-element fadeRight"
                 style="width: 800px; max-width: 800px;">
                 Earn a stabilized return by lending alongside us in the commodities sector.
             </p>
-
-            <p class="text-[24px] text-[#FAFAFA] mt-4 max-w-xl opacity-70 animation-element fadeLeft">
+            <!-- Medium Screen Text -->
+            <p class="hidden md:block lg:hidden text-[28px] text-white mt-2 font-bold leading-tight animation-element fadeRight"
+                style="max-width: 800px;">
+                Earn a stabilized return by lending alongside us<br> in the commodities sector.
+            </p>
+            <!-- Small Screen Text -->
+            <p class="block md:hidden text-[28px] text-white mt-2 font-bold leading-tight animation-element fadeRight"
+                style="max-width: 800px;">
+                Earn a stabilized return by lending alongside<br> us in the commodities<br> sector.
+            </p>
+            <p class="lg:text-[24px] md:text-[20px] sm:text-2xl text-[#FAFAFA] mt-4 max-w-xl opacity-70 animation-element fadeLeft">
                 JAVOLIN provides investors and lenders an opportunity to earn a stable and predictable return by
                 participating in our
                 Agri Commodities trading platform. We provide trade financing to traders for a variety of
@@ -663,11 +672,13 @@
                 Contact trade@javolin.com for more information.
             </p>
         </div>
-    <div class="animation-element fadeRight object-cover mt-[6] self-end">
-            <img style="margin-top: 3em;" class="w-full h-full " src="/images/invest.png" alt="Investment Image">
+        <div class="animation-element fadeRight mt-6 self-end order-1 lg:order-2 flex justify-center">
+            <img class="hidden lg:block w-full h-full" src="/images/invest.png" alt="Investment Image">
+            <img class="block lg:hidden w-full h-full" src="/images/invest_mobile.png" alt="Investment Image">
         </div>
     </div>
 </section>
+
 
 
 
