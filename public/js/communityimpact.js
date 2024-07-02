@@ -2,7 +2,7 @@
     document.addEventListener('DOMContentLoaded', function () {
         const texts = [
             {
-                text: '<div style="display: inline;"><span style="font-size: 100px; color: #6CC24A; line-height: 0.3; vertical-align: middle;">“</span><span style="line-height: 0.3; margin: 0 10px; display: inline; vertical-align: middle; margin-right: -20px;">We improve the communities in which we live and work by increasing food security, and access to essential resources, education, and athletics.</span><span style="font-size: 100px; color: #6CC24A; line-height: 0.3; position: relative; top: 40px;">”</span></div>',
+                text: '<div style="display: inline;"><span style="font-size: 100px; color: #6CC24A; line-height: 0.3; vertical-align: middle;">“</span><span style="line-height: 0.3; margin: 0 10px; display: inline; vertical-align: middle; margin-right: -20px;">We improve the communities in which we live and work by strengthening food security, and access to essential resources, education, and athletics.</span><span style="font-size: 100px; color: #6CC24A; line-height: 0.3; position: relative; top: 40px;">”</span></div>',
 duration: 5000
 
 
