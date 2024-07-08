@@ -54,9 +54,9 @@
     });
 </script> --}}
 
-<section id="heroSec" class="relative pt-20">
+<section id="heroSec" class="relative lg:pt-20">
     <!-- Video for hero background -->
-    <video id="heroVideo" class="absolute top-0 left-0 w-full h-full object-cover sm:object-cover" autoplay muted loop
+    <video id="heroVideo" class="absolute top-0 left-0 w-full h-full object-contain lg:object-cover" autoplay muted loop
         playsinline preload="auto">
         <source id="videoSource" src="/images/javolin_vid.mp4" type="video/mp4">
         Your browser does not support the video tag.
@@ -69,6 +69,32 @@
             class="fa-solid fa-volume-mute text-white text-xl sm:text-2xl h-10 w-10 sm:h-12 sm:w-12 flex items-center justify-center bg-black bg-opacity-50 rounded-full cursor-pointer hover:bg-opacity-70"></i>
     </div>
 </section>
+
+<script>
+    function updateVideoSource() {
+        var videoSource = document.getElementById('videoSource');
+        var screenWidth = window.innerWidth;
+
+        if (screenWidth <= 768) {
+            // Mobile and tablet devices
+            videoSource.src = '/images/javolin_vid_mobile.mp4';
+        } else {
+            // Desktop devices
+            videoSource.src = '/images/javolin_vid.mp4';
+        }
+
+        // Reload the video element to apply the new source
+        var heroVideo = document.getElementById('heroVideo');
+        heroVideo.load();
+    }
+
+    // Initial update on page load
+    updateVideoSource();
+
+    // Update video source on window resize
+    window.addEventListener('resize', updateVideoSource);
+</script>
+
 
 <!-- Tooltip -->
 {{!-- <div id="tooltip"
@@ -544,7 +570,7 @@
         </div>
 
 
-        <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-12 my-12 justify-center relative pr-10 sm:pr-0 ">
+        <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-12 my-12 justify-center relative">
 
             <!-- Foreign Exchange Card -->
             <div class="card slide fadeRight animation-element"
@@ -805,7 +831,11 @@
         <div
             class="h-auto bg-white rounded-2xl shadow border-[0.29px] border-neutral-400 flex flex-col hover:scale-105 ease-in-out duration-300 fadeLeft animation-element">
             <div class="relative h-56 md:h-60 overflow-hidden rounded-tl-2xl rounded-tr-2xl image-link">
-                <img class="absolute top-0 left-0 w-[400px] h-36 object-fill md:object-fill md:h-full lg:object-fill lg:h-full lg:w-full" src="/images/food_show.jpg" />
+                <!-- Image for desktop -->
+                <img class="hidden lg:block absolute top-0 left-0 w-full h-full object-fill" src="/images/food_show.jpg" />
+                <!-- Image for mobile and tablet -->
+                <img class="block lg:hidden absolute top-0 left-0 w-full h-full object-fill"
+                    src="/images/food_show_mobile.jpg" />
             </div>
             <div class="flex flex-col justify-start items-start gap-4 p-4 mt-0">
                 <div class="flex-col justify-start items-start gap-3 flex">
@@ -824,6 +854,7 @@
                 </div>
             </div>
         </div>
+
         
 <!-- Image Overlay -->
 <div id="imageOverlay" class="fixed inset-0 flex justify-center items-center hidden bg-gray-900 bg-opacity-75 z-50">
@@ -842,16 +873,19 @@
 <div
     class="h-auto bg-white rounded-2xl shadow border border-neutral-400 flex flex-col hover:scale-105 ease-in-out duration-300 fadeRight animation-element news-link">
     <div class="h-56 md:h-60 overflow-hidden rounded-tl-2xl rounded-tr-2xl">
-        <img class="w-full h-full object-fill md:object-fill md:h-full lg:object-fill lg:h-full" src="/images/jav_rbi.jpg" />
+        <!-- Image for desktop -->
+        <img class="hidden lg:block w-full h-full object-fill" src="/images/jav_rbi.jpg" />
+        <!-- Image for mobile and tablet -->
+        <img class="block lg:hidden w-full h-full object-fill" src="/images/jav_rbi_mobile.jpg" />
     </div>
     <div class="flex flex-col justify-start items-start gap-4 p-4">
         <div class="flex-col justify-start items-start gap-3 flex">
-            <div class="text-slate-950 text-lg md:text-2xl font-bold font-['Satoshi']">JAVOLIN Group Supply Consortium announce partnership with Real Blue International...</div>
+            <div class="text-slate-950 text-lg md:text-2xl font-bold font-['Satoshi']">JAVOLIN Group Supply Consortium
+                announce partnership with Real Blue International...</div>
         </div>
         <div class="flex justify-start items-center gap-4">
             <div class="px-4 py-1 bg-slate-200 rounded-full justify-center items-center gap-2 flex">
-                <div class="text-center text-blue-800 text-xs md:text-sm font-bold font-['Satoshi']">AGRI-TECH
-                </div>
+                <div class="text-center text-blue-800 text-xs md:text-sm font-bold font-['Satoshi']">AGRI-TECH</div>
             </div>
             <div class="flex justify-start items-center gap-2">
                 <div class="text-zinc-600 text-xs md:text-sm font-bold font-['Satoshi']">Mar 03</div>
@@ -861,6 +895,7 @@
         </div>
     </div>
 </div>
+
 
 
 <!-- News Item Overlay -->
