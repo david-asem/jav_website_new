@@ -1,118 +1,142 @@
- function carousel() {
-        return {
-            slides: [
-                { label: 'JAV Finance', image: '/images/javolin_finance.png', active: false, flipped: false, hovered: false, content:'JAVOLIN provides investors and lenders an opportunity to earn a stable and predictable return by participating in its Agri Commodities trading platform.' },
-                { label: 'JAV Tech', image: '/images/javolin_tech.png', active: false, flipped: false, hovered: false, content:'We offer specific services such as digital Know Your Customer (KYC), access to proprietary APIs, and digital collections to financial institutions, businesses, and government entities.'  },
-                { label: 'JAV Infrastructure', image: '/images/infra.png', active: true, flipped: false, hovered: false, content:'Our digital infrastructure connects multi location enterprises and provides collections software for businesses and government entities across a variety of fees and taxes.'},
-                { label: 'JAV Payments', image: '/images/fx.png', active: false, flipped: false, hovered: false, content:'Via our digital wallet, we are able to facilitate B2B payments domestically and internationally to countries across the globe in multiple currencies.' },
-                { label: 'JAV AgriCommodities', image: '/images/commodities.png', active: false, flipped: false, hovered: false, content:'We own and actively trade cashew and cassava from the continent of Africa to international locations in Asia and America. Via our commodities marketplace, buyers can gain access to the availability of the product to be purchased.' },
-            ],
-            activeSlide: 2, // Initially active slide
-            observer: null,
-            
+function carousel() {
+    return {
+        slides: [
+            { label: 'JAV Finance', image: '/images/javolin_finance.png', active: false, flipped: false, hovered: false, content: 'JAVOLIN provides investors and lenders an opportunity to earn a stable and predictable return by participating in its Agri Commodities trading platform.' },
+            { label: 'JAV Tech', image: '/images/javolin_tech.png', active: false, flipped: false, hovered: false, content: 'We offer specific services such as digital Know Your Customer (KYC), access to proprietary APIs, and digital collections to financial institutions, businesses, and government entities.' },
+            { label: 'JAV Infrastructure', image: '/images/infra.png', active: true, flipped: false, hovered: false, content: 'Our digital infrastructure connects multi location enterprises and provides collections software for businesses and government entities across a variety of fees and taxes.' },
+            { label: 'JAV Payments', image: '/images/fx.png', active: false, flipped: false, hovered: false, content: 'Via our digital wallet, we are able to facilitate B2B payments domestically and internationally to countries across the globe in multiple currencies.' },
+            { label: 'JAV AgriCommodities', image: '/images/commodities.png', active: false, flipped: false, hovered: false, content: 'We own and actively trade cashew and cassava from the continent of Africa to international locations in Asia and America. Via our commodities marketplace, buyers can gain access to the availability of the product to be purchased.' },
+        ],
+        activeSlide: 2, // Initially active slide
+        observer: null,
+        startX: 0,
+        endX: 0,
+        threshold: 50, // Minimum swipe distance to be considered as a swipe
 
-            init() {
-                this.arrangeSlides();
-                this.observeSection();
-            },
-            setActiveSlide(index) {
-                this.activeSlide = index;
-                this.arrangeSlides();
-                if (this.slides[index].hovered) {
-                    this.flipCard(index); // Flip the card if the mouse is already on it
+        init() {
+            this.arrangeSlides();
+            this.observeSection();
+            window.addEventListener('resize', this.arrangeSlides.bind(this));
+            this.addTouchEvents();
+        },
+        setActiveSlide(index) {
+            this.activeSlide = index;
+            this.arrangeSlides();
+            if (this.slides[index].hovered) {
+                this.flipCard(index); // Flip the card if the mouse is already on it
+            }
+        },
+        nextSlide() {
+            this.setActiveSlide((this.activeSlide + 1) % this.slides.length);
+        },
+        previousSlide() {
+            this.setActiveSlide((this.activeSlide - 1 + this.slides.length) % this.slides.length);
+        },
+        arrangeSlides() {
+            this.slides.forEach((slide, index) => {
+                slide.active = index === this.activeSlide;
+                if (!slide.active) {
+                    slide.flipped = false; // Reset flipped state when arranging slides
                 }
-            },
-            nextSlide() {
-                this.setActiveSlide((this.activeSlide + 1) % this.slides.length);
-            },
-            previousSlide() {
-                this.setActiveSlide((this.activeSlide - 1 + this.slides.length) % this.slides.length);
-            },
-            arrangeSlides() {
-                this.slides.forEach((slide, index) => {
-                    slide.active = index === this.activeSlide;
-                    if (!slide.active) {
-                        slide.flipped = false; // Reset flipped state when arranging slides
+            });
+        },
+        flipCard(index) {
+            if (this.slides[index].active) {
+                this.slides[index].flipped = true;
+            }
+        },
+        mouseEnter(index) {
+            this.slides[index].hovered = true;
+            if (this.slides[index].active) {
+                this.flipCard(index);
+            }
+        },
+        mouseLeave(index) {
+            this.slides[index].hovered = false;
+            if (this.slides[index].active) {
+                this.slides[index].flipped = false;
+            }
+        },
+        observeSection() {
+            const section = document.getElementById('products');
+            this.observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // When the section is visible, flip the active card
+                        const activeIndex = this.activeSlide;
+                        if (this.slides[activeIndex].hovered) {
+                            this.flipCard(activeIndex);
+                        }
                     }
                 });
-            },
-            flipCard(index) {
-                if (this.slides[index].active) {
-                    this.slides[index].flipped = true;
+            }, { threshold: 0.1 });
+
+            this.observer.observe(section);
+        },
+        addTouchEvents() {
+            const container = document.querySelector('.carousel');
+            container.addEventListener('touchstart', (e) => {
+                this.startX = e.touches[0].clientX;
+            });
+            container.addEventListener('touchmove', (e) => {
+                this.endX = e.touches[0].clientX;
+            });
+            container.addEventListener('touchend', () => {
+                this.handleSwipe();
+            });
+        },
+        handleSwipe() {
+            const distance = this.endX - this.startX;
+            if (Math.abs(distance) > this.threshold) {
+                if (distance > 0) {
+                    this.previousSlide();
+                } else {
+                    this.nextSlide();
                 }
-            },
-            mouseEnter(index) {
-                this.slides[index].hovered = true;
-                if (this.slides[index].active) {
-                    this.flipCard(index);
-                }
-            },
-            mouseLeave(index) {
-                this.slides[index].hovered = false;
-                if (this.slides[index].active) {
-                    this.slides[index].flipped = false;
-                }
-            },
-            observeSection() {
-                const section = document.getElementById('products');
-                this.observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            // When the section is visible, flip the active card
-                            const activeIndex = this.activeSlide;
-                            if (this.slides[activeIndex].hovered) {
-                                this.flipCard(activeIndex);
-                            }
-                        }
-                    });
-                }, { threshold: 0.1 });
-
-                this.observer.observe(section);
-            },
-            slideStyles(index) {
-    const numSlides = this.slides.length;
-    const distance = Math.abs(index - this.activeSlide);
-    let zIndex = numSlides - distance;
-    let scale = 1.099 - 0.095 * distance;
-    let textColor = index === this.activeSlide ? 'text-white' : 'text-gray-800';
-
-    if (index === this.activeSlide) {
-        scale = 1.1;
-    }
-
-    let opacity = index === this.activeSlide ? 1.2 : 1.1;
-
-    // Default styles for larger screens
-    let transform = `scale(${scale})`;
-    let left = `${index * 18.5}%`;
-
-    // Mobile-specific styles
-    let mobileTransform = transform;
-    let mobileLeft = left;
-
-    if (index === this.activeSlide) {
-        mobileTransform += ' translateX(-50%)';
-        mobileLeft = '50%';
-    } else {
-        const offset = (index - this.activeSlide) * 100;
-        mobileLeft = `calc(50% + ${offset}%)`;
-    }
-
-    return {
-        style: `
-            transform: ${transform}; 
-            z-index: ${zIndex}; 
-            opacity: ${opacity}; 
-            transition: transform 1s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 1s ease-in, left 1s ease-in; 
-            position: absolute; 
-            left: ${left};
-            @media (max-width: 768px) {
-                transform: ${mobileTransform};
-                left: ${mobileLeft};
             }
-        `,
-        class: `${index === this.activeSlide ? 'w-80 bg-blue-800 ' + textColor : 'w-72 bg-white border border-blue-800 ' + textColor} h-96 rounded-2xl overflow-hidden shadow-lg relative`
+        },
+        slideStyles(index) {
+            const numSlides = this.slides.length;
+            const distance = Math.abs(index - this.activeSlide);
+            let zIndex = numSlides - distance;
+            let scale = 1.099 - 0.095 * distance;
+            let textColor = index === this.activeSlide ? 'text-white' : 'text-gray-800';
+
+            if (index === this.activeSlide) {
+                scale = 1.1;
+            }
+
+            let opacity = index === this.activeSlide ? 1.2 : 1.1;
+
+            // Default styles for larger screens
+            let transform = `scale(${scale})`;
+            let left = `${index * 18.5}%`;
+
+            // Mobile-specific styles
+            let mobileTransform = transform;
+            let mobileLeft = left;
+
+            if (window.innerWidth <= 768) {
+                if (index === this.activeSlide) {
+                    mobileTransform += ' translateX(-50%)';
+                    mobileLeft = '54%';
+                } else {
+                    const offset = (index - this.activeSlide) * 100;
+                    mobileLeft = `calc(50% + ${offset}%)`;
+                }
+            }
+
+            return {
+                style: `
+                    transform: ${window.innerWidth <= 768 ? mobileTransform : transform}; 
+                    z-index: ${zIndex}; 
+                    opacity: ${opacity}; 
+                    transition: transform 1s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 1s ease-in, left 1s ease-in; 
+                    position: absolute; 
+                    left: ${window.innerWidth <= 768 ? mobileLeft : left};
+                `,
+                class: `${index === this.activeSlide ? 'w-80 bg-blue-800 ' + textColor : 'w-72 bg-white border border-blue-800 ' + textColor} h-96 rounded-2xl overflow-hidden shadow-lg relative`
+            };
+        }
     };
 }
-        };
-    }
