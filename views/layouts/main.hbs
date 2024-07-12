@@ -46,7 +46,7 @@
     overflow-x: hidden;
 }
 
-#heroSec,
+
 #products,
 #platform,
 #agrisection,
@@ -181,15 +181,14 @@
         }
 
         #heroSec {
-            position: relative;
-            width: 100%;
-            /* Full width */
-            height: 100vh;
-            /* Full viewport height */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+    position: relative;
+    width: 100%; /* Full width */
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Ensures no extra space around */
+}
 
         #textSection {
             position: absolute;
@@ -611,6 +610,10 @@
     html {
         scroll-behavior: smooth;
     }
+
+        
+
+
     </style>
 </head>
 
