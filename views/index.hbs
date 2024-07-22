@@ -121,9 +121,9 @@
 
 
 
-<section id="products" class="relative py-4 lg:px-24 bg-cover bg-center bg-no-repeat" x-data="carousel()"
-    x-init="init()"
-    style="height: 800px; overflow: hidden; background-image: url('/images/new-value-bg.png'); background-attachment: fixed;">
+<section id="products"
+    class="relative py-4 lg:px-24 bg-cover bg-center bg-no-repeat lg:bg-[url('/images/new-value-bg.png')] lg:bg-fixed"
+    x-data="carousel()" x-init="init()" style="height: 800px; overflow: hidden;">
     <!-- Carousel Title -->
     <h2
         class="lg:slide lg:fadeRight lg:animation-element mt-14 mx-10 text-center text-justify text-slate-900 text-xl sm:text-xl md:text-xl lg:text-3xl font-medium  md:leading-normal lg:leading-relaxed font-['Satoshi']">
@@ -498,7 +498,7 @@
 
 
 <section id="agrisection" x-data="{ shrink: false }"
-    class="relative flex justify-center items-center min-h-[130vh] transform transition-transform duration-2000"
+    class="relative flex justify-center items-center min-h-screen transform transition-transform duration-2000"
     style="background: url('/images/agri-bg.png') no-repeat center center; background-size: cover;">
 
     <video :class="shrink ? 'shrink-video' : 'full-video'" class="object-cover z-0 full-video" autoplay="" loop=""
@@ -509,21 +509,21 @@
 
     <div class="absolute top-[55px] md:top-[92px] lg:top-0 left-0 w-full h-full flex justify-center items-center z-10">
         <div
-            class="relative w-full max-w-lg md:max-w-3xl lg:max-w-4xl bg-[#000638] bg-opacity-60 rounded-xl p-6 lg:p-10 backdrop-blur-lg mx-5 mb-20">
-            <div class="flex flex-col items-center justify-start pt-12 sm:pt-[42px]">
+            class="relative w-full max-w-lg md:max-w-3xl lg:max-w-4xl bg-[#000638] bg-opacity-60 rounded-xl p-4 sm:p-6 lg:p-10 backdrop-blur-lg mx-5 mb-20">
+            <div class="flex flex-col items-center justify-start pt-8 sm:pt-[42px]">
 
                 <!-- JAV AgriTech Button -->
                 <div
-                    class="absolute top-[-10px] sm:top-[-20px] md:top-[-30px] lg:top-[-40px] bg-[#0032A0] rounded-full flex justify-center items-center py-3 px-4 lg:py-4 lg:px-6">
+                    class="absolute top-[-10px] sm:top-[-20px] md:top-[-30px] lg:top-[-40px] bg-[#0032A0] rounded-full flex justify-center items-center py-2 sm:py-3 md:py-4 px-3 sm:px-4 md:px-6">
                     <div
-                        class="font-bold text-white text-base sm:text-lg md:text-xl lg:text-[29px] font-satoshi leading-tight">
+                        class="font-bold text-white text-sm sm:text-lg md:text-xl lg:text-[29px] font-satoshi leading-tight">
                         JAV AGRI-TECH
                     </div>
                 </div>
 
                 <!-- Overview Text -->
                 <div
-                    class="text-justify text-center text-white text-opacity-80 text-base sm:text-lg md:text-2xl lg:text-[23px] font-satoshi lg:max-w-[983px]">
+                    class="text-justify text-center text-white text-opacity-80 text-sm sm:text-base md:text-lg lg:text-[23px] font-satoshi lg:max-w-[983px]">
                     <p class="lg:fadeRight lg:animation-element md:mt-6 lg:mt-8">
                         Our AGRI-TECH connects growers, traders, domestic and international buyers seamlessly through
                         the integration of our inventory management, logistics, and payments modules. It facilitates
@@ -541,12 +541,12 @@
                 </div>
 
                 <!-- Horizontal Line -->
-                <div class="my-10 md:mt-6 lg:mt-8 w-full lg:w-[748px] h-0 border-t border-white border-opacity-20">
-                </div>
+                <div class="my-8 md:my-6 lg:mt-8 w-full lg:w-[748px] h-0 border-t border-white border-opacity-20"></div>
             </div>
         </div>
     </div>
 </section>
+
 
 
 
