@@ -8,6 +8,13 @@ module.exports = {
       }
     },
   },
-  plugins: [],
+  plugins: [
+    function({ addUtilities }) {
+      addUtilities({
+        '.text-justify': {
+          'text-align': 'justify',
+        },
+      })
+    }
+  ],
 }
-

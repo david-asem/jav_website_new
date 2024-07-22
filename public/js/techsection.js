@@ -1,3 +1,4 @@
+
 var techServices = document.querySelectorAll('.tech-service');
 var tsIcons = document.querySelectorAll(".ts-icons .ts");
 var techConnectionLines = document.querySelectorAll('.javLineLink path');
@@ -7,6 +8,22 @@ var nextIndex = 1;
 var lineAnimationDuration = 2000; // Adjust this to match your line animation duration
 var transitionInterval;
 var isPaused = false;
+
+function resizeTechServices() {
+    techServices.forEach((service) => {
+        if (window.innerWidth < 640) { // Mobile screen size
+            service.classList.add('w-3/4', 'p-4');
+            service.classList.remove('w-full', 'sm:w-[300px]', 'md:w-[400px]', 'lg:w-[500px]');
+        } else {
+            service.classList.add('w-full', 'sm:w-[300px]', 'md:w-[400px]', 'lg:w-[500px]');
+            service.classList.remove('w-3/4', 'p-4');
+        }
+    });
+}
+
+// Initial resize
+resizeTechServices();
+window.addEventListener('resize', resizeTechServices);
 
 // Handle hover effect
 function onMouseOut(element, idx) {

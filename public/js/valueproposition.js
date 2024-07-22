@@ -20,17 +20,31 @@ function carousel() {
             this.addTouchEvents();
         },
         setActiveSlide(index) {
-            this.activeSlide = index;
+            if (window.innerWidth > 768) {
+                this.activeSlide = (index + this.slides.length) % this.slides.length; // Wrapping around for desktop
+            } else {
+                if (index >= 0 && index < this.slides.length) {
+                    this.activeSlide = index; // Linear navigation for mobile
+                }
+            }
             this.arrangeSlides();
-            if (this.slides[index].hovered) {
-                this.flipCard(index); // Flip the card if the mouse is already on it
+            if (this.slides[this.activeSlide].hovered) {
+                this.flipCard(this.activeSlide); // Flip the card if the mouse is already on it
             }
         },
         nextSlide() {
-            this.setActiveSlide((this.activeSlide + 1) % this.slides.length);
+            if (window.innerWidth > 768) {
+                this.setActiveSlide(this.activeSlide + 1);
+            } else if (this.activeSlide < this.slides.length - 1) {
+                this.setActiveSlide(this.activeSlide + 1);
+            }
         },
         previousSlide() {
-            this.setActiveSlide((this.activeSlide - 1 + this.slides.length) % this.slides.length);
+            if (window.innerWidth > 768) {
+                this.setActiveSlide(this.activeSlide - 1);
+            } else if (this.activeSlide > 0) {
+                this.setActiveSlide(this.activeSlide - 1);
+            }
         },
         arrangeSlides() {
             this.slides.forEach((slide, index) => {
@@ -62,7 +76,6 @@ function carousel() {
             this.observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        // When the section is visible, flip the active card
                         const activeIndex = this.activeSlide;
                         if (this.slides[activeIndex].hovered) {
                             this.flipCard(activeIndex);
@@ -74,18 +87,18 @@ function carousel() {
             this.observer.observe(section);
         },
         addTouchEvents() {
-            const container = document.querySelector('.carousel');
-            container.addEventListener('touchstart', (e) => {
-                this.startX = e.touches[0].clientX;
-            });
-            container.addEventListener('touchmove', (e) => {
-                this.endX = e.touches[0].clientX;
-            });
-            container.addEventListener('touchend', () => {
-                this.handleSwipe();
-            });
+            const container = document.querySelector('.valuepropositioncarousel');
+            container.addEventListener('touchstart', this.touchStart.bind(this));
+            container.addEventListener('touchmove', this.touchMove.bind(this));
+            container.addEventListener('touchend', this.touchEnd.bind(this));
         },
-        handleSwipe() {
+        touchStart(event) {
+            this.startX = event.touches[0].clientX;
+        },
+        touchMove(event) {
+            this.endX = event.touches[0].clientX;
+        },
+        touchEnd() {
             const distance = this.endX - this.startX;
             if (Math.abs(distance) > this.threshold) {
                 if (distance > 0) {
@@ -106,7 +119,7 @@ function carousel() {
                 scale = 1.1;
             }
 
-            let opacity = index === this.activeSlide ? 1.2 : 1.1;
+            let opacity = index === this.activeSlide ? 1 : 0.5;
 
             // Default styles for larger screens
             let transform = `scale(${scale})`;
@@ -115,27 +128,39 @@ function carousel() {
             // Mobile-specific styles
             let mobileTransform = transform;
             let mobileLeft = left;
+            let mobileZIndex = zIndex;
+            let mobileOpacity = opacity;
+            let mobileScale = scale;
 
             if (window.innerWidth <= 768) {
                 if (index === this.activeSlide) {
-                    mobileTransform += ' translateX(-50%)';
-                    mobileLeft = '54%';
+                    mobileTransform = 'translateX(-50%) scale(0.95)'; // Center the active card and scale it down slightly
+                    mobileLeft = '50%'; // Center position
+                    mobileZIndex = 10; // Ensure the active card is on top
+                    mobileOpacity = 1; // Full opacity for active card
+                    mobileScale = 0.90; // Scale up the active card
+                } else if (index === this.activeSlide - 1 || index === this.activeSlide + 1) {
+                    const offset = (index - this.activeSlide) * 100; // Adjust position based on the active slide
+                    mobileLeft = `calc(50% + ${offset}px)`; // Adjust position based on the active slide
+                    mobileScale = 0.75; // Scale down adjacent non-active cards
+                    mobileOpacity = 0.9; // Higher opacity for adjacent non-active cards
+                    mobileZIndex = 5; // Lower z-index for adjacent non-active cards
                 } else {
-                    const offset = (index - this.activeSlide) * 100;
-                    mobileLeft = `calc(50% + ${offset}%)`;
+                    mobileOpacity = 0; // Hide other non-active cards
+                    mobileZIndex = 1; // Ensure hidden cards have the lowest z-index
                 }
             }
 
             return {
                 style: `
-                    transform: ${window.innerWidth <= 768 ? mobileTransform : transform}; 
-                    z-index: ${zIndex}; 
-                    opacity: ${opacity}; 
-                    transition: transform 1s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 1s ease-in, left 1s ease-in; 
+                    transform: ${window.innerWidth <= 768 ? `translateX(-50%) scale(${mobileScale})` : transform}; 
+                    z-index: ${window.innerWidth <= 768 ? mobileZIndex : zIndex}; 
+                    opacity: ${window.innerWidth <= 768 ? mobileOpacity : opacity}; 
+                    transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.5s ease-in, left 0.5s ease-in; 
                     position: absolute; 
                     left: ${window.innerWidth <= 768 ? mobileLeft : left};
                 `,
-                class: `${index === this.activeSlide ? 'w-80 bg-blue-800 ' + textColor : 'w-72 bg-white border border-blue-800 ' + textColor} h-96 rounded-2xl overflow-hidden shadow-lg relative`
+                class: `${index === this.activeSlide ? 'w-80 h-96 bg-blue-800 ' + textColor : 'w-72 h-96 bg-white border border-blue-800 ' + textColor} rounded-2xl overflow-hidden shadow-lg relative`
             };
         }
     };

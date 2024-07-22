@@ -126,14 +126,15 @@
     style="height: 800px; overflow: hidden; background-image: url('/images/new-value-bg.png'); background-attachment: fixed;">
     <!-- Carousel Title -->
     <h2
-        class="slide fadeRight animation-element mx-auto mt-14 text-center text-slate-900 text-xl sm:text-xl md:text-xl lg:text-3xl font-medium leading-snug md:leading-normal lg:leading-relaxed font-['Satoshi']">
-        At JAVOLIN we focus on combining the digital and physical worlds. We impact industries with our tech by accelerating
+        class="lg:slide lg:fadeRight lg:animation-element mt-14 mx-10 text-center text-justify text-slate-900 text-xl sm:text-xl md:text-xl lg:text-3xl font-medium  md:leading-normal lg:leading-relaxed font-['Satoshi']">
+        At JAVOLIN we focus on combining the digital and physical worlds. We impact industries with our tech by
+        accelerating
         efficiencies in payments, inventory management, logistics tracking and owned commodities.
     </h2>
 
     <!-- Carousel container -->
-    <div class="flex justify-center items-center h-full slide fadeRight animation-element"
-        style="perspective: 1000px; position: relative; overflow: visible; width: 90%; margin: 0 auto; margin-top: -5rem;">
+    <div class="valuepropositioncarousel flex justify-center items-center h-full lg:slide lg:fadeRight lg:animation-element"
+        style="perspective: 1000px; position: relative; overflow: visible; width: 90%; margin: 0 auto; margin-top: -6rem;">
 
         <!-- Left navigation arrow with circle -->
         {{{leftArrowSVG}}}
@@ -166,31 +167,24 @@
                             style="border-radius: 1rem; position: absolute; width: 100%; height: 100%; color: white; display: flex; align-items: flex-start; justify-content: center; backface-visibility: hidden; transform: rotateY(180deg); padding-top: 1rem;">
                             <div class="flex flex-col items-center text-center space-y-1" style="margin-top: 0.5rem;">
                                 <!-- Adjust margin to move the title up -->
-                                <span x-text="slide.label" class="w-56 text-center text-white text-2xl font-bold font-['Satoshi'] mb-10 my"></span>
-                                <div
-                                    style="width: 280px; text-align: center; color: white; font-size: 18px; font-family: Satoshi; font-weight: 400; " class="mt-10">
+                                <span x-text="slide.label"
+                                    class="w-56 text-center text-white text-2xl font-bold font-['Satoshi'] mb-10 my"></span>
+                                <div style="width: 280px; text-align: center; color: white; font-size: 18px; font-family: Satoshi; font-weight: 400; "
+                                    class="mt-10">
                                     <span x-text="slide.content"></span>
                                 </div>
-
-
-
-
                             </div>
                         </div>
-
-
                     </div>
 
                     <!-- Arrow -->
                     <div class="arrow-container"
                         style="position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%) rotate(-45deg); transform-origin: center;">
                         <!-- SVG for active card's arrow {{{activeCardArrowSVG}}} -->
-
                     </div>
                 </div>
             </div>
         </template>
-
     </div>
 
     <!-- Navigation Dots -->
@@ -271,8 +265,8 @@
                     </p>
                 </div>
             </div>
-            <div class="ts-icons grid grid-cols-4 grid-rows-4 grid-flow-col gap-4 col-start-2 z-20">
-                <div class="ts w-40 h-40 bg-white rounded-2xl flex flex-col items-center justify-center">
+            <div class="ts-icons grid grid-cols-3 lg:grid-cols-4 grid-rows-4 grid-flow-col gap-2 lg:gap-4 col-start-2 z-20">
+                <div class="ts w-24 h-24 lg:w-40 lg:h-40 bg-white rounded-2xl flex flex-col items-center justify-center">
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="53" height="51" viewBox="0 0 53 51" fill="none">
                             <g clip-path="url(#clip0_4288_1448)">
@@ -294,12 +288,12 @@
                             </defs>
                         </svg>
                     </div>
-                    <div class="art-text text-black text-lg">
+                    <div class="art-text text-black text-sm lg:text-lg">
                         Digital KYC
                     </div>
                 </div>
                 <div
-                    class="ts unfocus-tech w-40 h-40 bg-white rounded-2xl flex flex-col items-center justify-center col-start-4 ">
+                    class="ts unfocus-tech w-24 h-24 lg:w-40 lg:h-40 bg-white rounded-2xl flex flex-col items-center justify-center col-start-4 ">
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="63" height="63" viewBox="0 0 63 63" fill="none">
                             <g clip-path="url(#clip0_4244_3553)">
@@ -322,12 +316,12 @@
                             </defs>
                         </svg>
                     </div>
-                    <div class="art-text text-black text-lg ">
+                    <div class="art-text text-black text-sm lg:text-lg ">
                         JAV Connect
                     </div>
                 </div>
                 <div
-                    class="ts unfocus-tech w-40 h-40 bg-white rounded-2xl flex flex-col items-center justify-center row-start-2 col-start-3 ">
+                    class="ts unfocus-tech w-24 h-24 lg:w-40 lg:h-40 bg-white rounded-2xl flex flex-col items-center justify-center row-start-2 col-start-3 ">
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="77" height="59" viewBox="0 0 77 59" fill="none">
                             <g clip-path="url(#clip0_4244_3620)">
@@ -351,12 +345,12 @@
                             </defs>
                         </svg>
                     </div>
-                    <div class="art-text text-black">
+                    <div class="art-text text-black text-sm lg:text-lg">
                         JAV API
                     </div>
                 </div>
                 <div
-                    class="ts unfocus-tech w-40 h-40 bg-white rounded-2xl flex flex-col items-center justify-center row-start-3 col-start-1">
+                    class="ts unfocus-tech w-24 h-24 lg:w-40 lg:h-40 bg-white rounded-2xl flex flex-col items-center justify-center row-start-3 col-start-1">
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="65" height="69" viewBox="0 0 65 69" fill="none">
                             <path
@@ -382,7 +376,7 @@
                             </defs>
                         </svg>
                     </div>
-                    <div class="art-text text-black">
+                    <div class="art-text text-black text-sm lg:text-lg">
                         JAV AI
                     </div>
                 </div>
@@ -504,7 +498,7 @@
 
 
 <section id="agrisection" x-data="{ shrink: false }"
-    class="relative flex justify-center items-center min-h-[120vh] transform transition-transform duration-2000"
+    class="relative flex justify-center items-center min-h-[130vh] transform transition-transform duration-2000"
     style="background: url('/images/agri-bg.png') no-repeat center center; background-size: cover;">
 
     <video :class="shrink ? 'shrink-video' : 'full-video'" class="object-cover z-0 full-video" autoplay="" loop=""
@@ -513,9 +507,9 @@
         Your browser does not support the video tag.
     </video>
 
-    <div class="absolute top-0 left-0 w-full h-full flex justify-center items-center z-10">
+    <div class="absolute top-[55px] md:top-[92px] lg:top-0 left-0 w-full h-full flex justify-center items-center z-10">
         <div
-            class="relative sm:w-96 sm:h-96 md:w-96 md:h-96 lg:w-[1118px] lg:h-[506px] bg-[#000638] bg-opacity-60 rounded-xl p-6 lg:p-10 backdrop-blur-lg mx-5">
+            class="relative sm:w-96 sm:h-96 md:w-96 md:h-96 lg:w-[1118px] lg:h-[506px] bg-[#000638] bg-opacity-60 rounded-xl p-6 lg:p-10 backdrop-blur-lg mx-5 mb-20">
             <div class="flex flex-col items-center justify-start pt-[42px]">
 
                 <!-- JAV AgriTech Button -->
@@ -528,8 +522,8 @@
 
                 <!-- Overview Text -->
                 <div
-                    class="text-justify text-white text-opacity-80 text-[20px] md:text-3xl lg:text-[23px] font-satoshi leading-relaxed max-w-full lg:max-w-[983px]">
-                    <p class="fadeRight animation-element in-view mt-4 md:mt-6 lg:mt-8">
+                    class="text-justify text-center text-white text-opacity-80 text-[20.52px] md:text-3xl lg:text-[23px] font-satoshi lg:max-w-[983px]">
+                    <p class="lg:fadeRight lg:animation-element md:mt-6 lg:mt-8">
                         Our AGRI-TECH connects growers, traders, domestic and international buyers seamlessly through
                         the integration of our inventory management, logistics, and payments modules. It facilitates
                         local buyers inputting current inventories on hand, allows for tracking local trucking to
@@ -537,7 +531,7 @@
                         opportunities.
                     </p>
 
-                    <p class="mt-4 lg:mt-6 fadeLeft animation-element in-view">
+                    <p class="mt-4 lg:mt-6 lg:fadeLeft lg:animation-element in-view">
                         We imagined a world where a small farmer could produce 10 bags of cassava, make it readily known
                         to domestic or international buyers that it’s for sale, sell it to them and then receive their
                         payment in mobile currency on the same day. Our system was developed around this cause. JAVOLIN
@@ -546,11 +540,10 @@
                 </div>
 
                 <!-- Horizontal Line -->
-                <div class="mt-4 md:mt-6 lg:mt-8 w-full lg:w-[748px] h-0 border-t border-white border-opacity-20"></div>
+                <div class="my-10 md:mt-6 lg:mt-8 w-full lg:w-[748px] h-0 border-t border-white border-opacity-20"></div>
             </div>
         </div>
     </div>
-
 </section>
 
 
@@ -559,21 +552,21 @@
 <section id="solutions"
     class="p-6 lg:p-10 flex flex-col justify-center items-center lg:flex-row bg-white bg-no-repeat bg-cover bg-fixed">
     <div class="flex flex-col justify-center items-center max-w-screen-sm lg:max-w-full">
-        <div class="slide fadeLeft animation-element text-center text-[#6CC24A] font-medium tracking-[1.20px] break-words text-[20px] md:text-[20px] lg:text-[29px]"
+        <div class="lg:slide lg:fadeLeft lg:animation-element text-center text-[#6CC24A] font-medium tracking-[1.20px] break-words text-[20px] md:text-[20px] lg:text-[29px]"
             style="font-family: 'Satoshi', sans-serif;">
             OUR SOLUTIONS
         </div>
 
 
-        <div class="slide fadeRight animation-element w-96 lg:w-full m-0 text-center text-[#000638] break-words font-normal lg:font-bold text-[24px] md:text-[24px] lg:text-[40px]" style="font-family: 'Satoshi', sans-serif;">
+        <div class="lg:slide lg:fadeRight lg:animation-element w-96 lg:w-full m-0 text-center text-[#000638] break-words font-normal lg:font-bold text-[24px] md:text-[24px] lg:text-[40px]" style="font-family: 'Satoshi', sans-serif;">
             Our customizable solutions empower broader participation across industries and borders.
         </div>
 
 
 
-        <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-12 my-12 justify-center relative ">
+                <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-11 my-12 justify-center relative">
 <!-- Foreign Exchange Card -->
-<div class="card slide fadeRight animation-element w-[380px] h-[400px] lg:w-[398px] lg:h-[467px] md:w-[380px] md:h-[400px] mx-auto md:mx-0 lg:mx-0"
+<div class="card lg:slide lg:fadeRight lg:animation-element w-[380px] h-[400px] lg:w-[398px] lg:h-[467px] md:w-[380px] md:h-[400px] mx-auto"
     style="position: relative; box-shadow: 0px 10px 20px rgba(37.73, 40.08, 60.57, 0.30); border-radius: 16px; overflow: hidden">
     <div class="w-full h-full absolute bg-[#000638]"></div>
     <img class="w-full h-full absolute" src="/images/remi.png" alt="Foreign Exchange" />
@@ -583,19 +576,18 @@
     </div>
     <div class="card-hover-content absolute bottom-0 w-full h-[362px] bg-white">
         <div class="absolute left-8 top-8 flex flex-col items-start gap-3">
-            <div class="text-[#000C26] text-[28px] lg:text-[28px] font-bold" style="word-wrap: break-word">Payments</div>
+            <div class="text-[#000C26] text-[28px] lg:text-[28px] font-bold" style="word-wrap: break-word">Payments
+            </div>
             <div class="text-[#5D6066] text-[16px] font-medium" style="word-wrap: break-word">
                 Javolin allows businesses to make digital payments to suppliers and employees across borders from our
-                platforms.
-                Businesses can track the inflow and outflow of money from their wallet using a simplified dashboard with
-                supportive
-                analytic components.
+                platforms. Businesses can track the inflow and outflow of money from their wallet using a simplified
+                dashboard with supportive analytic components.
             </div>
         </div>
     </div>
 </div>
 
-            <div class="card slide fadeRight animation-element w-[380px] h-[400px] lg:w-[398px] lg:h-[467px] md:w-[380px] md:h-[400px] mx-auto md:mx-0 lg:mx-0"
+            <div class="card lg:slide lg:fadeRight lg:animation-element w-[380px] h-[400px] lg:w-[398px] lg:h-[467px] md:w-[380px] md:h-[400px] mx-auto md:mx-0 lg:mx-0"
                 style="position: relative; box-shadow: 0px 10px 20px rgba(37.73, 40.08, 60.57, 0.30); border-radius: 16px; overflow: hidden">
                 <div style="width: 398px; height: 467px; position: absolute; background: #000638"></div>
                 <img style="width: 398px; height: 467px; position: absolute" src="/images/inventory.png"
@@ -628,7 +620,7 @@
             </div>
 
 
-            <div class="card slide fadeRight animation-element w-[380px] h-[400px] lg:w-[398px] lg:h-[467px] md:w-[380px] md:h-[400px] mx-auto md:mx-0 lg:mx-0"
+            <div class="card lg:slide lg:fadeRight lg:animation-element w-[380px] h-[400px] lg:w-[398px] lg:h-[467px] md:w-[380px] md:h-[400px] mx-auto md:mx-0 lg:mx-0"
                 style="position: relative; box-shadow: 0px 10px 20px rgba(37.73, 40.08, 60.57, 0.30); border-radius: 16px; overflow: hidden">
                 <div style="width: 398px; height: 467px; position: absolute; background: #000638"></div>
                 <img style="width: 398px; height: 467px; position: absolute" src="/images/commodities_marketplace.png"
@@ -664,22 +656,22 @@
     style="background-image: url('/images/invest_bg1.png'); background-size: cover; background-color: #000B6B; background-blend-mode: overlay;">
     <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         <div class="p-10 pb-6 lg:px-24 mt-4">
-            <h3 class="text-[#6CC24A] font-size: 20px lg:text-[29px] md:font-size: 18px; animation-element fadeLeft">JAV FINANCE</h3>
-            <p class="hidden lg:block text-[44px] text-white mt-2 font-bold leading-tight animation-element fadeRight"
+            <h3 class="text-[#6CC24A] font-size: 20px lg:text-[29px] md:font-size: 18px; lg:animation-element lg:fadeLeft text-center">JAV FINANCE</h3>
+            <p class="hidden lg:block text-[44px] text-white mt-2 font-bold leading-tight lg:animation-element lg:fadeRight"
                 style="width: 800px; max-width: 800px;">
                 Earn a stabilized return by lending alongside us in the commodities sector.
             </p>
             <!-- Medium Screen Text -->
-            <p class="hidden md:block lg:hidden text-[28px] text-white mt-2 font-bold leading-tight animation-element fadeRight"
+            <p class="text-center hidden md:block lg:hidden text-[28px] text-white mt-2 font-bold leading-tight lg:animation-element lg:fadeRight"
                 style="max-width: 800px;">
                 Earn a stabilized return by lending alongside us<br> in the commodities sector.
             </p>
             <!-- Small Screen Text -->
-            <p class="block md:hidden text-[28px] text-white mt-2 font-bold leading-tight animation-element fadeRight"
+            <p class="text-center block md:hidden text-[28px] text-white mt-2 font-bold leading-tight lg:animation-element lg:fadeRight"
                 style="max-width: 800px;">
                 Earn a stabilized return by lending alongside<br> us in the commodities<br> sector.
             </p>
-            <p class="lg:text-[24px] md:text-[20px] text-[22px] text-[#FAFAFA] mt-4 max-w-xl opacity-70 animation-element fadeLeft">
+            <p class="text-center lg:text-[24px] md:text-[20px] text-[22px] text-[#FAFAFA] mt-4 max-w-xl opacity-70 lg:animation-element lg:fadeLeft">
                 JAVOLIN provides investors and lenders an opportunity to earn a stable and predictable return by
                 participating in our
                 Agri Commodities trading platform. We provide trade financing to traders for a variety of
@@ -689,7 +681,7 @@
                 Contact trade@javolin.com for more information.
             </p>
         </div>
-        <div class="animation-element fadeRight self-end order-1 lg:order-2 flex justify-center">
+        <div class="lg:animation-element lg:fadeRight self-end order-1 lg:order-2 flex justify-center">
             <img class="hidden lg:block w-full h-full" src="/images/invest.png" alt="Investment Image">
             <img class="block lg:hidden w-full h-full" src="/images/invest_mobile.png" alt="Investment Image">
         </div>
@@ -697,16 +689,14 @@
 </section>
 
 
-
-
-<section class="" style="background: url('/images/agri-bg.png') no-repeat center center; background-size: cover;">
+<section class="quoteText" style="background: url('/images/agri-bg.png') no-repeat center center; background-size: cover;">
     <div>
-        <div class="py-10 flex justify-center items-center mb-4 fadeRight animation-element">
+        <div class="py-10 flex justify-center items-center mb-4 lg:fadeRight lg:animation-element">
             <div class="w-[382px] lg:w-full text-center text-blue-800 text-[32px] lg:text-[40px] font-bold font-['Satoshi'] tracking-wider">
                 Community Impact
             </div>
         </div>
-        <div class="italic flex justify-center items-center flex-row relative fadeLeft animation-element">
+        <div class="italic flex justify-center items-center flex-row relative lg:fadeLeft lg:animation-element">
             <div class="lg:max-w-[1000px]" id="quoteText"
                 style="display: flex; align-items: center; justify-content: center; min-height: 250px;">
                 <span style="font-size: 70px; color: #6CC24A; line-height: 1;">“</span>
@@ -718,7 +708,7 @@
                 <span style="font-size: 70px; color: #6CC24A; line-height: 1;">”</span>
             </div>
         </div>
-        <div class="fadeRight animation-element mt-14 relative justify-center overflow-visible">
+        <div class="lg:fadeRight lg:animation-element mt-14 relative justify-center overflow-visible">
             <div id="carousel" class="carousel flex justify-center p-2">
                 <div class="community-image flex-shrink-0 w-full md:w-1/4 lg:w-1/4 p-2">
                     <img class="w-full h-full object-cover rounded-2xl hover:transform hover:translate-y-[-10px] duration-300 ease-in-out"
@@ -764,11 +754,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
         
     </div>
 </section>
@@ -776,12 +761,12 @@
 
 
 
-<section id="news" class="md:p-10 relative p-10 lg:px-24 py-20"
+<section id="news" class="md:p-8 relative p-10 lg:px-24"
     style="background: url('/images/news_bg.png') no-repeat center center; background-size: cover;">
 
-    <div class="my-8 text-white text-3xl md:text-4xl font-black font-['Satoshi']">News & Announcements</div>
+    <div class="text-center  text-white text-3xl md:text-4xl font-black font-['Satoshi']">News & Announcements</div>
     <div style="box-shadow: 0px 20.952px 38.095px 0px rgba(239, 234, 234, 0.1);"
-        class="rounded-[20px] grid grid-cols-1 lg:grid-cols-2 border-[0.29px] border-[#95989D] h-auto lg:h-[350px] hover:scale-105 ease-in-out duration-300 fadeRight animation-element mt-12">
+        class="rounded-[20px] grid grid-cols-1 lg:grid-cols-2 border-[0.29px] border-[#95989D] h-auto lg:h-[350px] hover:scale-105 ease-in-out duration-300 lg:fadeRight lg:animation-element mt-12">
         <div class="h-full lg:h-[350px]">
             <a href="#" class="video-link" data-video-id="bujPjJS8jR0">
                 <img class="w-full h-full lg:h-[350px] rounded-tl-2xl lg:rounded-bl-2xl lg:rounded-tr-none rounded-tr-2xl object-cover"
@@ -829,7 +814,7 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16 mb-12">
         <div
-            class="h-auto bg-white rounded-2xl shadow border-[0.29px] border-neutral-400 flex flex-col hover:scale-105 ease-in-out duration-300 fadeLeft animation-element">
+            class="h-auto bg-white rounded-2xl shadow border-[0.29px] border-neutral-400 flex flex-col hover:scale-105 ease-in-out duration-300 lg:fadeLeft lg:animation-element">
             <div class="relative h-56 md:h-60 overflow-hidden rounded-tl-2xl rounded-tr-2xl image-link">
                 <!-- Image for desktop -->
                 <img class="hidden lg:block absolute top-0 left-0 w-full h-full object-fill" src="/images/food_show.jpg" />
@@ -871,7 +856,7 @@
     </div>
 </div>
 <div
-    class="h-auto bg-white rounded-2xl shadow border border-neutral-400 flex flex-col hover:scale-105 ease-in-out duration-300 fadeRight animation-element news-link">
+    class="h-auto bg-white rounded-2xl shadow border border-neutral-400 flex flex-col hover:scale-105 ease-in-out duration-300 lg:fadeRight lg:animation-element news-link">
     <div class="h-56 md:h-60 overflow-hidden rounded-tl-2xl rounded-tr-2xl">
         <!-- Image for desktop -->
         <img class="hidden lg:block w-full h-full object-fill" src="/images/jav_rbi.jpg" />
