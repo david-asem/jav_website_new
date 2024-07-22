@@ -498,8 +498,7 @@
 
 
 <section id="agrisection" x-data="{ shrink: false }"
-    class="relative flex justify-center items-center min-h-screen transform transition-transform duration-2000"
-    style="background: url('/images/agri-bg.png') no-repeat center center; background-size: cover;">
+    class="relative flex justify-center items-center min-h-screen transform transition-transform duration-2000">
 
     <video :class="shrink ? 'shrink-video' : 'full-video'" class="object-cover z-0 full-video" autoplay="" loop=""
         muted="">
@@ -507,10 +506,11 @@
         Your browser does not support the video tag.
     </video>
 
-    <div class="absolute top-[55px] md:top-[92px] lg:top-0 left-0 w-full h-full flex justify-center items-center z-10">
+    <div
+        class="absolute top-[55px] md:top-[92px] lg:top-0 left-0 w-full h-full flex justify-center items-center z-10 p-4">
         <div
-            class="relative w-full max-w-lg md:max-w-3xl lg:max-w-4xl bg-[#000638] bg-opacity-60 rounded-xl p-4 sm:p-6 lg:p-10 backdrop-blur-lg mx-5 mb-20">
-            <div class="flex flex-col items-center justify-start pt-8 sm:pt-[42px]">
+            class="relative w-full max-w-lg md:max-w-3xl lg:max-w-4xl bg-[#000638] bg-opacity-60 rounded-xl p-4 sm:p-6 lg:p-10 backdrop-blur-lg mx-5">
+            <div class="flex flex-col items-center justify-start pt-12 sm:pt-[42px]">
 
                 <!-- JAV AgriTech Button -->
                 <div
@@ -524,7 +524,7 @@
                 <!-- Overview Text -->
                 <div
                     class="text-justify text-center text-white text-opacity-80 text-sm sm:text-base md:text-lg lg:text-[23px] font-satoshi lg:max-w-[983px]">
-                    <p class="lg:fadeRight lg:animation-element md:mt-6 lg:mt-8">
+                    <p class="mt-6 lg:fadeRight lg:animation-element">
                         Our AGRI-TECH connects growers, traders, domestic and international buyers seamlessly through
                         the integration of our inventory management, logistics, and payments modules. It facilitates
                         local buyers inputting current inventories on hand, allows for tracking local trucking to
@@ -532,11 +532,11 @@
                         opportunities.
                     </p>
 
-                    <p class="mt-4 lg:mt-6 lg:fadeLeft lg:animation-element in-view">
+                    <p class="mt-4 lg:mt-6 lg:fadeLeft lg:animation-element">
                         We imagined a world where a small farmer could produce 10 bags of cassava, make it readily known
                         to domestic or international buyers that it’s for sale, sell it to them and then receive their
                         payment in mobile currency on the same day. Our system was developed around this cause. JAVOLIN
-                        also sales its own inventory via our trading platform to registered clients.
+                        also sells its own inventory via our trading platform to registered clients.
                     </p>
                 </div>
 
