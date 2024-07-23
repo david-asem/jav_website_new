@@ -653,97 +653,7 @@
     </style>
 </head>
 
-<body class="relative" x-data="{
-                playerOpened: false,
-                comingSoonOpened: false,
-                waitListOpened: false,
-                supportOpened:false,
-                {{!-- language: {{language}}, --}}
-                togglePlayer() {
-                    if (this.open) {
-                        return this.closePlayer()
-                    }
-                    $refs.javolinVideoHolder.classList.remove('hidden')
-                    this.playerOpened = true
-                },
-                toggleWaitList() {
-                    if (this.waitListOpened) {
-                        this.waitListOpened = false
-                        return
-                    }
-                    $refs.waitListHolder.classList.remove('hidden')
-                    this.waitListOpened = true
-                },
-                toggleSupport() {
-                    if (this.supportOpened) {
-                        this.supportOpened = false
-                        return
-                    }
-                    $refs.supportOpenedHolder.classList.remove('hidden')
-                    this.supportOpened = true
-                },
-                toggleComingSoon() {
-                    if (this.comingSoonOpened) {
-                        this.comingSoonOpened = false
-                        return;
-                    }
-                    $refs.comingSoonHolder.classList.remove('hidden')
-                    this.comingSoonOpened = true
-                },
-                closePlayer(focusAfter) {
-                    this.playerOpened = false
-                    this.waitListOpened = false
-                    var video = document.getElementById('mJavolinVideo');
-                    video.pause();
-                    video.currentTime = 0;
-                    focusAfter && focusAfter.focus()
-                },
-                langs: {
-                        'EN': {
-                            lang_code: 'EN',
-                            image: 'usflag.png'
-                        },
-                        'FR': {
-                            lang_code: 'FR',
-                            image: 'frflag.png',
-                        },
-                        {{!-- 'ES': {
-                            lang_code: 'ES',
-                            image: 'esflag.svg',
-                        } --}}
-                    },
-                selectedLang: 'EN',
-                dropdownOpened: false,
-                langdata: [
-                    { id: 'EN', url: 'usflag.png' },
-                    { id: 'FR', url: 'frflag.png' },
-                    {{!-- { id: 'ES', url: 'esflag.svg' }, --}}
-                ],
-                language:{
-                    'EN':{
-                        'Client Log-In':'Client Log-In',
-                        'Who We Are': 'Who We Are',
-                        'Solutions': 'Solutions',
-                        'Our Tech': 'Our Tech',
-                        'JAV Finance': 'JAV Finance',
-                        'Agri-Tech': 'Agri-Tech',
-                        'About us': 'About us',
-                        'Support': 'Support',
-                        
-                    },
-                    'FR':{
-                        'Client Log-In':'Connecter',
-                        'Who We Are': 'Who We Are',
-                        'Agri-Tech': 'Agri-Tech',
-                        'Solutions': 'Solutions',
-                        'Our Tech': 'Our Tech',
-                        'JAV Finance': 'JAV Finance',
-                        'About us': 'Á notre propos',
-                        'Support': 'Soutien',
-                    },
-                }
-            }"
-      x-id="['dropdown-button']">
+<body class="relative" x-data="mainData" x-init="updateTranslations()">
 
 <style>
     [x-cloak] {
@@ -752,20 +662,21 @@
 </style>
 
 <div x-data="{ showModal: false, showPaymentsModal: false, showCommoditiesModal: false }" x-cloak>
-    <header
-        class="font-medium flex justify-between items-center px-4 lg:px-12 xl:px-20 fixed z-30 bg-white shadow-2xl w-full"
-        @scroll.window="handleScroll" x-data="{ isOpen: false }" x-init="handleScroll = () => {
-            isAtTop = window.scrollY > 0;
-            lastScroll = window.scrollY;
-        }" style="left: 0; height: 88px; background-color: white; box-shadow: 0 2px 4px rgba(0,0,0,0.4);">
-        <a href="/" class="top-5 left-5 lg:top-5 lg:left-10">
-            <img src="/images/jav_logo_color.png" alt="Javolin Logo" class="w-32 lg:w-40" />
-        </a>
-    
-        <!-- Navigation for larger screens -->
-        <div class="flex-grow hidden lg:flex justify-center items-center gap-40 whitespace-nowrap">
-            {{> nav }}
-        </div>
+<header
+    class="font-medium flex justify-between items-center px-4 lg:px-12 xl:px-20 fixed z-30 bg-white shadow-2xl w-full"
+    @scroll.window="handleScroll" x-data="{ isOpen: false, isDropdownOpen: false }" x-init="handleScroll = () => {
+        isAtTop = window.scrollY > 0;
+        lastScroll = window.scrollY;
+    }" style="left: 0; height: 88px; background-color: white; box-shadow: 0 2px 4px rgba(0,0,0,0.4);">
+    <a href="/" class="top-5 left-5 lg:top-5 lg:left-10">
+        <img src="/images/jav_logo_color.png" alt="Javolin Logo" class="w-32 lg:w-40" />
+    </a>
+
+    <!-- Navigation for larger screens -->
+    <div class="flex-grow hidden lg:flex justify-center items-center gap-40 whitespace-nowrap">
+        {{> nav }}
+    </div>
+
     <!-- Mobile menu button and navigation -->
     <div class="flex items-center lg:hidden ml-auto">
         <button @click="isOpen = !isOpen" class="flex items-center">
@@ -777,64 +688,63 @@
             </div>
         </button>
     </div>
-    
+
     <!-- Adjusted Mobile menu -->
     <div x-show="isOpen" x-transition:enter="transition ease-out duration-300"
         x-transition:enter-start="opacity-0 transform scale-95" x-transition:enter-end="opacity-100 transform scale-100"
         x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform scale-100"
         x-transition:leave-end="opacity-0 transform scale-95"
         class="lg:hidden absolute top-full right-2 bg-white shadow-lg rounded-b-lg z-20" @click.away="isOpen = false">
-        <div class="flex flex-col items-start px-10 pt-8 pb-2 space-y-2 sm:px-5">
+        <div class="flex flex-col items-start pt-8 pb-2 space-y-2 sm:px-5">
             {{> nav }}
         </div>
     </div>
-    
-        <!-- Client Login button for larger screens -->
-        <div class="relative hidden lg:flex">
-            <button @click="isOpen = !isOpen"
-                class="hidden lg:flex cursor-pointer bg-[#0032A0] text-white px-6 py-2 rounded-full text-lg font-bold items-center justify-center"
-                style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); white-space: nowrap;">
-                Client Log-In
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" class="ml-2">
-                    <path
-                        d="M13.5326 6.53061L8.53255 11.5306C8.46287 11.6005 8.38008 11.656 8.28892 11.6939C8.19775 11.7317 8.10001 11.7512 8.0013 11.7512C7.90259 11.7512 7.80485 11.7317 7.71369 11.6939C7.62252 11.656 7.53973 11.6005 7.47005 11.5306L2.47005 6.53061C2.32915 6.38972 2.25 6.19862 2.25 5.99936C2.25 5.80011 2.32915 5.60901 2.47005 5.46811C2.61095 5.32722 2.80204 5.24806 3.0013 5.24806C3.20056 5.24806 3.39165 5.32722 3.53255 5.46811L8.00193 9.93749L12.4713 5.46749C12.6122 5.32659 12.8033 5.24744 13.0026 5.24744C13.2018 5.24744 13.3929 5.32659 13.5338 5.46749C13.6747 5.60838 13.7539 5.79948 13.7539 5.99874C13.7539 6.198 13.6747 6.38909 13.5338 6.52999L13.5326 6.53061Z"
-                        fill="white" />
-                </svg>
-            </button>
-            <div x-show="isOpen" x-transition:enter="transition ease-out duration-300"
-                x-transition:enter-start="opacity-0 transform scale-95"
-                x-transition:enter-end="opacity-100 transform scale-100"
-                x-transition:leave="transition ease-in duration-200"
-                x-transition:leave-start="opacity-100 transform scale-100"
-                x-transition:leave-end="opacity-0 transform scale-95" @mouseleave="isOpen = false"
-                @mouseenter="isOpen = true" class="absolute top-8 right-2 bg-white rounded-2xl w-64 p-4 shadow-lg">
-                <div @click="isOpen = false; showPaymentsModal = true"
-                    class="flex items-center space-x-4 cursor-pointer py-2">
-                    <div class="w-11 h-11 bg-orange-200 rounded-full flex items-center justify-center flex-shrink-0">
-                        <img src="/images/CreditCard.svg" alt="Payments Icon" />
-                    </div>
-                    <div>
-                        <div class="text-black font-semibold">Payments</div>
-                        <!-- <div class="text-gray-500 text-sm">Ut enim ad minim veniam, quis tulix nostrud sad ss
-                            exercitation</div> -->
-                    </div>
+
+    <!-- Client Login button and language dropdown for larger screens -->
+    <div class="relative hidden lg:flex items-center ml-20">
+        <button @click="isDropdownOpen = !isDropdownOpen"
+            class="cursor-pointer bg-[#0032A0] text-white px-4 py-2 rounded-full text-lg font-bold items-center justify-center"
+            style="white-space: nowrap;" data-translate="clientLogin">
+            Client Log-In
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" class="ml-2">
+                <path
+                    d="M13.5326 6.53061L8.53255 11.5306C8.46287 11.6005 8.38008 11.656 8.28892 11.6939C8.19775 11.7317 8.10001 11.7512 8.0013 11.7512C7.90259 11.7512 7.80485 11.7317 7.71369 11.6939C7.62252 11.656 7.53973 11.6005 7.47005 11.5306L2.47005 6.53061C2.32915 6.38972 2.25 6.19862 2.25 5.99936C2.25 5.80011 2.32915 5.60901 2.47005 5.46811C2.61095 5.32722 2.80204 5.24806 3.0013 5.24806C3.20056 5.24806 3.39165 5.32722 3.53255 5.46811L8.00193 9.93749L12.4713 5.46749C12.6122 5.32659 12.8033 5.24744 13.0026 5.24744C13.2018 5.24744 13.3929 5.32659 13.5338 5.46749C13.6747 5.60838 13.7539 5.79948 13.7539 5.99874C13.7539 6.198 13.6747 6.38909 13.5338 6.52999L13.5326 6.53061Z"
+                    fill="white" />
+            </svg>
+        </button>
+        <div x-show="isDropdownOpen" x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0 transform scale-95"
+            x-transition:enter-end="opacity-100 transform scale-100"
+            x-transition:leave="transition ease-in duration-200"
+            x-transition:leave-start="opacity-100 transform scale-100"
+            x-transition:leave-end="opacity-0 transform scale-95" @mouseleave="isDropdownOpen = false"
+            @mouseenter="isDropdownOpen = true" class="absolute top-8 right-2 bg-white rounded-2xl w-64 p-4 shadow-lg">
+            <div @click="isDropdownOpen = false; showPaymentsModal = true"
+                class="flex items-center space-x-4 cursor-pointer py-2">
+                <div class="w-11 h-11 bg-orange-200 rounded-full flex items-center justify-center flex-shrink-0">
+                    <img src="/images/CreditCard.svg" alt="Payments Icon" />
                 </div>
-                <div @click="isOpen = false; showCommoditiesModal = true"
-                    class="flex items-center space-x-4 cursor-pointer py-2 mt-4">
-                    <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
-                        <img src="/images/jav_agri.jpg" alt="Commodities Icon" />
-                    </div>
-                    <div>
-                        <div class="text-black font-semibold">Commodities</div>
-                        <!--
-                        <div class="text-gray-500 text-sm">Ut enim ad minim veniam, quis tulix nostrud sad ss
-                            exercitation</div>
-                            -->
-                    </div>
+                <div>
+                    <div class="text-black font-semibold" data-translate="paymentsDropDown">Payments</div>
+                </div>
+            </div>
+            <div @click="isDropdownOpen = false; showCommoditiesModal = true"
+                class="flex items-center space-x-4 cursor-pointer py-2 mt-4">
+                <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <img src="/images/jav_agri.jpg" alt="Commodities Icon" />
+                </div>
+                <div>
+                    <div class="text-black font-semibold" data-translate="commoditiesDropDown">Commodities</div>
                 </div>
             </div>
         </div>
-    </header>
+        <div class="ml-4">
+            {{> menu/language-dropdown }}
+        </div>
+    </div>
+</header>
+
+
 
 
     <!-- Payments Modal -->
@@ -866,15 +776,15 @@
                     </div>
                     <div class="relative z-10 h-full flex flex-col justify-between" style="margin-left: -2rem;">
                         <div>
-                            <h2 class="text-2xl font-black font-['Satoshi'] text-slate-950 mt-4">Javolin Payments
+                            <h2 class="text-2xl font-black font-['Satoshi'] text-slate-950 mt-4" data-translate="paymentsPopupHeading">Javolin Payments
                                 Platform
                             </h2>
-                            <p class="mt-4 text-base font-normal font-['Satoshi'] text-gray-950 tracking-tight">
+                            <p class="mt-4 text-base font-normal font-['Satoshi'] text-gray-950 tracking-tight" data-translate="paymentsPopupSubParagraph">
                                 Javolin provides B2B payment services for domestic and international transactions for certain businesses.
                             </p>
                         </div>
                         <div>
-                            <h3 class="text-xs font-bold font-['Satoshi'] text-gray-950 tracking-tight mt-4">WHAT TO KNOW
+                            <h3 class="text-xs font-bold font-['Satoshi'] text-gray-950 tracking-tight mt-4" data-translate="paymentsPopupSubHeading">WHAT TO KNOW
                             </h3>
                             <div class="mt-4 space-y-6 justify-items-center	">
                                 <div class="flex items-start gap-3">
@@ -884,7 +794,7 @@
                                         <path d="M12 8l4 4-4 4M8 12h8" stroke="white" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round"></path>
                                     </svg>
-                                    <p class="text-base font-medium font-['Satoshi'] text-gray-950 tracking-tight">
+                                    <p class="text-base font-medium font-['Satoshi'] text-gray-950 tracking-tight" data-translate="paymentsPopupPoint1">
                                         Businesses must be registered in either the United States or Canada.
                                     </p>
                                 </div>
@@ -895,7 +805,7 @@
                                         <path d="M12 8l4 4-4 4M8 12h8" stroke="white" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round"></path>
                                     </svg>
-                                    <p class="text-base font-medium font-['Satoshi'] text-gray-950 tracking-tight">
+                                    <p class="text-base font-medium font-['Satoshi'] text-gray-950 tracking-tight" data-translate="paymentsPopupPoint2">
                                         Payments must be related to verified business operations or transactions and will be settled at the foreign exchange
                                         rate at the time of transaction.
                                     </p>
@@ -907,7 +817,7 @@
                                         <path d="M12 8l4 4-4 4M8 12h8" stroke="white" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round"></path>
                                     </svg>
-                                    <p class="text-base font-medium font-['Satoshi'] text-gray-950 tracking-tight">
+                                    <p class="text-base font-medium font-['Satoshi'] text-gray-950 tracking-tight" data-translate="paymentsPopupPoint3">
                                         Businesses must be onboarded with specific KYC and AML information.
                                     </p>
                                 </div>
@@ -917,18 +827,18 @@
                                         <path d="M12 8l4 4-4 4M8 12h8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         </path>
                                     </svg>
-                                    <p class="text-base font-medium font-['Satoshi'] text-gray-950 tracking-tight">
+                                    <p class="text-base font-medium font-['Satoshi'] text-gray-950 tracking-tight" data-translate="paymentsPopupPoint4">
                                         Payments can be sent to over 200 countries.
                                     </p>
                                 </div>
                             </div>
                         </div>
-                        <div class="flex space-x-4 mt-12">
+                        <div class="flex space-x-4 mt-8">
                             <a href="https://staging.forex.javolin.com" target="_blank" rel="noopener noreferrer">
-                                <button class="w-44 h-10 bg-blue-800 rounded-full text-center text-white text-base font-medium font-['Circular Std']">Log-in</button>
+                                <button class="w-44 h-10 bg-blue-800 rounded-full text-center text-white text-base font-medium font-['Circular Std']" data-translate="paymentsLogin">Log-in</button>
                             </a>
                             <button
-                                class="w-44 h-10 bg-white border border-slate-300 rounded-full text-center text-blue-800 text-base font-medium font-['Circular Std']">Register</button>
+                                class="w-44 h-10 bg-white border border-slate-300 rounded-full text-center text-blue-800 text-base font-medium font-['Circular Std']" data-translate="paymentsRegister">Register</button>
                         </div>
                     </div>
                 </div>
@@ -965,16 +875,16 @@
                     </div>
                     <div class="relative z-10 h-full flex flex-col justify-between" style="margin-left: -2rem;">
                         <div>
-                            <h2 class="text-2xl font-black font-['Satoshi'] text-slate-950 mt-4">Javolin Commodities Platform
+                            <h2 class="text-2xl font-black font-['Satoshi'] text-slate-950 mt-4" data-translate="commoditiesPopupHeading">Javolin Commodities Platform
                             </h2>
-                            <p class="mt-4 text-base font-normal font-['Satoshi'] text-gray-950 tracking-tight">
+                            <p class="mt-4 text-base font-normal font-['Satoshi'] text-gray-950 tracking-tight" data-translate="commoditiesPopupSubParagraph">
                                 The Javolin Marketplace allows farmers and traders of agri-commodities to identify their products on hand to be sold
                                 to domestic and international buyers. It facilitates the procurement of these products by buyers via our payment’s
                                 portal and logistics services.
                             </p>
                         </div>
                         <div>
-                            <h3 class="text-xs font-bold font-['Satoshi'] text-gray-950 tracking-tight">WHAT TO KNOW
+                            <h3 class="text-xs font-bold font-['Satoshi'] text-gray-950 tracking-tight" data-translate="commoditiesPopupSubHeading">WHAT TO KNOW
                             </h3>
                             <div class="mt-4 space-y-6">
                                 <div class="flex items-start gap-3">
@@ -984,7 +894,7 @@
                                         <path d="M12 8l4 4-4 4M8 12h8" stroke="white" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round"></path>
                                     </svg>
-                                    <p class="text-base font-medium font-['Satoshi'] text-gray-950 tracking-tight">
+                                    <p class="text-base font-medium font-['Satoshi'] text-gray-950 tracking-tight" data-translate="commoditiesPopupPoint1">
                                         We are currently working with farmers and traders in Ghana, Nigeria and Senegal.
                                     </p>
                                 </div>
@@ -995,7 +905,7 @@
                                         <path d="M12 8l4 4-4 4M8 12h8" stroke="white" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round"></path>
                                     </svg>
-                                    <p class="text-base font-medium font-['Satoshi'] text-gray-950 tracking-tight">
+                                    <p class="text-base font-medium font-['Satoshi'] text-gray-950 tracking-tight" data-translate="commoditiesPopupPoint2">
                                         We are currently focused on cashews, cassava, and coffee.
                                     </p>
                                 </div>
@@ -1006,7 +916,7 @@
                                         <path d="M12 8l4 4-4 4M8 12h8" stroke="white" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round"></path>
                                     </svg>
-                                    <p class="text-base font-medium font-['Satoshi'] text-gray-950 tracking-tight">
+                                    <p class="text-base font-medium font-['Satoshi'] text-gray-950 tracking-tight" data-translate="commoditiesPopupPoint3">
                                         Farmers, traders, and buyers must be registered participants on the JAVOLIN system.
                                     </p>
                                 </div>
@@ -1016,26 +926,26 @@
                             <!-- Log-in Button with Dropdown -->
                             <div class="relative">
                                 <button @click="openDropdown = openDropdown === 'login' ? null : 'login'"
-                                    class="w-44 h-10 bg-blue-800 rounded-full text-center text-white text-base font-medium font-['Circular Std']">Log-in</button>
+                                    class="w-44 h-10 bg-blue-800 rounded-full text-center text-white text-base font-medium font-['Circular Std']" data-translate="paymentsLogin">Log-in</button>
                                 <div x-show="openDropdown === 'login'" @click.away="openDropdown = null"
                                     class="absolute top-full mt-2 w-44 bg-white border border-gray-200 rounded-md shadow-lg z-20">
                                     <a href="https:/staging.forex.javolin.com/login" target="_blank"
-                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">To Marketplace</a>
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" data-translate="commoditiesPopupOption1">Marketplace</a>
                                     <a href="https://staging.forex.javolin.com/login" target="_blank"
-                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">To Inventory</a>
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" data-translate="commoditiesPopupOption2">Inventory</a>
                                 </div>
                             </div>
 
                             <!-- Register Button with Dropdown -->
                             <div class="relative">
                                 <button @click="openDropdown = openDropdown === 'register' ? null : 'register'"
-                                    class="w-44 h-10 bg-white border border-slate-300 rounded-full text-center text-blue-800 text-base font-medium font-['Circular Std']">Register</button>
+                                    class="w-44 h-10 bg-white border border-slate-300 rounded-full text-center text-blue-800 text-base font-medium font-['Circular Std']" data-translate="paymentsRegister">Register</button>
                                 <div x-show="openDropdown === 'register'" @click.away="openDropdown = null"
                                     class="absolute top-full mt-2 w-44 bg-white border border-gray-200 rounded-md shadow-lg z-20">
                                     <a href="http://localhost:3000/business/signUp?user-type=buyer"
-                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">As Buyer</a>
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" data-translate="buyer">Buyer</a>
                                     <a href="http://localhost:3000/business/signUp?user-type=farmer"
-                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">As Farmer</a>
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" data-translate="farmer">Farmer</a>
                                 </div>
                             </div>
                         </div>
@@ -1093,150 +1003,270 @@
     <script type="text/javascript" src="/js/communityimpact.js"></script>
     <script type="text/javascript" src="/js/news.js"></script>
     
+<script>
+    document.addEventListener('alpine:init', () => {
+        // Main data component for handling translations and dropdown
+        Alpine.data('mainData', () => ({
+            playerOpened: false,
+            comingSoonOpened: false,
+            waitListOpened: false,
+            supportOpened: false,
+            selectedLang: 'EN',
+            dropdownOpened: false,
+            langs: {
+                'EN': { lang_code: 'EN', image: 'usflag.png' },
+                'FR': { lang_code: 'FR', image: 'frflag.png' }
+            },
+            language: {
+                'EN': {
+                    'clientLogin': 'Client Log-In',
+                    'Who We Are': 'Who We Are',
+                    'Solutions': 'Solutions',
+                    'Our Tech': 'Our Tech',
+                    'JAV Finance': 'JAV Finance',
+                    'Agri-Tech': 'Agri-Tech',
+                    'About us': 'About us',
+                    'Support': 'Support',
+                    'focusMessage': 'At JAVOLIN we focus on combining the digital and physical worlds. We impact industries with our tech by accelerating efficiencies in payments, inventory management, logistics tracking and owned commodities.',
+                    'ourTechHeading': 'OUR TECHNOLOGY',
+                    'KYCheading': 'Digital KYC',
+                    'JAVConnectHeading':'JAV Connect',
+                    'JAVAPIHeading': 'JAV API',
+                    'JAVAIHeading': 'JAV AI',
+                    'KYCcontent': 'JAV KYC specializes in providing customized identity & digital KYC solutions. Our services contribute to an expedited onboarding procedure, enhanced compliance, and a reduction in unnecessary in-office application procedures.',
+                    'KYCcontent': 'JAV KYC specializes in providing customized identity & digital KYC solutions. Our services contribute to an expedited onboarding procedure, enhanced compliance, and a reduction in unnecessary in-office application procedures.',
+                    'JAVConnectContent': 'JAV Connects multi-location enterprises via our unified & efficient API network. Customers benefit from significantly faster transactions and enabled same- day settlements.',
+                    'JAVAPIContent': 'JAV API provides application programming interfaces (APIs) that are secure to our customers who want to build on top of our system.Developers who want to leverage the JAV technology can get proprietary access to our APIs.',
+                    'JAVAIContent': 'JAV AI revolutionizes banking customer service by providing banks with advanced, text-based conversational AI. This enables natural language interactions between customers and banking applications, leveraging precise, data- driven responses from the bank\'s own enterprise data.',
+                    'Agritechbttn': 'JAV AGRI TECH',
+                    'Agritechcontent1': 'Our AGRI-TECH connects growers, traders, domestic and international buyers seamlessly through the integration of our inventory management, logistics, and payments modules.It facilitates local buyers inputting current inventories on hand, allows for tracking local trucking to shipping facilities, and highlights for traders and international buyers the current purchasing opportunities.',
+                    'Agritechcontent2': 'We imagined a world where a small farmer could produce 10 bags of cassava, make it readily known to domestic or international buyers that it’s for sale, sell it to them and then receive their payment in mobile currency on the same day.Our system was developed around this cause.JAVOLIN also sales its own inventory via our trading platform to registered clients.',
+                    'OurSolutionsHeading': 'OUR SOLUTIONS',
+                    'OurSolutionsSubHeading': 'Our customizable solutions empower broader participation across industries and borders.',
+                    'OurSolutionsPayHeading': 'Payments',
+                    'OurSolutionsInventoryHeading': 'Inventory & Logistics',
+                    'OurSolutionsAgriHeading':'Agri Commodities Marketplace',
+                    'OurSolutionsPayContent': 'Javolin allows businesses to make digital payments to suppliers and employees across borders from our platforms. Businesses can track the inflow and outflow of money from their wallet using a simplified dashboard with supportive analytic components.',
+                    'OurSolutionsInventoryContent': 'We allow farmers and other businesses to input current inventory levels that can be purchased by domestic & international buyers, and receive payment directly to their mobile money account, bank card, or bank account.Our added logistics module allows purchasers to track the product from the seller, through our warehouse network to their local facilities or vessels for international shipping.',
+                    'OurSolutionsAgriContent':'All agri commodities available for sale from our partners are available for our clients in real time. By registering for our marketplace, domestic & international buyers can better plan their procurement strategies.We currently cover Ghana, Nigeria & Senegal.',
+                    'JavFinanceHeading': 'JAV FINANCE',
+                    'JavFinanceSubHeading': 'Earn a stabilized return by lending alongside us in the commodities sector.',
+                    'JavFinanceContent': 'JAVOLIN provides investors and lenders an opportunity to earn a stable and predictable return by participating in our Agri Commodities trading platform.We provide trade financing to traders for a variety of agri- commodities backed by purchase orders from large international buyers.This platform is only open to sophisticated investors and/ or lenders.Contact trade@javolin.com for more information.',
+                    'CommunityHeading':'Community Impact',
+                    'NewsHeading': 'News & Announcements',
+                    'GitexNewsHeading':'Interview with Carl Powell, CEO Javolin Group at Gitex Africa 2024',
+                    'GitexNewsSubContent': 'Carl Powell was at the Gitex Africa 2024 conference in Morroco. Gitex is the LARGEST Tech & Startup show in Africa Powering Africa into the Global AI Economy.',
+                    'FoodNewsHeading': 'JAVOLIN attends the 2024 Summer Fancy Food Show in New York..',
+                    'PartnershipNewsHeading': 'JAVOLIN Group Supply Consortium announce partnership with Real Blue International...',
+                    'FooterProduct1': 'Who We Are',
+                    'FooterProduct2': 'JAV Infrastructure',
+                    'FooterProduct3': 'JAV Tech',
+                    'FooterProduct4': 'JAV Commodities',
+                    'FooterTech1': 'Our Tech',
+                    'FooterTech2': 'Digital KYC',
+                    'FooterTech3': 'Country Connect',
+                    'FooterTech4': 'JAV API',
+                    'FooterTech5': 'JAV AI',
+                    'FooterAgri1': 'Agri-Tech',
+                    'FooterAgri2': 'Overview',
+                    'FooterSolutions1': 'Solutions',
+                    'FooterSolutions2': 'Foreign Exchange',
+                    'FooterSolutions3': 'Remittance',
+                    'FooterSolutions4': 'Tech as Service',
+                    'FooterFinance1': 'JAV Finance',
+                    'FooterFinance2': 'Overview',
+                    'FooterResources1': 'Resources',
+                    'FooterResources2': 'Community Impact',
+                    'FooterResources3': 'In the news',
+                    'FooterContactUs1': 'Contact Us',
+                    'FooterContactUs2': 'admin@javolin.com',
+                    'paymentsDropDown': 'Payments',
+                    'commoditiesDropDown': 'Commodities',
 
-
-
-    <script>
-
-
-        document.addEventListener('alpine:init', () => {
-
-            Alpine.data('supportMessage', () => ({
-                isLoading: false,
-                user_email: '',
-                name: '',
-                message: '',
-                subject: '',
-                country: '',
-                toggle() {
-                    this.isLoading = !this.isLoading
                 },
-                sendSupportMessage() {
-                    this.toggle();
-                    axios.post("https://staging.api.javolin.com/api/support", {
-                        name: this.name,
-                        email: this.user_email,
-                        body: this.message,
-                        subject: this.subject,
-                        country: this.country,
-                    }).then(res => {
-                        this.toggle();
-                        console.log(res);
-                        alert("Success: Message sent successfully");
-                        this.name = "";
-                        this.subject = "";
-                        this.message = "";
-                        this.user_email = "";
-                        this.country = ""
+                'FR': {
+                    'clientLogin': 'Connecter',
+                    'Who We Are': 'Qui Nous Sommes',
+                    'Solutions': 'Solutions',
+                    'Our Tech': 'Notre Tech',
+                    'JAV Finance': 'JAV Finance',
+                    'Agri-Tech': 'Agri-tech',
+                    'About us': 'À propos de nous',
+                    'Support': 'Soutien',
+                    'focusMessage': 'Chez JAVOLIN, nous nous attachons à combiner les mondes numérique et physique. Nous influençons les industries grâce à notre technologie en accélérant l\'efficacité des paiements, de la gestion des stocks, du suivi logistique et des marchandises détenues.',
+                    'ourTechHeading': 'NOTRE TECHNOLOGIE',
+                    'KYCheading': 'KYC numérique',
+                    'JAVConnectHeading': 'JAV Connecte',
+                    'JAVAPIHeading': 'JAV API',
+                    'JAVAIHeading': 'JAV AI',
+                    'KYCcontent': 'JAV KYC est spécialisé dans la fourniture de solutions personnalisées en matière d\'identité et de KYC numérique. Nos services contribuent à accélérer la procédure d\'intégration, à améliorer la conformité et à réduire les procédures d\'application inutiles dans les bureaux',
+                    'JAVConnectContent': 'JAV connecte les entreprises multilocales via notre réseau d\'API unifié et efficace. Les clients bénéficient de transactions nettement plus rapides et de règlements le jour même.',
+                    'JAVAPIContent': 'JAV API fournit des interfaces de programmation d\'applications(API) sécurisées à nos clients qui souhaitent développer notre système. Les développeurs qui souhaitent tirer parti de la technologie JAV peuvent obtenir un accès exclusif à nos API.',
+                    'JAVAIContent': 'JAV AI révolutionne le service à la clientèle des banques en leur fournissant une IA conversationnelle avancée, basée sur le texte. Cela permet des interactions en langage naturel entre les clients et les applications bancaires, en s\'appuyant sur des réponses précises, basées sur les données de l\'entreprise de la banque.',
+                    'Agritechbttn': 'JAV AGRI TECH',
+                    'Agritechcontent1': 'Notre AGRI-TECH relie les producteurs, les négociants et les acheteurs nationaux et internationaux de manière transparente grâce à l\'intégration de nos modules de gestion des stocks, de logistique et de paiement. Il facilite la saisie par les acheteurs locaux des stocks disponibles, permet de suivre le transport local par camion jusqu\'aux installations d\'expédition et met en évidence, pour les négociants et les acheteurs internationaux, les possibilités d\'achat actuelles.',
+                    'Agritechcontent2':'Nous avons imaginé un monde où un petit agriculteur pourrait produire 10 sacs de manioc, faire savoir aux acheteurs nationaux ou internationaux qu\'ils sont à vendre, leur vendre et recevoir leur paiement en monnaie mobile le même jour. Notre système a été conçu pour répondre à ce besoin. JAVOLIN vend également son propre stock via notre plateforme commerciale à des clients enregistrés.',
+                    'OurSolutionsHeading': 'NOS SOLUTIONS',
+                    'OurSolutionsSubHeading': 'Nos solutions personnalisables permettent une participation plus large à travers les industries et les frontières.',
+                    'OurSolutionsPayHeading': 'Paiements',
+                    'OurSolutionsInventoryHeading': 'Inventaire et Logistique',
+                    'OurSolutionsAgriHeading':'Marché des Produits Agricoles',
+                    'OurSolutionsPayContent': 'Javolin permet aux entreprises d\'effectuer des paiements numériques à leurs fournisseurs et à leurs employés au- delà des frontières à partir de nos plateformes.Les entreprises peuvent suivre les entrées et sorties d\'argent de leur portefeuille à l\'aide d\'un tableau de bord simplifié avec des composants analytiques de soutien.',
+                    'OurSolutionsInventoryContent': 'Nous permettons aux agriculteurs et entreprises de saisir leurs niveaux de stock disponibles pour les acheteurs nationaux et internationaux, avec un paiement direct sur leur compte d\'argent mobile, carte bancaire ou compte bancaire.Notre module logistique permet aux acheteurs de suivre le produit du vendeur, via notre réseau d\'entrepôts, jusqu\'à leurs installations locales ou aux navires pour l\'expédition internationale.',
+                    'OurSolutionsAgriContent': 'Tous les produits agricoles disponibles à la vente auprès de nos partenaires sont accessibles à nos clients en temps réel. En s\'inscrivant sur notre place de marché, les acheteurs nationaux et internationaux peuvent mieux planifier leurs stratégies d\'approvisionnement.Nous couvrons actuellement le Ghana, le Nigeria et le Sénégal.',
+                    'JavFinanceHeading':'JAV Finance',
+                    'JavFinanceSubHeading': 'Obtenez un rendement stabilisé en prêtant à nos côtés dans le secteur des matières premières.',
+                    'JavFinanceContent': 'JAVOLIN offre aux investisseurs et aux prêteurs la possibilité d\'obtenir un rendement stable et prévisible en participant à notre plateforme de négociation de produits agricoles.Nous fournissons des financements aux négociants pour une variété de produits agricoles garantis par des ordres d\'achat de grands acheteurs internationaux. Cette plateforme n\'est ouverte qu\'aux investisseurs et/ou prêteurs avertis. Contactez trade@javolin.com pour plus d\'informations.',
+                    'CommunityHeading': 'Communauté',
+                    'NewsHeading': 'Nouvelles et Annonces',
+                    'GitexNewsHeading': 'Entretien avec Carl Powell, PDG du Groupe Javolin à GITEX Africa 2024',
+                    'GitexNewsSubContent': 'Carl Powell était présent à la conférence Gitex Africa 2024 au Maroc. Gitex est le plus grand salon de la technologie et des startups en Afrique. Il permet à l\'Afrique d\'entrer dans l\'économie mondiale de l\'IA.',
+                    'FoodNewsHeading': 'JAVOLIN participe au 2024 Summer Fancy Food Show à New York..',
+                    'PartnershipNewsHeading': 'Javolin et le Consortium de l\'Afrique de l\'Ouest pour la Noix de Cajou',
+                    'FooterProduct1': 'Qui ommes-nous?',
+                    'FooterProduct2': 'Infrastructure JAV',
+                    'FooterProduct3': 'JAV Tech',
+                    'FooterProduct4': 'JAV Matières premières',
+                    'FooterTech1': 'Notre Technologie',
+                    'FooterTech2': 'Connaissance du client numérique (KYC)',
+                    'FooterTech3': 'Raccordement au pays',
+                    'FooterTech4': 'API JAV',
+                    'FooterTech5': 'JAV AI',
+                    'FooterAgri1': 'Agri Tech',
+                    'FooterAgri2': 'Aperçu général',
+                    'FooterSolutions1': 'Solutions',
+                    'FooterSolutions2': 'Change de devises',
+                    'FooterSolutions3': 'Envoi de fonds',
+                    'FooterSolutions4': 'La technologie comme service',
+                    'FooterFinance1': 'JAV Finance',
+                    'FooterFinance2': 'Aperçu général',
+                    'FooterResources1': 'Ressources',
+                    'FooterResources2': 'Impact sur la communauté',
+                    'FooterResources3': 'Dans l\'actualité',
+                    'FooterContactUs1': 'Contactez-Nous',
+                    'FooterContactUs2': 'admin@javolin.com',
+                    'paymentsDropDown':'Paiements',
+                    'commoditiesDropDown': 'Marché des Produits',
+                    'paymentsPopupHeading': 'Plate-forme de paiement Javolin',
+                    'paymentsPopupSubParagraph': 'Javolin fournit des services de paiement B2B(d\'entreprise à entreprise) pour les transactions nationales et internationales de certaines entreprises.',
+                    'paymentsPopupSubHeading': 'CE QU\'IL FAUT SAVOIR',
+                    'paymentsPopupPoint1': 'Les entreprises doivent être enregistrées aux États-Unis ou au Canada',
+                    'paymentsPopupPoint2': 'Les paiements doivent être liés à des opérations ou transactions commerciales vérifiées et seront réglés au taux de change en vigueur au moment de la transaction',
+                    'paymentsPopupPoint3': 'Les entreprises doivent recevoir des informations spécifiques sur la connaissance du client et la lutte contre le blanchiment d\'argent.',
+                    'paymentsPopupPoint4': 'Les paiements peuvent être effectués dans plus de 200 pays.',
+                    'paymentsLogin': 'Connexion',
+                    'paymentsRegister': 'Registre',
+                    'commoditiesPopupPoint1': 'Nous travaillons actuellement avec des agriculteurs et des commerçants au Ghana, au Nigeria et au Sénégal.',
+                    'commoditiesPopupPoint2': 'Nous nous concentrons actuellement sur la noix de cajou, le manioc et le café.',
+                    'commoditiesPopupPoint3': 'Les agriculteurs, les commerçants et les acheteurs doivent être des participants enregistrés dans le système JAVOLIN.',
+                    'commoditiesPopupHeading': 'Plateforme de produits de base Javolin',
+                    'commoditiesPopupSubParagraph': 'La place de marché Javolin permet aux agriculteurs et aux négociants en produits agricoles d\'identifier leurs produits disponibles pour les vendre à des acheteurs nationaux et internationaux.Elle facilite l\'achat de ces produits par les acheteurs via notre portail de paiement et nos services logistiques.',
+                    'buyer':'Commerçant',
+                    'farmer': 'Fermier',
+                    'commoditiesPopupOption1':'Marché',
+                    'commoditiesPopupOption2':'Inventaire'
+                    
+                    
 
-                    }).catch(err => {
-                        this.toggle();
-                        console.error(err);
-                        alert("Error: " + err.message)
-                    })
-                },
-            })),
-                Alpine.data('waitList', () => ({
-                    isLoading: false,
-                    first_name: '',
-                    last_name: '',
-                    email: '',
-                    referral_code: '',
-                    phone_number: '',
-                    toggle() {
-                        this.isLoading = !this.isLoading
-                    },
-                    joinWaitList() {
-                        this.toggle();
-                        axios.post("https://staging.api.javolin.com/api/waitlist/create", {
-                            first_name: this.first_name,
-                            last_name: this.last_name,
-                            email: this.email,
-                            phone_number: this.phone_number,
-                            referral_code: this.referral_code
-                        }).then(res => {
-                            this.toggle();
-                            console.log(res);
-                            alert("Success: Joined successfully");
-                            this.first_name = "";
-                            this.last_name = "";
-                            this.phone_number = "";
-                            this.email = "";
-                            this.referral_code = "";
-                        }).catch(err => {
-                            this.toggle();
-                            console.error(err);
-                            alert("Error: " + err.message)
-                        })
-                    },
-
-                }))
-        })
-
-
-
-        $(document).ready(function () {
-
-            $('#google_translate_element').bind('DOMNodeInserted', function (event) {
-                $('.goog-te-menu-value span:first').html('LANGUAGE');
-                $('.goog-te-menu-frame.skiptranslate').load(function () {
-                    setTimeout(function () {
-                        $('.goog-te-menu-frame.skiptranslate').contents().find('.goog-te-menu2-item-selected .text').html('LANGUAGE');
-                    }, 100);
-                });
-            });
-
-
-
-
-
-
-
-
-
-            /** ---------------------------- //
-             *  @group viewport trigger script
-             * for adding or removing classes from elements in view within viewport
-            */
-
-
-            var $animationElements = $('.animation-element');
-            var $window = $(window);
-
-            // ps: Let's FIRST disable triggering on small devices!
-            var isMobile = window.matchMedia("only screen and (max-width: 768px)");
-            if (isMobile.matches) {
-                $animationElements.removeClass('animation-element');
-            }
-
-
-            function checkIfInView() {
-
-                var windowHeight = $window.height();
-                var windowTopPosition = $window.scrollTop();
-                var windowBottomPosition = (windowTopPosition + windowHeight);
-
-                $.each($animationElements, function () {
-                    var $element = $(this);
-                    var elementHeight = $element.outerHeight();
-                    var elementTopPosition = $element.offset().top;
-                    var elementBottomPosition = (elementTopPosition + elementHeight);
-
-                    //check to see if this current container is within viewport
-                    if ((elementBottomPosition >= windowTopPosition) &&
-                        (elementTopPosition <= windowBottomPosition)) {
-                        $element.addClass('in-view');
-                    } else {
-                        $element.removeClass('in-view');
+                }
+            },
+            updateTranslations() {
+                const lang = this.selectedLang;
+                const translations = this.language[lang];
+                for (const key in translations) {
+                    if (translations.hasOwnProperty(key)) {
+                        const elements = document.querySelectorAll(`[data-translate='${key}']`);
+                        elements.forEach(element => {
+                            element.textContent = translations[key];
+                        });
                     }
+                }
+            },
+            changeLanguage(lang) {
+                this.selectedLang = lang;
+                this.updateTranslations();
+            },
+            toggleDropdown() {
+                this.dropdownOpened = !this.dropdownOpened;
+            }
+        }));
+
+        // Support message component
+        Alpine.data('supportMessage', () => ({
+            isLoading: false,
+            user_email: '',
+            name: '',
+            message: '',
+            subject: '',
+            country: '',
+            toggle() {
+                this.isLoading = !this.isLoading;
+            },
+            sendSupportMessage() {
+                this.toggle();
+                axios.post("https://staging.api.javolin.com/api/support", {
+                    name: this.name,
+                    email: this.user_email,
+                    body: this.message,
+                    subject: this.subject,
+                    country: this.country
+                }).then(res => {
+                    this.toggle();
+                    console.log(res);
+                    alert("Success: Message sent successfully");
+                    this.name = "";
+                    this.subject = "";
+                    this.message = "";
+                    this.user_email = "";
+                    this.country = "";
+                }).catch(err => {
+                    this.toggle();
+                    console.error(err);
+                    alert("Error: " + err.message);
                 });
             }
+        }));
 
-            $window.on('scroll resize', checkIfInView);
-            $window.trigger('scroll');
-        });
+        // Waitlist component
+        Alpine.data('waitList', () => ({
+            isLoading: false,
+            first_name: '',
+            last_name: '',
+            email: '',
+            referral_code: '',
+            phone_number: '',
+            toggle() {
+                this.isLoading = !this.isLoading;
+            },
+            joinWaitList() {
+                this.toggle();
+                axios.post("https://staging.api.javolin.com/api/waitlist/create", {
+                    first_name: this.first_name,
+                    last_name: this.last_name,
+                    email: this.email,
+                    phone_number: this.phone_number,
+                    referral_code: this.referral_code
+                }).then(res => {
+                    this.toggle();
+                    console.log(res);
+                    alert("Success: Joined successfully");
+                    this.first_name = "";
+                    this.last_name = "";
+                    this.phone_number = "";
+                    this.email = "";
+                    this.referral_code = "";
+                }).catch(err => {
+                    this.toggle();
+                    console.error(err);
+                    alert("Error: " + err.message);
+                });
+            }
+        }));
+    });
+</script>
 
-    </script>
+
+
 
 
 

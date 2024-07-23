@@ -1,18 +1,30 @@
 <div
-    class="flex flex-col lg:flex-row w-full lg:w-auto lg:justify-center lg:items-center gap-3 lg:gap-3 whitespace-nowrap text-slate-950 font-bold lg:text-center md:text-right px-4">
-    <div class="text-slate-950 text-sm font-medium font-satoshi leading-normal" style="max-width: 120px;">
-        {{>menu/products}}
-    </div>
-    <div class="text-slate-950 text-sm font-medium font-satoshi leading-normal" style="max-width: 120px;">
-        {{>menu/technologies}}
-    </div>
-    <div class="text-slate-950 text-sm font-medium font-satoshi leading-normal" style="max-width: 120px;">
-        {{>menu/agribusiness}}
-    </div>
-    <div class="text-slate-950 text-sm font-medium font-satoshi leading-normal" style="max-width: 120px;">
-        {{>menu/solutions}}
-    </div>
-    <div class="text-slate-950 text-sm font-medium font-satoshi leading-normal" style="max-width: 120px;">
-        {{>menu/javfinance}}
+    class="flex flex-col lg:flex-row w-full lg:w-auto lg:justify-between lg:items-center gap-6 lg:gap-3 whitespace-nowrap text-slate-950 font-bold lg:text-center md:text-right lg:ml-16">
+    <div class="flex lg:flex-row gap-12">
+        <div class="text-slate-950 text-sm font-medium font-satoshi  navbar-item"
+            style="max-width: 120px;">
+            {{> menu/products}}
+        </div>
+        <div class="text-slate-950 text-sm font-medium font-satoshi  navbar-item"
+            style="max-width: 120px;">
+            {{> menu/technologies}}
+        </div>
+        <div class="text-slate-950 text-sm font-medium font-satoshi  navbar-item"
+            style="max-width: 120px;">
+            {{> menu/agribusiness}}
+        </div>
+        <div class="text-slate-950 text-sm font-medium font-satoshi  navbar-item"
+            style="max-width: 120px;">
+            {{> menu/solutions}}
+        </div>
+        <div class="text-slate-950 text-sm font-medium font-satoshi  navbar-item"
+            style="max-width: 120px;">
+            {{> menu/javfinance}}
+        </div>
     </div>
 </div>
+
+{{!-- <div class="text-slate-950 text-sm font-medium font-satoshi leading-normal lg:ml-auto navbar-item"
+    style="max-width: 120px;">
+    {{> menu/language-dropdown}}
+</div> --}}

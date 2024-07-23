@@ -69,7 +69,8 @@ app.engine("hbs", engine({
         leftArrowSVG: svgIcons.leftArrow,
         activeCardArrowSVG: svgIcons.activeCardArrow,
         nonActiveCardArrowSVG: svgIcons.nonActiveCardArrow
-    }
+    },
+    partialsDir: path.join(__dirname, 'views', 'partials')
 }));
 
 app.set('view engine', 'hbs');

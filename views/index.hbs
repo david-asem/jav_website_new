@@ -121,12 +121,12 @@
 
 
 
-<section id="products" class="lg:bg-[url('/images/new-value-bg.png')] relative py-4 lg:px-24 bg-cover bg-center bg-no-repeat" x-data="carousel()"
-    x-init="init()"
-    style="height: 800px; overflow: hidden; background-attachment: fixed;">
+<section id="products"
+    class="lg:bg-[url('/images/new-value-bg.png')] relative py-4 lg:px-24 bg-cover bg-center bg-no-repeat"
+    x-data="carousel()" x-init="init()" style="height: 800px; overflow: hidden; background-attachment: fixed;">
     <!-- Carousel Title -->
-    <h2
-        class="lg:slide lg:fadeRight lg:animation-element mt-14 mx-10 text-center text-justify text-slate-900 text-xl sm:text-xl md:text-xl lg:text-3xl font-medium  md:leading-normal lg:leading-relaxed font-['Satoshi']">
+    <h2 class="mt-14 mx-10 text-center text-slate-900 text-xl sm:text-xl md:text-xl lg:text-3xl font-medium md:leading-normal lg:leading-relaxed font-['Satoshi']"
+        data-translate="focusMessage">
         At JAVOLIN we focus on combining the digital and physical worlds. We impact industries with our tech by
         accelerating
         efficiencies in payments, inventory management, logistics tracking and owned commodities.
@@ -160,18 +160,19 @@
                             <!-- Text Label -->
                             <div class="absolute bottom-15 left-0 w-full text-center"
                                 style="padding: 1rem; bottom: 3rem;">
-                                <span x-text="slide.label" class="text-xl font-bold font-['Satoshi']"></span>
+                                <span x-text="slide.label" :data-translate="slide.labelTranslate"
+                                    class="text-xl font-bold font-['Satoshi']"></span>
                             </div>
                         </div>
                         <div class="flip-card-back bg-blue-800"
                             style="border-radius: 1rem; position: absolute; width: 100%; height: 100%; color: white; display: flex; align-items: flex-start; justify-content: center; backface-visibility: hidden; transform: rotateY(180deg); padding-top: 1rem;">
                             <div class="flex flex-col items-center text-center space-y-1" style="margin-top: 0.5rem;">
                                 <!-- Adjust margin to move the title up -->
-                                <span x-text="slide.label"
+                                <span x-text="slide.label" :data-translate="slide.labelTranslate"
                                     class="w-56 text-center text-white text-2xl font-bold font-['Satoshi'] mb-10 my"></span>
                                 <div style="width: 280px; text-align: center; color: white; font-size: 18px; font-family: Satoshi; font-weight: 400; "
                                     class="mt-10">
-                                    <span x-text="slide.content"></span>
+                                    <span x-text="slide.content" :data-translate="slide.contentTranslate"></span>
                                 </div>
                             </div>
                         </div>
@@ -210,20 +211,22 @@
 
 
 
+
 <section id="platform"
     style="background: url('/images/tech_bg.png') no-repeat; background-size: cover; background-color: #00007E; background-blend-mode: overlay;"
     class="p-10 relative  lg:px-24 py-20 bg-[#1A1A40]">
     <div class="flex flex-col lg:flex-col h-[550px]">
         <div class="grid lg:grid-cols-2 md:grid-cols-2 justify-center items-center relative t-service">
             <div class="fadeLeft animation-element z-30 transition duration-150 ease-in-out absolute top-0">
-                <h3 class="text-[#6CC24A] text-[20px] sm:text-[24px] md:text-[28px] lg:text-[30px] xl:text-[34px]">OUR TECHNOLOGY</h3>
+                <h3 class="text-[#6CC24A] text-[20px] sm:text-[24px] md:text-[28px] lg:text-[30px] xl:text-[34px] "data-translate="ourTechHeading">OUR TECHNOLOGY</h3>
 
                 <div
                     class="opacity-100 transition duration-150 ease-in-out absolute tech-service w-full sm:w-[300px] md:w-[400px] lg:w-[500px]">
-                    <p id="tech-subtitle" class="text-[24px] sm:text-[28px] md:text-[36px] lg:text-[44px] text-white mt-2 font-bold">
+                    <p id="tech-subtitle" class="text-[24px] sm:text-[28px] md:text-[36px] lg:text-[44px] text-white mt-2 font-bold" data-translate="KYCheading">
                         Digital KYC</p>
                     <p id="tech-content"
-                        class="text-[16px] sm:text-[18px] md:text-[20px] lg:text-[24px] text-[#FAFAFA] mt-4 max-w-xl opacity-70">
+                        class="text-[16px] sm:text-[18px] md:text-[20px] lg:text-[24px] text-[#FAFAFA] mt-4 max-w-xl opacity-70"
+                        data-translate="KYCcontent">
                         JAV KYC specializes in providing customized identity & digital KYC solutions. Our services contribute to an
                         expedited onboarding procedure, enhanced compliance, and a reduction in unnecessary in-office application
                         procedures.
@@ -233,10 +236,10 @@
                 <div
                     class="opacity-0 transition duration-150 ease-in-out absolute tech-service w-full sm:w-[300px] md:w-[400px] lg:w-[500px]">
                     <p id="tech-subtitle"
-                        class="text-[24px] sm:text-[28px] md:text-[36px] lg:text-[44px] text-white mt-2 font-bold max-w-xl">JAV Connect
+                        class="text-[24px] sm:text-[28px] md:text-[36px] lg:text-[44px] text-white mt-2 font-bold max-w-xl" data-translate="JAVConnectHeading">JAV Connect
                     </p>
                     <p id="tech-content"
-                        class="text-[16px] sm:text-[18px] md:text-[20px] lg:text-[24px] text-[#FAFAFA] mt-4 max-w-xl opacity-70">
+                        class="text-[16px] sm:text-[18px] md:text-[20px] lg:text-[24px] text-[#FAFAFA] mt-4 max-w-xl opacity-70" data-translate="JAVConnectContent">
                         JAV Connects multi-location enterprises via our unified & efficient API network. Customers benefit from
                         significantly faster transactions and enabled same-day settlements.
                     </p>
@@ -245,9 +248,9 @@
                 <div
                     class="opacity-0 transition duration-150 ease-in-out absolute tech-service w-full sm:w-[300px] md:w-[400px] lg:w-[500px]">
                     <p id="tech-subtitle"
-                        class="text-[24px] sm:text-[28px] md:text-[36px] lg:text-[44px] text-white mt-2 font-bold max-w-xl">JAV API</p>
+                        class="text-[24px] sm:text-[28px] md:text-[36px] lg:text-[44px] text-white mt-2 font-bold max-w-xl " data-translate="JAVAPIHeading">JAV API</p>
                     <p id="tech-content"
-                        class="text-[16px] sm:text-[18px] md:text-[20px] lg:text-[24px] text-[#FAFAFA] mt-4 max-w-xl opacity-70">
+                        class="text-[16px] sm:text-[18px] md:text-[20px] lg:text-[24px] text-[#FAFAFA] mt-4 max-w-xl opacity-70" data-translate="JAVAPIContent">
                         JAV API provides application programming interfaces (APIs) that are secure to our customers who want to build on
                         top of our system. Developers who want to leverage the JAV technology can get proprietary access to our APIs.
                     </p>
@@ -256,9 +259,9 @@
                 <div
                     class="opacity-0 transition duration-150 ease-in-out absolute tech-service w-full sm:w-[300px] md:w-[400px] lg:w-[500px]">
                     <p id="tech-subtitle"
-                        class="text-[24px] sm:text-[28px] md:text-[36px] lg:text-[44px] text-white mt-2 font-bold max-w-xl">JAV AI</p>
+                        class="text-[24px] sm:text-[28px] md:text-[36px] lg:text-[44px] text-white mt-2 font-bold max-w-xl" data-translate="JAVAIHeading">JAV AI</p>
                     <p id="tech-content"
-                        class="text-[16px] sm:text-[18px] md:text-[20px] lg:text-[24px] text-[#FAFAFA] mt-4 max-w-xl opacity-70">
+                        class="text-[16px] sm:text-[18px] md:text-[20px] lg:text-[24px] text-[#FAFAFA] mt-4 max-w-xl opacity-70" data-translate="JAVAIContent">
                         JAV AI revolutionizes banking customer service by providing banks with advanced, text-based conversational AI.
                         This enables natural language interactions between customers and banking applications, leveraging precise,
                         data-driven responses from the bank's own enterprise data.
@@ -521,8 +524,8 @@
 
                 <!-- Overview Text -->
                 <div
-                    class="text-justify text-center text-white text-opacity-80 text-[20.52px] md:text-3xl lg:text-[23px] font-satoshi lg:max-w-[983px]">
-                    <p class="lg:fadeRight lg:animation-element md:mt-6 lg:mt-8">
+                    class="text-justify text-center text-white text-opacity-80 text-[20.52px] md:text-3xl lg:text-[20px] font-satoshi lg:max-w-[983px]">
+                    <p class="lg:fadeRight lg:animation-element md:mt-2 lg:mt-2" data-translate="Agritechcontent1">
                         Our AGRI-TECH connects growers, traders, domestic and international buyers seamlessly through
                         the integration of our inventory management, logistics, and payments modules. It facilitates
                         local buyers inputting current inventories on hand, allows for tracking local trucking to
@@ -530,7 +533,7 @@
                         opportunities.
                     </p>
 
-                    <p class="mt-4 lg:mt-6 lg:fadeLeft lg:animation-element in-view">
+                    <p class="mt-4 lg:mt-6 lg:fadeLeft lg:animation-element in-view" data-translate="Agritechcontent2">
                         We imagined a world where a small farmer could produce 10 bags of cassava, make it readily known
                         to domestic or international buyers that it’s for sale, sell it to them and then receive their
                         payment in mobile currency on the same day. Our system was developed around this cause. JAVOLIN
@@ -552,12 +555,12 @@
     class="p-6 lg:p-10 flex flex-col justify-center items-center lg:flex-row bg-white bg-no-repeat bg-cover bg-fixed">
     <div class="flex flex-col justify-center items-center max-w-screen-sm lg:max-w-full">
         <div class="lg:slide lg:fadeLeft lg:animation-element text-center text-[#6CC24A] font-medium tracking-[1.20px] break-words text-[20px] md:text-[20px] lg:text-[29px]"
-            style="font-family: 'Satoshi', sans-serif;">
+            style="font-family: 'Satoshi', sans-serif;" data-translate="OurSolutionsHeading">
             OUR SOLUTIONS
         </div>
 
 
-        <div class="lg:slide lg:fadeRight lg:animation-element w-96 lg:w-full m-0 text-center text-[#000638] break-words font-normal lg:font-bold text-[24px] md:text-[24px] lg:text-[40px]" style="font-family: 'Satoshi', sans-serif;">
+        <div class="lg:slide lg:fadeRight lg:animation-element w-96 lg:w-full m-0 text-center text-[#000638] break-words font-normal lg:font-bold text-[24px] md:text-[24px] lg:text-[40px]" style="font-family: 'Satoshi', sans-serif;" data-translate="OurSolutionsSubHeading">
             Our customizable solutions empower broader participation across industries and borders.
         </div>
 
@@ -570,14 +573,14 @@
     <div class="w-full h-full absolute bg-[#000638]"></div>
     <img class="w-full h-full absolute" src="/images/remi.png" alt="Foreign Exchange" />
     <div class="card-title absolute left-8 top-[270px] text-white text-[32px] lg:text-[40px] font-bold"
-        style="font-family: 'Satoshi', sans-serif; word-wrap: break-word">
+        style="font-family: 'Satoshi', sans-serif; word-wrap: break-word" data-translate="OurSolutionsPayHeading">
         Payments
     </div>
     <div class="card-hover-content absolute bottom-0 w-full h-[362px] bg-white">
         <div class="absolute left-8 top-8 flex flex-col items-start gap-3">
-            <div class="text-[#000C26] text-[28px] lg:text-[28px] font-bold" style="word-wrap: break-word">Payments
+            <div class="text-[#000C26] text-[28px] lg:text-[28px] font-bold" style="word-wrap: break-word"data-translate="OurSolutionsPayHeading">Payments
             </div>
-            <div class="text-[#5D6066] text-[16px] font-medium" style="word-wrap: break-word">
+            <div class="text-[#5D6066] text-[16px] font-medium" style="word-wrap: break-word" data-translate="OurSolutionsPayContent">
                 Javolin allows businesses to make digital payments to suppliers and employees across borders from our
                 platforms. Businesses can track the inflow and outflow of money from their wallet using a simplified
                 dashboard with supportive analytic components.
@@ -592,7 +595,7 @@
                 <img style="width: 398px; height: 467px; position: absolute" src="/images/inventory.png"
                     alt="Foreign Exchange" />
                 <div class="card-title text-[32px] lg:text-[40px]"
-                    style="width: 337px; position: absolute; left: 32px; top: 270px; color: white; font-family: 'Satoshi', sans-serif; font-weight: 700; word-wrap: break-word">
+                    style="width: 337px; position: absolute; left: 32px; top: 270px; color: white; font-family: 'Satoshi', sans-serif; font-weight: 700; word-wrap: break-word" data-translate="OurSolutionsInventoryHeading">
                     Inventory & Logistics
                 </div>
 
@@ -603,12 +606,12 @@
                         style="left: 32px; top: 32px; position: absolute; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 12px; display: inline-flex">
                         <!-- Arrow container adjusted to the far right bottom corner -->
 
-                        <div class="text-[28px] lg:text-[28px]"
-                            style="width: 334px; color: #000C26; font-family: Satoshi; font-weight: 700; word-wrap: break-word">
+                        <div class="text-[28px] lg:text-[24px]"
+                            style="width: 330px; color: #000C26; font-family: Satoshi; font-weight: 700; word-wrap: break-word" data-translate="OurSolutionsInventoryHeading">
                             Inventory & Logistics
                         </div>
                         <div
-                            style="width: 334px; height: 203px; color: #5D6066; font-size: 16px; font-family: Satoshi; font-weight: 500; word-wrap: break-word">
+                            style="width: 330px; height: 200px; color: #5D6066; font-size: 16px; font-family: Satoshi; font-weight: 500; word-wrap: break-word" data-translate="OurSolutionsInventoryContent">
                             We allow farmers and other businesses to input current inventory levels that can be purchased by domestic &
                             international buyers, and receive payment directly to their mobile money account, bank card, or bank account. Our added
                             logistics module allows purchasers to track the product from the seller, through our warehouse network to their local
@@ -625,7 +628,7 @@
                 <img style="width: 398px; height: 467px; position: absolute" src="/images/commodities_marketplace.png"
                     alt="Foreign Exchange" />
                 <div class="card-title text-[32px] lg:text-[40px]"
-                    style="width: 337px; position: absolute; left: 32px; top: 240px; color: white; font-family: 'Satoshi', sans-serif; font-weight: 700; word-wrap: break-word">
+                    style="width: 337px; position: absolute; left: 32px; top: 240px; color: white; font-family: 'Satoshi', sans-serif; font-weight: 700; word-wrap: break-word" data-translate="OurSolutionsAgriHeading">
                     Agri Commodities Marketplace
                 </div>
                 <div class="card-hover-content"
@@ -635,10 +638,10 @@
 
 
                         <div class="text-[28px] lg:text-[28px]"
-                            style="width: 334px; color: #000C26; font-family: Satoshi; font-weight: 700; word-wrap: break-word">
+                            style="width: 334px; color: #000C26; font-family: Satoshi; font-weight: 700; word-wrap: break-word" data-translate="OurSolutionsAgriHeading">
                             Agri Commodities Marketplace</div>
                         <div
-                            style="width: 334px; height: 203px; color: #5D6066; font-size: 16px; font-family: Satoshi; font-weight: 500; word-wrap: break-word">
+                            style="width: 334px; height: 203px; color: #5D6066; font-size: 16px; font-family: Satoshi; font-weight: 500; word-wrap: break-word" data-translate="OurSolutionsAgriContent">
                             All agri commodities available for sale from our partners are available for our clients in real time. By registering
                             for our marketplace, domestic & international buyers can better plan their procurement strategies. We currently cover
                             Ghana, Nigeria & Senegal.
@@ -655,30 +658,33 @@
     style="background-image: url('/images/invest_bg1.png'); background-size: cover; background-color: #000B6B; background-blend-mode: overlay;">
     <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         <div class="p-10 pb-6 lg:px-24 mt-4">
-            <h3 class="text-[#6CC24A] font-size: 20px lg:text-[29px] md:font-size: 18px; lg:animation-element lg:fadeLeft text-center">JAV FINANCE</h3>
+            <h3
+                class="text-[#6CC24A] text-[20px] md:text-[18px] lg:text-[29px] text-center lg:text-left lg:animation-element lg:fadeLeft" data-translate="JavFinanceHeading">
+                JAV FINANCE</h3>
+
             <p class="hidden lg:block text-[44px] text-white mt-2 font-bold leading-tight lg:animation-element lg:fadeRight"
-                style="width: 800px; max-width: 800px;">
+                style="width: 800px; max-width: 800px;" data-translate="JavFinanceSubHeading">
                 Earn a stabilized return by lending alongside us in the commodities sector.
             </p>
             <!-- Medium Screen Text -->
             <p class="text-center hidden md:block lg:hidden text-[28px] text-white mt-2 font-bold leading-tight lg:animation-element lg:fadeRight"
-                style="max-width: 800px;">
+                style="max-width: 800px;" data-translate="JavFinanceSubHeading">
                 Earn a stabilized return by lending alongside us<br> in the commodities sector.
             </p>
             <!-- Small Screen Text -->
             <p class="text-center block md:hidden text-[28px] text-white mt-2 font-bold leading-tight lg:animation-element lg:fadeRight"
-                style="max-width: 800px;">
+                style="max-width: 800px;" data-translate="JavFinanceSubHeading">
                 Earn a stabilized return by lending alongside<br> us in the commodities<br> sector.
             </p>
-            <p class="text-center lg:text-[24px] md:text-[20px] text-[22px] text-[#FAFAFA] mt-4 max-w-xl opacity-70 lg:animation-element lg:fadeLeft">
+            <p
+                class="text-center lg:text-left lg:text-[24px] md:text-[20px] text-[22px] text-[#FAFAFA] mt-4 max-w-xl opacity-70 lg:animation-element lg:fadeLeft" data-translate="JavFinanceContent">
                 JAVOLIN provides investors and lenders an opportunity to earn a stable and predictable return by
-                participating in our
-                Agri Commodities trading platform. We provide trade financing to traders for a variety of
-                agri-commodities backed by
-                purchase orders from large international buyers. This platform is only open to sophisticated investors
-                and/or lenders.
-                Contact trade@javolin.com for more information.
+                participating in our Agri Commodities trading platform. We provide trade financing to traders for a variety of
+                agri-commodities backed by purchase orders from large international buyers. This platform is only open to
+                sophisticated investors
+                and/or lenders. Contact trade@javolin.com for more information.
             </p>
+
         </div>
         <div class="lg:animation-element lg:fadeRight self-end order-1 lg:order-2 flex justify-center">
             <img class="hidden lg:block w-full h-full" src="/images/invest.png" alt="Investment Image">
@@ -691,7 +697,7 @@
 <section class="quoteText" style="background: url('/images/agri-bg.png') no-repeat center center; background-size: cover;">
     <div>
         <div class="py-10 flex justify-center items-center mb-4 lg:fadeRight lg:animation-element">
-            <div class="w-[382px] lg:w-full text-center text-blue-800 text-[32px] lg:text-[40px] font-bold font-['Satoshi'] tracking-wider">
+            <div class="w-[382px] lg:w-full text-center text-blue-800 text-[32px] lg:text-[40px] font-bold font-['Satoshi'] tracking-wider" data-translate="CommunityHeading">
                 Community Impact
             </div>
         </div>
@@ -699,7 +705,7 @@
             <div class="lg:max-w-[1000px]" id="quoteText"
                 style="display: flex; align-items: center; justify-content: center; min-height: 250px;">
                 <span style="font-size: 70px; color: #6CC24A; line-height: 1;">“</span>
-                <span style="line-height: 1.1; margin-right: 5px;">
+                <span style="line-height: 1.1; margin-right: 5px;" data-translate="CommunityContent">
                     We improve the communities in which we live and work by strengthening access to healthcare, essential
                     resources,
                     education, and athletics.
@@ -763,7 +769,7 @@
 <section id="news" class="md:p-8 relative p-10 lg:px-24"
     style="background: url('/images/news_bg.png') no-repeat center center; background-size: cover;">
 
-    <div class="text-center  text-white text-3xl md:text-4xl font-black font-['Satoshi']">News & Announcements</div>
+    <div class="text-center  text-white text-3xl md:text-4xl font-black font-['Satoshi']" data-translate="NewsHeading">News & Announcements</div>
     <div style="box-shadow: 0px 20.952px 38.095px 0px rgba(239, 234, 234, 0.1);"
         class="rounded-[20px] grid grid-cols-1 lg:grid-cols-2 border-[0.29px] border-[#95989D] h-auto lg:h-[350px] hover:scale-105 ease-in-out duration-300 lg:fadeRight lg:animation-element mt-12">
         <div class="h-full lg:h-[350px]">
@@ -774,11 +780,11 @@
         </div>
         <div
             class="flex flex-col justify-center p-6 md:p-9 bg-white rounded-br-2xl rounded-bl-none rounded-tr-none lg:rounded-tr-2xl h-full lg:h-[350px]">
-            <div class="text-slate-950 text-2xl md:text-4xl font-bold font-['Satoshi'] py-4">Interview with Carl Powell,
+            <div class="text-slate-950 text-2xl md:text-4xl font-bold font-['Satoshi'] py-4" data-translate="GitexNewsHeading">Interview with Carl Powell,
                 CEO Javolin
                 Group at Gitex Africa 2024</div>
             <div>
-                <p class="text-[#3A3A3A] text-[14px] md:text-[16px] lg:text-[18px]">
+                <p class="text-[#3A3A3A] text-[14px] md:text-[16px] lg:text-[18px]" data-translate="GitexNewsSubContent">
                     Carl Powell was at the Gitex Africa 2024 conference in Morroco. Gitex is the LARGEST Tech & Startup
                     show
                     in Africa Powering Africa into the Global AI Economy.
@@ -823,7 +829,7 @@
             </div>
             <div class="flex flex-col justify-start items-start gap-4 p-4 mt-0">
                 <div class="flex-col justify-start items-start gap-3 flex">
-                    <div class="text-slate-950 text-lg md:text-2xl font-bold font-['Satoshi']">JAVOLIN attends the 2024 Summer
+                    <div class="text-slate-950 text-lg md:text-2xl font-bold font-['Satoshi']" data-translate="FoodNewsHeading">JAVOLIN attends the 2024 Summer
                         Fancy Food Show in New York..</div>
                 </div>
                 <div class="flex justify-start items-center gap-4">
@@ -864,7 +870,7 @@
     </div>
     <div class="flex flex-col justify-start items-start gap-4 p-4">
         <div class="flex-col justify-start items-start gap-3 flex">
-            <div class="text-slate-950 text-lg md:text-2xl font-bold font-['Satoshi']">JAVOLIN Group Supply Consortium
+            <div class="text-slate-950 text-lg md:text-2xl font-bold font-['Satoshi']" data-translate="PartnershipNewsHeading">JAVOLIN Group Supply Consortium
                 announce partnership with Real Blue International...</div>
         </div>
         <div class="flex justify-start items-center gap-4">
