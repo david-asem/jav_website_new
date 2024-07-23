@@ -1,7 +1,7 @@
 function carousel() {
     return {
         slides: [
-            { label: 'JAV Finance', image: '/images/javolin_finance.png', active: false, flipped: false, hovered: false, content: 'JAVOLIN provides investors and lenders an opportunity to earn a stable and predictable return by participating in its Agri Commodities trading platform.', labelTranslate: 'JavFinanceHeading', contentTranslate: 'javFinanceContent' },
+            { label: 'JAV Finance', image: '/images/javolin_finance.png', active: false, flipped: false, hovered: false, content: 'JAVOLIN provides investors and lenders an opportunity to earn a stable and predictable return by participating in its Agri Commodities trading platform.', labelTranslate: 'JavFinanceHeading', contentTranslate: 'JavFinanceContent' },
             { label: 'JAV Tech', image: '/images/javolin_tech.png', active: false, flipped: false, hovered: false, content: 'We offer specific services such as digital Know Your Customer (KYC), access to proprietary APIs, and digital collections to financial institutions, businesses, and government entities.', labelTranslate: 'javTech', contentTranslate: 'javTechContent' },
             { label: 'JAV Infrastructure', image: '/images/infra.png', active: true, flipped: false, hovered: false, content: 'Our digital infrastructure connects multi location enterprises and provides collections software for businesses and government entities across a variety of fees and taxes.', labelTranslate: 'javInfrastructure', contentTranslate: 'javInfrastructureContent' },
             { label: 'JAV Payments', image: '/images/fx.png', active: false, flipped: false, hovered: false, content: 'Via our digital wallet, we are able to facilitate B2B payments domestically and internationally to countries across the globe in multiple currencies.', labelTranslate: 'javPayments', contentTranslate: 'javPaymentsContent' },
@@ -119,7 +119,7 @@ function carousel() {
                 scale = 1.1;
             }
 
-            let opacity = index === this.activeSlide ? 1 : 0.5;
+            let opacity = index === this.activeSlide ? 1 : 0.95;
 
             // Default styles for larger screens
             let transform = `scale(${scale})`;
